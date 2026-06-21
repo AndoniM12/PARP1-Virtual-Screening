@@ -12,17 +12,14 @@ import os
 # UniProt identifier for human PARP1
 UNIPROT_ID = "P09874"
 
-# Model version in AlphaFold DB (manually checked on the website (https://alphafold.ebi.ac.uk/entry/P09874) -> currently v6)
-VERSION = 6
-
 # Download URL, built following AlphaFold DB's fixed naming pattern
-URL = f"https://alphafold.ebi.ac.uk/files/AF-{UNIPROT_ID}-F1-model_v{VERSION}.pdb"
+URL = f"https://alphafold.ebi.ac.uk/files/AF-{UNIPROT_ID}-F1-model_v6.pdb"
 
 # Folder where the downloaded file will be saved
-OUTPUT_FOLDER = "structures"
+OUTPUT_FOLDER = "structures/raw"
 
 # Name of the output file
-OUTPUT_FILENAME = f"AF-{UNIPROT_ID}-F1-model_v{VERSION}.pdb"
+OUTPUT_FILENAME = f"PARP1_AF_model.pdb"
 
 # Full path where the file will be saved
 OUTPUT_PATH = os.path.join(OUTPUT_FOLDER, OUTPUT_FILENAME)

@@ -11,8 +11,7 @@ import os
 CODES_FILE = "scripts/pdb_codes.txt"
 
 # Folder where the downloaded files will be saved
-OUTPUT_FOLDER = "structures"
-
+OUTPUT_FOLDER = "structures/raw"
 
 def read_pdb_codes(file):
     """
@@ -25,7 +24,7 @@ def read_pdb_codes(file):
 
     codes = []
     for line in lines:
-        line = line.strip()  # remove spaces and newline characters
+        line = line.strip()  # remove spaces and newline characters (\n)
         if line and not line.startswith("#"):
             codes.append(line.upper())
 

@@ -1,0 +1,23 @@
+# Clear model without ligand
+7AAA
+
+# Experimental inhibitor (EB-47)
+7AAB
+
+# Veliparib
+7AAC
+
+# Olaparib
+7AAD
+
+# Olaparib
+7KK4
+
+# Niraparib
+7KK5
+
+# NAD+ analogue as ligand (code DQV), ligand name BAD (benzamide adenide dinucleotide)
+6BHV
+
+# NAD+ analogue and ADP-ribose ligand
+9DMC

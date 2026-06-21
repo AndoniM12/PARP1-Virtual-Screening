@@ -1,12 +1,12 @@
-# Carpeta de estructuras descargadas
+# Structures directory
 structures/
 
-# Archivos PDB sueltos en cualquier carpeta
+# Any .pdb file
 *.pdb
 
-# Entorno de Python / cache
+# Python environment / cache
 __pycache__/
 *.pyc
 
-# Archivos de sesión de Chimera (si los generas)
+# Chimera sessions
 *.py~

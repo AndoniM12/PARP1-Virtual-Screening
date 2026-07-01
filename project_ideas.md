@@ -33,7 +33,7 @@ Un pipeline basado en análisis estructural, generación de farmacóforos, criba
 
 # Pipeline propuesto
 
-!(images/esquema.png)
+![Esquema pipeline](images/esquema.png)
 
 ---
 

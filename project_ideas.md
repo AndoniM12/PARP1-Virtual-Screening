@@ -33,40 +33,7 @@ Un pipeline basado en análisis estructural, generación de farmacóforos, criba
 
 # Pipeline propuesto
 
-PARP1
-   │
-   ▼
-Selección de PDB
-   │
-   ▼
-Análisis del bolsillo catalítico
-   │
-   ▼
-Inhibidores conocidos
-   │
-   ▼
-Farmacóforo
-   │
-   ▼
-Validación
-   │
-   ▼
-Virtual Screening (Pharmit)
-   │
-   ▼
-Top candidatos
-   │
-   ├──────────────┐
-   ▼              ▼
-Docking       Docking de inhibidores conocidos
-   │              │
-   └──────┬───────┘
-          ▼
-Comparación de poses e interacciones
-          ▼
-Validación del pipeline
-
-![alt text](Códigos_pdb_ligandos.png)
+!(images/esquema.png)
 
 ---
 
@@ -138,6 +105,8 @@ Python
 Tengo 9 estructuras:
     - Estructura de la proteína completa predicha con ALphaFold
     - 8 proteínas cristalizadas experimentalmente de la región catalítica (1 sin nada, 2 con análogos de NAD+ y 5 con inhibidores)
+
+![Códigos PDB](images/pdb_ligands.png)
 
 - ¿Validar docking mediante redocking?
 

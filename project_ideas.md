@@ -134,3 +134,20 @@ ZINC20 / PUBCHEM ...
 
 - Automatizar completamente el pipeline.
 - Añadir contenedor Docker.
+
+## Pruebas de herramientas
+
+### OpenPharmacophore
+
+Fecha:
+01/07/2026
+
+Instalación:
+
+pip install openpharmacophore
+
+Resultado:
+No disponible en PyPI.
+
+Acción:
+Instalación desde repositorio GitHub.  (pip install git+https://github.com/UnixJunkie/OpenPharmacophore.git)

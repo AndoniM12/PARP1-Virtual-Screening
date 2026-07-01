@@ -66,6 +66,8 @@ Comparación de poses e interacciones
           ▼
 Validación del pipeline
 
+![alt text](Códigos_pdb_ligandos.png)
+
 ---
 
 # Decisiones tomadas

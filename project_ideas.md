@@ -1,8 +1,10 @@
-# TFM - Desarrollo y validación de un pipeline computacional para la identificación de inhibidores de PARP1
+# TFM - Desarrollo y validación de un pipeline computacional para la identificación de inhibidores de PARP1 a partir de datos públicos
 
 ## Objetivo general
 
-Desarrollar un pipeline reproducible para la identificación computacional de inhibidores de PARP1 utilizando exclusivamente herramientas open source y datos públicos.
+Este TFM no pretende descubrir un nuevo inhibidor de PARP1.
+
+El objetivo es desarrollar un pipeline reproducible para cribado virtual y docking molecular que pueda reutilizarse en otras dianas farmacológicas, utilizando PARP1 como caso de estudio debido a la gran cantidad de información estructural y experimental disponible.
 
 ---
 
@@ -31,46 +33,38 @@ Un pipeline basado en análisis estructural, generación de farmacóforos, criba
 
 # Pipeline propuesto
 
-PDB
-↓
-
-Selección de estructuras
-
-↓
-
-Preparación de proteína
-
-↓
-
-Ligandos conocidos (ChEMBL)
-
-↓
-
-Análisis de interacciones
-
-↓
-
-Modelo farmacofórico (Pharmit??)
-
-↓
-
+PARP1
+   │
+   ▼
+Selección de PDB
+   │
+   ▼
+Análisis del bolsillo catalítico
+   │
+   ▼
+Inhibidores conocidos
+   │
+   ▼
+Farmacóforo
+   │
+   ▼
+Validación
+   │
+   ▼
 Virtual Screening (Pharmit)
-
-↓
-
-Filtrado
-
-↓
-
-Docking (Autodock Vina de Chimera)
-
-↓
-
-Análisis de interacciones
-
-↓
-
-Ranking final
+   │
+   ▼
+Top candidatos
+   │
+   ├──────────────┐
+   ▼              ▼
+Docking       Docking de inhibidores conocidos
+   │              │
+   └──────┬───────┘
+          ▼
+Comparación de poses e interacciones
+          ▼
+Validación del pipeline
 
 ---
 

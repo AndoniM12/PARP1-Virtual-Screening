@@ -151,3 +151,10 @@ No disponible en PyPI.
 
 Acción:
 Instalación desde repositorio GitHub.  (pip install git+https://github.com/UnixJunkie/OpenPharmacophore.git)
+
+Resultado:
+No es muy buena idea ya que tiene un monton de dependencias que se tiene que instalar aparte, mejor usar otro programa
+
+## Valorar el uso de RDKit
+
+RDKit podría utilizarse como la base quimioinformática del pipeline, permitiendo trabajar de forma reproducible con las moléculas obtenidas de bases de datos públicas como ChEMBL. Con esta herramienta podrías convertir formatos químicos (SMILES, SDF, MOL), preparar y limpiar los ligandos, calcular propiedades fisicoquímicas (peso molecular, LogP, reglas de Lipinski, donadores y aceptores de puentes de hidrógeno), generar descriptores moleculares y fingerprints para comparar estructuras, agrupar compuestos por similitud, identificar características farmacofóricas (zonas aromáticas, regiones hidrofóbicas, donadores/aceptores de hidrógeno) y ayudar en la selección y filtrado inicial de candidatos antes del docking molecular. Además, al estar integrado con Python, permitiría automatizar estas etapas dentro de un pipeline reproducible y documentado en GitHub.

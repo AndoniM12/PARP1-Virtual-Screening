@@ -10,11 +10,17 @@
 # Olaparib
 7AAD
 
+# Talazoparib
+7KK3
+
 # Olaparib
 7KK4
 
 # Niraparib
 7KK5
+
+# Veliparib
+7KK6
 
 # Analogo de NAD+ (DQV), ligando llamado BAD (benzamide adenide dinucleotide)
 6BHV

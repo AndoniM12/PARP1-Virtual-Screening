@@ -9,14 +9,19 @@ OUTPUT_FOLDER = "structures/chain_A"
 
 
 ligandos_por_pdb = {
-    "6BHV": "DQV",
+
     "7AAA": "",
     "7AAB": "UHB",
     "7AAC": "78P",
     "7AAD": "09L",
+    "7KK3": "2YQ",
     "7KK4": "09L",
     "7KK5": "3JD",
+    "7KK6": "78P",
+    "6BHV": "DQV",
     "9DMC": "DQV",
+    "9DMC": "APR"
+
 }
 
 

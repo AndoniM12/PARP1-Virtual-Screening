@@ -1,0 +1,12 @@
+PDB,Código ligando,Ligando,Tipo de Ligando,Método experimental,Resolución (Å),Región proteína,DOI
+7AAA,-,Sin ligando,Sin ligando,Rayos X,1.74,CAT,https://doi.org/10.1093/nar/gkab020
+7AAB,UHB,EB-47,Inhibidor experimental,Rayos X,2.80,CAT,https://doi.org/10.1093/nar/gkab020
+7AAC,78P,Veliparib,Inhibidor clínico,Rayos X,1.59,CAT,https://doi.org/10.1093/nar/gkab020
+7AAD,09L,Olaparib,Inhibidor clínico,Rayos X,2.21,CAT,https://doi.org/10.1093/nar/gkab020
+7KK3,2YQ,Talazoparib,Inhibidor clínico,Rayos X,2.06,CAT,https://doi.org/10.1074/jbc.RA120.016573
+7KK4,09L,Olaparib,Inhibidor clínico,Rayos X,1.96,CAT,https://doi.org/10.1074/jbc.RA120.016573
+7KK5,3JD,Niraparib,Inhibidor clínico,Rayos X,1.70,CAT,https://doi.org/10.1074/jbc.RA120.016573
+7KK6,78P,Veliparib,Inhibidor clínico,Rayos X,2.06,CAT,https://doi.org/10.1074/jbc.RA120.016573
+6BHV,DQV,BAD,Análogo NAD+,Rayos X,2.30,CAT,https://doi.org/10.1038/s41467-018-03234-8
+9DMC,DQV y APR,BAD + ADP-ribosa,Análogo NAD+,Rayos X,3.00,CAT,https://doi.org/10.1016/j.molcel.2024.10.024
+PARP1_AF,-,Sin ligando,Sin ligando,AlphaFold,-,Proteína completa,https://alphafold.ebi.ac.uk/entry/AF-P09874-F1

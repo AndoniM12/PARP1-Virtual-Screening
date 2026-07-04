@@ -106,7 +106,7 @@ Tengo 9 estructuras:
     - Estructura de la proteína completa predicha con ALphaFold
     - 8 proteínas cristalizadas experimentalmente de la región catalítica (1 sin nada, 2 con análogos de NAD+ y 5 con inhibidores)
 
-![Códigos PDB](images/pdb_ligands.png)
+[Estructuras](Tabla_pdb.csv)
 
 - ¿Validar docking mediante redocking?
 

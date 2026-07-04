@@ -33,7 +33,7 @@ Un pipeline basado en análisis estructural, generación de farmacóforos, criba
 
 # Pipeline propuesto
 
-![Esquema pipeline](images/esquema.png)
+![Esquema pipeline](Info_adicional/esquema.png)
 
 ---
 
@@ -49,6 +49,10 @@ Motivos:
 - muchos artículos
 - muchos inhibidores
 - posibilidad de validación
+
+## Estructuras
+
+[Estructuras](Info_adicional/Tabla_pdb.csv)
 
 ---
 
@@ -99,14 +103,6 @@ Python
 ---
 
 # Dudas abiertas
-
-- ¿Una estructura o varias?
-
-Tengo 9 estructuras:
-    - Estructura de la proteína completa predicha con ALphaFold
-    - 8 proteínas cristalizadas experimentalmente de la región catalítica (1 sin nada, 2 con análogos de NAD+ y 5 con inhibidores)
-
-[Estructuras](Tabla_pdb.csv)
 
 - ¿Validar docking mediante redocking?
 

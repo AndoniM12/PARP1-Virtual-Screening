@@ -1,11 +1,11 @@
 """
 Extrae el contenido de la cadena A de un archivo PDB además de solo la proteína
-y el ligando deseado y lo guarda en un nuevo archivo.
+y el ligando deseado y lo guarda en un nuevo archivo en la carpeta structures/filtered.
 """
 import os
 
 INPUT_FOLDER = "structures/raw"
-OUTPUT_FOLDER = "structures/chain_A"
+OUTPUT_FOLDER = "structures/filtered"
 
 
 ligandos_por_pdb = {

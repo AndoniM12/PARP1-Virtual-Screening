@@ -34,6 +34,8 @@ def extract_chain_a(pdb_path, output_path):
 if __name__ == "__main__":
 
     pdb_files = os.listdir(INPUT_FOLDER)
+    if "PARP1_AF_model.pdb" in pdb_files:
+        pdb_files.remove("PARP1_AF_model.pdb")
     
     print(f"Found {len(pdb_files)} structures to process.\n")
 

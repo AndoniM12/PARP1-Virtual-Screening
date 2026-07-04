@@ -150,9 +150,6 @@ Genera versiones `*_chainA.pdb` dentro de `structures/raw/`, listas para su uso 
 
 ## Referencias
 
-- Conceição et al. (2025). *PARP1: A comprehensive review of its mechanisms, therapeutic implications and emerging cancer treatments*. BBA - Reviews on Cancer, 1880, 189282.
-- Koes & Camacho (2014). *Pharmit: interactive exploration of chemical space*. Nucleic Acids Research.
-- Suskiewicz et al. (2023). Updated protein domain annotation of the PARP protein family. Nucleic Acids Research.
 
 ---
 

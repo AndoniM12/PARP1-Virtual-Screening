@@ -84,14 +84,14 @@ Los residuos que aparecen en **ambos ligandos** (His862, Gly863, Ser904, Tyr907,
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/PARP1-Virtual-Screening.git
+git clone https://github.com/AndoniM12/PARP1-Virtual-Screening.git
 cd PARP1-Virtual-Screening
 ```
 
 ### 2. Crear el entorno conda
 
 ```bash
-conda env create -f parp1_pipeline.yml
+conda env create -f parp1_pipeline.yml -n parp1_pipeline
 conda activate parp1_pipeline
 ```
 

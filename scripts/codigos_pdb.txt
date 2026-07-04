@@ -1,0 +1,23 @@
+# Modelo limpio sin ligando
+7AAA
+
+# Inhibidor experimental (EB-47)
+7AAB
+
+# Veliparib
+7AAC
+
+# Olaparib
+7AAD
+
+# Olaparib
+7KK4
+
+# Niraparib
+7KK5
+
+# Analogo de NAD+ (DQV), ligando llamado BAD (benzamide adenide dinucleotide)
+6BHV
+
+# Analogo NAD+ y ligando ADP-ribosa
+9DMC

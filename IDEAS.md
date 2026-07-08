@@ -8,6 +8,77 @@ El objetivo es desarrollar un pipeline reproducible para cribado virtual y docki
 
 ---
 
+# Estructura 
+
+1. Introducción
+
+1.1 Cáncer y daño en el ADN
+    • Origen del cáncer
+    • Tipos de daño en el ADN
+    • Importancia de la estabilidad genómica
+
+1.2 Mecanismos de reparación del ADN
+    • Reparación de SSB
+    • Reparación de DSB
+    • Principales vías (BER, NER, MMR, HR y NHEJ)
+
+1.3 La familia PARP
+    • Función general
+    • Reacción de PARilación
+    • Papel del NAD+
+    • Diferencias entre los miembros de la familia
+
+1.4 PARP1
+    • Organización estructural
+    • Dominios funcionales
+    • Mecanismo de activación
+    • PARilación y automodificación
+    • Regulación de la reparación del ADN
+
+1.5 PARP1 como diana terapéutica
+    • Relación entre PARP1 y cáncer
+    • Concepto de letalidad sintética
+    • Mutaciones BRCA1/BRCA2
+    • Inhibidores aprobados
+    • Mecanismo de acción de los inhibidores
+    • Resistencia a los inhibidores
+    • Necesidad de desarrollar nuevos compuestos
+
+1.6 Descubrimiento de fármacos asistido por ordenador
+    • Drug Discovery in silico
+    • Importancia de las estructuras cristalográficas
+    • Farmacóforos
+    • Virtual Screening
+    • Docking molecular
+
+2. Objetivos
+   2.1 Objetivo general
+   2.2 Objetivos específicos
+
+3. Materiales y métodos
+   3.1 Selección de estructuras cristalográficas
+   3.2 Obtención de inhibidores conocidos
+   3.3 Caracterización del bolsillo catalítico
+   3.4 Generación del farmacóforo
+   3.5 Validación del farmacóforo
+   3.6 Virtual Screening
+   3.7 Docking molecular
+   3.8 Automatización del pipeline
+
+4. Resultados
+   4.1 Selección de la estructura
+   4.2 Análisis del bolsillo
+   4.3 Farmacóforo obtenido
+   4.4 Resultados del cribado virtual
+   4.5 Resultados del docking
+   4.6 Validación del pipeline
+
+5. Discusión
+
+6. Conclusiones
+
+---
+
 # Motivación
 
 ¿Por qué PARP1?

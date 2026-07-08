@@ -59,7 +59,7 @@ Todas las estructuras corresponden al **dominio catalítico (CAT)** de PARP1 hum
 
 ---
 
-## Residuos clave del bolsillo catalítico
+## Residuos clave del bolsillo catalítico (REVISAR CON NUEVO PROGRAMA plip)
 
 Identificados mediante análisis de contactos (`findcontact`) en UCSF Chimera, comparando los inhibidores 09L (olaparib, 7AAD) y DQV (BAD, 6BHV):
 
@@ -100,21 +100,21 @@ conda activate parp1_pipeline
 **Modelo completo de AlphaFold (PARP1 humana, UniProt P09874):**
 
 ```bash
-python scripts/PARP1_AF_model_download.py
+python scripts/descargar_PARP1_modelo_AF.py
 ```
 
 **Estructuras cristalográficas desde RCSB PDB:**
 
 ```bash
-python scripts/download_pdb_list.py
+python scripts/descargar_pdbs.py
 ```
 
-Los PDB descargados se guardan en `structures/raw/`. El archivo `scripts/pdb_codes.txt` contiene la lista de códigos a descargar (uno por línea, se admiten comentarios con `#`).
+Los PDB descargados se guardan en `structures/raw/`. El archivo `scripts/codigos_pdb.txt` contiene la lista de códigos a descargar (uno por línea, se admiten comentarios con `#`).
 
-### 4. Extraer la cadena A de cada estructura
+### 4. Extraer la cadena A de cada estructura y el ligando que nos interesa
 
 ```bash
-python scripts/extract_chain_a.py
+python scripts/procesar_pdb.py
 ```
 
 Genera versiones `*_chainA.pdb` dentro de `structures/raw/`, listas para su uso en análisis de contactos o construcción del farmacóforo.
@@ -128,10 +128,12 @@ Genera versiones `*_chainA.pdb` dentro de `structures/raw/`, listas para su uso 
 | Python | 3.11 | Scripts del pipeline |
 | Biopython | 1.87 | Lectura y procesado de PDB |
 | NumPy | 2.4.6 | Cálculos numéricos |
+| PLIP (Protein-Ligand Interaction Profiles) | 3.0.0 | Identificación automatizada de interacción proteína-ligando|
 | UCSF Chimera | — | Visualización y análisis de contactos |
-| Pharmit | — | Construcción del farmacóforo y cribado virtual |
+| Pharmit | — | Construcción del farmacóforo y cribado virtual |  - ¿LigandScout como alternativa?
 | AlphaFold DB | v6 | Modelo de longitud completa de PARP1 |
 | RCSB PDB | — | Estructuras cristalográficas |
+
 
 ---
 
@@ -139,7 +141,7 @@ Genera versiones `*_chainA.pdb` dentro de `structures/raw/`, listas para su uso 
 
 - [x] Descarga automatizada de estructuras (AlphaFold + PDB)
 - [x] Extracción de cadena catalítica
-- [ ] Análisis de contactos proteína-ligando (Chimera)
+- [ ] Análisis de contactos proteína-ligando (plip y chimera)
 - [ ] Identificación de residuos clave del bolsillo
 - [ ] Construcción del farmacóforo de consenso (Pharmit)
 - [ ] Validación retrospectiva (activos conocidos + decoys DUD-E)

@@ -45,14 +45,17 @@ dependencies:
   - openbabel=3.1.1=py311he4d38a6_9
   - openssl=3.6.3=hc881268_0
   - packaging=26.2=pyhc364b38_0
+  - pandas=3.0.3=py311h2a74ac8_0
   - pcre2=10.47=h13923f0_0
   - pip=26.1.2=pyh8b19718_0
   - pixman=0.46.4=ha059160_1
   - plip=3.0.0=pyhcf101f3_0
   - python=3.11.15=ha9537fe_1_cpython
+  - python-dateutil=2.9.0.post0=pyhe01879c_2
   - python_abi=3.11=8_cp311
   - readline=8.3=h68b038d_0
   - setuptools=82.0.1=pyh332efcf_0
+  - six=1.17.0=pyhe01879c_1
   - tk=8.6.13=h7142dee_3
   - tzdata=2025c=hc9c84f9_1
   - wheel=0.47.0=pyhd8ed1ab_0

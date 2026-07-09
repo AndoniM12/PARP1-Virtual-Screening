@@ -1,12 +1,12 @@
-# Structures directory
+# Directorio de estructuras filtradas y de salida
 structures/
 
-# Any .pdb file
+# Cualquier archivo 
 *.pdb
 
-# Python environment / cache
+# Entornos virtuales de Python y cache de Python
 __pycache__/
 *.pyc
 
-# Chimera sessions
-*.py~
+# Script de pruebas (BORRAR)
+pruebas.py

@@ -129,7 +129,7 @@ Genera versiones `*_chainA.pdb` dentro de `structures/raw/`, listas para su uso 
 | Biopython | 1.87 | Lectura y procesado de PDB |
 | NumPy | 2.4.6 | Cálculos numéricos |
 | PLIP (Protein-Ligand Interaction Profiles) | 3.0.0 | Identificación automatizada de interacción proteína-ligando|
-| UCSF Chimera | — | Visualización y análisis de contactos |
+| UCSF Chimera | — | Inspección y validación visual |
 | Pharmit | — | Construcción del farmacóforo y cribado virtual |  - ¿LigandScout como alternativa?
 | AlphaFold DB | v6 | Modelo de longitud completa de PARP1 |
 | RCSB PDB | — | Estructuras cristalográficas |

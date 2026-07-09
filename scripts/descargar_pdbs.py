@@ -7,7 +7,7 @@ import urllib.request
 import os
 
 # Ruta del archivo de texto que contiene los códigos PDB
-CODES_FILE = "scripts/codigos_pdb.txt"
+CODES_FILE = "info_adicional/codigos_pdb.txt"
 
 # Directorio donde se guardarán los archivos PDB descargados
 OUTPUT_FOLDER = "structures/raw"

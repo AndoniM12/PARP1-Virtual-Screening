@@ -1,22 +1,27 @@
 import xml.etree.ElementTree as ET
 
 import os
+import pandas as pd
 
+INPUT_FILE = pd.read_csv("results/interacciones.csv")
 
-Input = "structures/contacts/"
+total_pdbs = INPUT_FILE["PDB"].nunique()
 
+total_pdb = INPUT_FILE["PDB"].nunique()
 
-for file in os.listdir(Input):
+consensus = (
+    INPUT_FILE.groupby(
+        ["Residue", "Residue_number", "Interaction"]
+    )["PDB"].nunique().reset_index(name="PDB")
+)
 
-    print(f"Procesando archivo: {file}")
-    tree = ET.parse(os.path.join(Input, file, f"{file}_chainA_report.xml"))
-    root = tree.getroot()
+consensus["Conservation"] = (
+    consensus["PDB"] / total_pdb * 100
+)
 
-    binding_site = root.find("bindingsite")
+consensus = consensus.sort_values(
+    by=["Conservation"],
+    ascending=False
+)
 
-    interactions = binding_site.find("interactions")
-
-    for interaction in interactions:
-        print(f"{interaction.tag}: {interaction.text}")
-
-    print("--------------------------------------------------------------------------------------------")
+print(consensus)

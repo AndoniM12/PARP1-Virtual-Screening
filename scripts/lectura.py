@@ -33,7 +33,6 @@ def hydrophobic_interactions(binding_site, pdb_code, ligand_name):
 
     return interactions
 
-
 def hydrogen_bonds(binding_site, pdb_code, ligand_name):
 
     interactions = []
@@ -95,7 +94,7 @@ def parse_report(xml_file):
 
     identifiers = binding_site.find("identifiers")
 
-    pdb_code = identifiers.findtext("pdbid")
+    pdb_code = root.find("pdbid").text[:4]
     ligand_name = identifiers.findtext("longname")
 
     interactions = []

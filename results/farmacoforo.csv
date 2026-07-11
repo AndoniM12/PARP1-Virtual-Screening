@@ -1,0 +1,25 @@
+,Residue,Residue_number,Interaction,PDB,Conservation,Classification
+7,GLY,863,Hydrogen bond,8,100.0,Obligatorio
+23,TYR,907,Pi stacking,7,87.5,Recomendado
+19,TYR,896,Hydrophobic interaction,6,75.0,Recomendado
+22,TYR,907,Hydrophobic interaction,6,75.0,Recomendado
+16,TYR,889,Hydrophobic interaction,5,62.5,Opcional
+6,GLU,988,Hydrophobic interaction,5,62.5,Opcional
+0,ALA,898,Hydrophobic interaction,4,50.0,Opcional
+1,ARG,878,Hydrogen bond,3,37.5,Opcional
+20,TYR,896,Pi stacking,3,37.5,Opcional
+18,TYR,896,Hydrogen bond,2,25.0,Opcional
+14,SER,864,Hydrogen bond,2,25.0,Opcional
+3,ASP,766,Hydrophobic interaction,2,25.0,Opcional
+12,LEU,769,Hydrophobic interaction,2,25.0,Opcional
+8,GLY,876,Hydrogen bond,2,25.0,Opcional
+10,HIS,862,Hydrogen bond,2,25.0,Opcional
+2,ASN,868,Hydrogen bond,1,12.5,Opcional
+4,GLU,763,Hydrogen bond,1,12.5,Opcional
+5,GLU,988,Hydrogen bond,1,12.5,Opcional
+9,GLY,888,Hydrogen bond,1,12.5,Opcional
+11,HIS,862,Pi stacking,1,12.5,Opcional
+15,TYR,889,Hydrogen bond,1,12.5,Opcional
+13,MET,890,Hydrogen bond,1,12.5,Opcional
+17,TYR,889,Pi stacking,1,12.5,Opcional
+21,TYR,907,Hydrogen bond,1,12.5,Opcional

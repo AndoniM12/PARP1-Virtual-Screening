@@ -12,7 +12,6 @@ OUTPUT_FOLDER = "structures/contacts"
 
 skips = [
     "7AAA",
-    "6BHV",
     "9DMC"
 ]
 

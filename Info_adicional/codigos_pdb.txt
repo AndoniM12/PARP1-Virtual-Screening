@@ -27,3 +27,18 @@
 
 # Analogo NAD+ y ligando ADP-ribosa
 9DMC
+
+# PARP1 catalytic domain in complex with 8-chloroquinazolinone-based inhibitor (compound 9)
+7ONR
+
+# PARP1 catalytic domain in complex with isoquinolone-based inhibitor (compound 16)
+7ONS
+
+# PARP1 catalytic domain in complex with a selective pyridine carboxamide-based inhibitor (compound 22)
+7ONT
+
+# Saruparib
+9ETQ
+
+# Crystal structure of PARP1 catalytic domain bound to AZD9574
+9ETR

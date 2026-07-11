@@ -20,8 +20,10 @@ ligandos_por_pdb = {
     "7KK6": "78P",
     "6BHV": "DQV",
     "9DMC": "DQV",
-    "9DMC": "APR"
-
+    "9DMC": "APR",
+    "7ONR": "VKW",
+    "7ONS": "VKT",
+    "7ONT": "VKQ"
 }
 
 

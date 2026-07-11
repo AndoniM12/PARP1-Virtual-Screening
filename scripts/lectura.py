@@ -155,7 +155,7 @@ def main():
 
     df.to_csv(OUTPUT_FILE, index=False)
 
-    print(df.head())
+    print(f"Se han guardado {len(df)} interacciones en {OUTPUT_FILE} \n correspondientes a {df['PDB'].nunique()} estructuras.")
 
 if __name__ == "__main__":
     main()

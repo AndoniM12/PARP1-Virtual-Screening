@@ -26,7 +26,7 @@ def consensus_classification(df):
 
     consensus["Conservation"] = (
         consensus["PDB"] / total_pdb * 100
-    )
+    ).round(2)
 
     consensus["Classification"] = consensus["Conservation"].apply(classify_interaction)
 

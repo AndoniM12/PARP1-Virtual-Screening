@@ -7,6 +7,11 @@ PDB,Código ligando,Ligando,Tipo de Ligando,Método experimental,Resolución (Å
 7KK4,09L,Olaparib,Inhibidor clínico,Rayos X,1.96,CAT,https://doi.org/10.1074/jbc.RA120.016573
 7KK5,3JD,Niraparib,Inhibidor clínico,Rayos X,1.70,CAT,https://doi.org/10.1074/jbc.RA120.016573
 7KK6,78P,Veliparib,Inhibidor clínico,Rayos X,2.06,CAT,https://doi.org/10.1074/jbc.RA120.016573
+7ONR,VKW,Inhibidor experimental,Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1021/acs.jmedchem.1c01012
+7ONS,VKT,Inhibidor experimental,Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1021/acs.jmedchem.1c01012
+7ONT,VKQ,Inhibidor experimental,Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1021/acs.jmedchem.1c01012
 6BHV,DQV,BAD,Análogo NAD+,Rayos X,2.30,CAT,https://doi.org/10.1038/s41467-018-03234-8
 9DMC,DQV y APR,BAD + ADP-ribosa,Análogo NAD+,Rayos X,3.00,CAT,https://doi.org/10.1016/j.molcel.2024.10.024
+9ETQ,
+9ETR,
 PARP1_AF,-,Sin ligando,Sin ligando,AlphaFold,-,Proteína completa,https://alphafold.ebi.ac.uk/entry/AF-P09874-F1

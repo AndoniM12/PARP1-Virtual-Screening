@@ -4,27 +4,14 @@ y el ligando deseado y lo guarda en un nuevo archivo en la carpeta structures/fi
 """
 import os
 
+import pandas as pd
+
 INPUT_FOLDER = "structures/raw"
 OUTPUT_FOLDER = "structures/filtered"
 
 
-ligandos_por_pdb = {
-
-    "7AAA": "",
-    "7AAB": "UHB",
-    "7AAC": "78P",
-    "7AAD": "09L",
-    "7KK3": "2YQ",
-    "7KK4": "09L",
-    "7KK5": "3JD",
-    "7KK6": "78P",
-    "6BHV": "DQV",
-    "9DMC": "DQV",
-    "9DMC": "APR",
-    "7ONR": "VKW",
-    "7ONS": "VKT",
-    "7ONT": "VKQ"
-}
+df = pd.read_csv("info_adicional/Tabla_pdb.csv")
+ligandos_por_pdb = dict(zip(df["PDB"], df["Código_ligando"]))
 
 
 def clean_pdb(pdb, output_path):
@@ -43,6 +30,7 @@ def clean_pdb(pdb, output_path):
 if __name__ == "__main__":
 
     pdb_files = os.listdir(INPUT_FOLDER)
+    
     if "PARP1_AF_model.pdb" in pdb_files:
         pdb_files.remove("PARP1_AF_model.pdb")
     
@@ -53,8 +41,13 @@ if __name__ == "__main__":
         print(f"Directorio creado: {OUTPUT_FOLDER}")
 
     for code in pdb_files:
+
         input_path = os.path.join(INPUT_FOLDER, f"{code[0:4]}.pdb")
         output_path = os.path.join(OUTPUT_FOLDER, f"{code[0:4]}_chainA.pdb")
+
+        if os.path.exists(output_path):
+            print(f"  -> {code} ya procesado. Se omite.")
+            continue
 
         print(f"Procesando {code}...")
         clean_pdb(input_path, output_path)

@@ -37,8 +37,12 @@
 # PARP1 catalytic domain in complex with a selective pyridine carboxamide-based inhibitor (compound 22)
 7ONT
 
-# Saruparib
-9ETQ
+# Crystal structure of human PARP1 ART domain bound to inhibitor UKTT5 (compound 10)
+8FYY
 
-# Crystal structure of PARP1 catalytic domain bound to AZD9574
-9ETR
+# Crystal structure of human PARP1 ART domain bound to inhibitor UKTT10 (compound 13)
+8FYZ
+
+# Crystal structure of human PARP1 ART domain bound to inhibitor UKTT22 (compound 14)
+8FZ1
+

@@ -23,7 +23,6 @@ Este proyecto construye un pipeline reproducible y de código abierto para:
 ```
 PARP1-Virtual-Screening/
 ├── README.md                   # Este archivo
-├── project_ideas.md            # Notas y decisiones metodológicas del proyecto
 ├── parp1_pipeline.yml          # Entorno conda reproducible
 ├── scripts/
 │   ├── PARP1_AF_model_download.py  # Descarga del modelo completo de AlphaFold (P09874, v6)
@@ -47,7 +46,9 @@ PARP1-Virtual-Screening/
 [Estructuras](Info_adicional/Tabla_pdb.csv)
 
 
-Todas las estructuras corresponden al **dominio catalítico (CAT)** de PARP1 humana, compuesto por los subdominios HD (661-786) y ART (786-1014), a excepción de la molécula completa predicha usando AlphaFold (PARP1_AF)
+Todas las estructuras corresponden al **dominio catalítico (CAT)** de PARP1 humana, compuesto por los subdominios HD (661-786) y ART (786-1014), a excepción de la molécula completa predicha usando AlphaFold (PARP1_AF).
+
+Las estructuras correspondientes a los pdb 9ETQ y 9ETR no están disponibles para descargar en formato pdb.
 
 ---
 
@@ -92,13 +93,13 @@ conda activate parp1_pipeline
 **Modelo completo de AlphaFold (PARP1 humana, UniProt P09874):**
 
 ```bash
-python scripts/descargar_PARP1_modelo_AF.py
+python scripts/01_descargar_PARP1_modelo_AF.py
 ```
 
 **Estructuras cristalográficas desde RCSB PDB:**
 
 ```bash
-python scripts/descargar_pdbs.py
+python scripts/01_descargar_pdbs.py
 ```
 
 Los PDB descargados se guardan en `structures/raw/`. El archivo `scripts/codigos_pdb.txt` contiene la lista de códigos a descargar (uno por línea, se admiten comentarios con `#`).
@@ -106,10 +107,27 @@ Los PDB descargados se guardan en `structures/raw/`. El archivo `scripts/codigos
 ### 4. Extraer la cadena A de cada estructura y el ligando que nos interesa
 
 ```bash
-python scripts/procesar_pdb.py
+python scripts/02_procesar_pdb.py
 ```
 
-Genera versiones `*_chainA.pdb` dentro de `structures/raw/`, listas para su uso en análisis de contactos o construcción del farmacóforo.
+Genera versiones `*_chainA.pdb` dentro de `structures/raw/`, listas para su uso en análisis de contactos
+
+### 5. Identificar los contactos entre el ligando y la proteína
+
+```bash
+python scripts/03_contactos.py
+```
+
+Genera un nuevo directorio `structures/contacts/` con subdirectorios para cada pdb analizado. Dentro de estos directorios se encuentra los archivos .xml para cada código pdb
+
+### 6. Lectura de las interacciones a partir de los archivos xml para cada pdb
+
+```bash
+python scripts/04_lectura.py
+```
+
+Lee los archivos xml de tadas las estructuras pdb y extrae datos de interes de los contactos detectados en el paso anterior. Archivo `interacciones.csv` creado en el nuevo directorio `reuslts/`
+
 
 ---
 

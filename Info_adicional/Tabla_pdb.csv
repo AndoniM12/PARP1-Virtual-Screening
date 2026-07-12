@@ -1,4 +1,4 @@
-PDB,Código ligando,Ligando,Tipo de Ligando,Método experimental,Resolución (Å),Región proteína,DOI
+PDB,Código_ligando,Ligando,Tipo de Ligando,Método experimental,Resolución (Å),Región proteína,DOI
 7AAA,-,Sin ligando,Sin ligando,Rayos X,1.74,CAT,https://doi.org/10.1093/nar/gkab020
 7AAB,UHB,EB-47,Inhibidor experimental,Rayos X,2.80,CAT,https://doi.org/10.1093/nar/gkab020
 7AAC,78P,Veliparib,Inhibidor clínico,Rayos X,1.59,CAT,https://doi.org/10.1093/nar/gkab020
@@ -12,6 +12,9 @@ PDB,Código ligando,Ligando,Tipo de Ligando,Método experimental,Resolución (Å
 7ONT,VKQ,Inhibidor experimental,Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1021/acs.jmedchem.1c01012
 6BHV,DQV,BAD,Análogo NAD+,Rayos X,2.30,CAT,https://doi.org/10.1038/s41467-018-03234-8
 9DMC,DQV y APR,BAD + ADP-ribosa,Análogo NAD+,Rayos X,3.00,CAT,https://doi.org/10.1016/j.molcel.2024.10.024
-9ETQ,A1H63,Saruparib, Inhibidor clínico selectivo,Rayos X,1.59,CAT,https://doi.org/10.2210/pdb9ETQ/pdb
+9ETQ,A1H63,Saruparib (AZD5305), Inhibidor clínico selectivo,Rayos X,1.59,CAT,https://doi.org/10.2210/pdb9ETQ/pdb
 9ETR,A1H64,AZD9574,Inhibidor experimental,Rayos X,1.82,CAT,https://doi.org/10.2210/pdb9ETR/pdb
+8FYY,YH0,Inhibidor experimental,Inhibidor experimental,Rayos X,2.80,CAT,https://doi.org/10.2210/pdb8FYY/pdb
+8FYZ,YNQ,Inhibidor experimental,Inhibidor experimental,Rayos X,3.40,CAT,https://doi.org/10.2210/pdb8FYZ/pdb
+8FZ1,YVB,Inhibidor experimental,Inhibidor experimental,Rayos X,2.70,CAT,https://doi.org/10.2210/pdb8FZ1/pdb
 PARP1_AF,-,Sin ligando,Sin ligando,AlphaFold,-,Proteína completa,https://alphafold.ebi.ac.uk/entry/AF-P09874-F1

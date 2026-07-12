@@ -35,7 +35,11 @@ def download_pdb(pdb_code, output_folder):
     """
     url = f"https://files.rcsb.org/download/{pdb_code}.pdb"
     output_path = os.path.join(output_folder, f"{pdb_code}.pdb")
-
+    
+    if os.path.exists(output_path):
+        print(f"El archivo {output_path} ya existe. Saltando descarga.")
+        return
+    
     print(f"Descargando {pdb_code} desde {url}")
     urllib.request.urlretrieve(url, output_path)
     print(f"Guardado en {output_path}")

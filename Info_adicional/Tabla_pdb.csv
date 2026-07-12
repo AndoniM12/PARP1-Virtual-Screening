@@ -12,6 +12,6 @@ PDB,Código ligando,Ligando,Tipo de Ligando,Método experimental,Resolución (Å
 7ONT,VKQ,Inhibidor experimental,Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1021/acs.jmedchem.1c01012
 6BHV,DQV,BAD,Análogo NAD+,Rayos X,2.30,CAT,https://doi.org/10.1038/s41467-018-03234-8
 9DMC,DQV y APR,BAD + ADP-ribosa,Análogo NAD+,Rayos X,3.00,CAT,https://doi.org/10.1016/j.molcel.2024.10.024
-9ETQ,
-9ETR,
+9ETQ,A1H63,Saruparib, Inhibidor clínico selectivo,Rayos X,1.59,CAT,https://doi.org/10.2210/pdb9ETQ/pdb
+9ETR,A1H64,AZD9574,Inhibidor experimental,Rayos X,1.82,CAT,https://doi.org/10.2210/pdb9ETR/pdb
 PARP1_AF,-,Sin ligando,Sin ligando,AlphaFold,-,Proteína completa,https://alphafold.ebi.ac.uk/entry/AF-P09874-F1

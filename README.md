@@ -12,7 +12,7 @@ Este proyecto construye un pipeline reproducible y de código abierto para:
 
 1. Descargar y preparar estructuras cristalográficas y modelos predichos de PARP1
 2. Analizar las interacciones proteína-ligando en el bolsillo catalítico
-3. Construir un farmacóforo de consenso multi-ligando basado en estructura
+3. Construir un farmacóforo de consenso basado en estructuras ya publicadas y en el bolsillo catalítico
 4. Realizar un cribado virtual contra librerías de moléculas comerciales (ZINC)
 5. Validar el farmacóforo mediante validación retrospectiva con activos conocidos y decoys
 
@@ -44,18 +44,10 @@ PARP1-Virtual-Screening/
 
 ## Estructuras utilizadas
 
-| PDB | Ligando | Tipo | Notas |
-|-----|---------|------|-------|
-| 7AAA | — | Apo (sin ligando) | Referencia conformacional del CAT |
-| 7AAB | EB-47 | Inhibidor experimental | Mismo estudio que 7AAC/7AAD |
-| 7AAC | Veliparib | Inhibidor clínico | — |
-| 7AAD | Olaparib (09L) | Inhibidor clínico | Referencia principal para el farmacóforo |
-| 7KK4 | Olaparib | Inhibidor clínico | Alta calidad, sin huecos en residuos clave |
-| 7KK5 | Niraparib | Inhibidor clínico | Alta calidad, sin huecos en residuos clave |
-| 6BHV | BAD/DQV | Análogo de NAD+ | HD parcialmente delecionado (intencionado) |
-| 9DMC | BAD/DQV + ADP-ribosa | Análogo de NAD+ | His-tag visible en REMARK 465 |
+[Estructuras](Info_adicional/Tabla_pdb.csv)
 
-Todas las estructuras corresponden al **dominio catalítico (CAT)** de PARP1 humana, compuesto por los subdominios HD (661-786) y ART (786-1014).
+
+Todas las estructuras corresponden al **dominio catalítico (CAT)** de PARP1 humana, compuesto por los subdominios HD (661-786) y ART (786-1014), a excepción de la molécula completa predicha usando AlphaFold (PARP1_AF)
 
 ---
 

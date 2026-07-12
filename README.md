@@ -128,6 +128,14 @@ python scripts/04_lectura.py
 
 Lee los archivos xml de tadas las estructuras pdb y extrae datos de interes de los contactos detectados en el paso anterior. Archivo `interacciones.csv` creado en el nuevo directorio `reuslts/`
 
+### 7. Generación de farmacoforo
+
+```bash
+python scripts/05_farmacoforo.py
+```
+
+Crea un consenso teniendo en cuenta las veces que se repite la interacción en cada pdb dando una idea de la importancia de cada interacción y residuo implicado. Genera un nuevo archivo `farmacoforo.csv` en el directorio `reuslts/`
+
 
 ---
 
@@ -151,7 +159,7 @@ Lee los archivos xml de tadas las estructuras pdb y extrae datos de interes de l
 
 - [x] Descarga automatizada de estructuras (AlphaFold + PDB)
 - [x] Extracción de cadena catalítica
-- [ ] Análisis de contactos proteína-ligando (plip y chimera)
+- [x] Análisis de contactos proteína-ligando (plip)
 - [ ] Identificación de residuos clave del bolsillo
 - [ ] Construcción del farmacóforo de consenso (Pharmit)
 - [ ] Validación retrospectiva (activos conocidos + decoys DUD-E)

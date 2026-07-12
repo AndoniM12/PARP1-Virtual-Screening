@@ -1,27 +1,17 @@
-import xml.etree.ElementTree as ET
+"""
+Descarga los PDB de la lista de códigos en el archivo codigos_pdb.txt 
+y los guarda en la carpeta structures/raw.
+"""
 
+import urllib.request
 import os
 import pandas as pd
 
-INPUT_FILE = pd.read_csv("results/interacciones.csv")
-
-total_pdbs = INPUT_FILE["PDB"].nunique()
-
-total_pdb = INPUT_FILE["PDB"].nunique()
-
-consensus = (
-    INPUT_FILE.groupby(
-        ["Residue", "Residue_number", "Interaction"]
-    )["PDB"].nunique().reset_index(name="PDB")
-)
-
-consensus["Conservation"] = (
-    consensus["PDB"] / total_pdb * 100
-)
-
-consensus = consensus.sort_values(
-    by=["Conservation"],
-    ascending=False
-)
-
-print(consensus)
+# Ruta del archivo de texto que contiene los códigos PDB
+df = pd.read_csv("info_adicional/Tabla_pdb.csv")
+pdb_codes_dict = dict(zip(df["PDB"],df["Descarga_pdb"]))
+pdb_codes = []
+for pdb, descarga in pdb_codes.items():
+    print(pdb, descarga)
+    if descarga == "Sí":
+        pdb_codes.append(pdb)

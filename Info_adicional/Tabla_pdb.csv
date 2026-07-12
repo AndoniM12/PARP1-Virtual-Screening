@@ -1,20 +1,20 @@
-PDB,Código_ligando,Ligando,Tipo de Ligando,Método experimental,Resolución (Å),Región proteína,DOI
-7AAA,-,Sin ligando,Sin ligando,Rayos X,1.74,CAT,https://doi.org/10.1093/nar/gkab020
-7AAB,UHB,EB-47,Inhibidor experimental,Rayos X,2.80,CAT,https://doi.org/10.1093/nar/gkab020
-7AAC,78P,Veliparib,Inhibidor clínico,Rayos X,1.59,CAT,https://doi.org/10.1093/nar/gkab020
-7AAD,09L,Olaparib,Inhibidor clínico,Rayos X,2.21,CAT,https://doi.org/10.1093/nar/gkab020
-7KK3,2YQ,Talazoparib,Inhibidor clínico,Rayos X,2.06,CAT,https://doi.org/10.1074/jbc.RA120.016573
-7KK4,09L,Olaparib,Inhibidor clínico,Rayos X,1.96,CAT,https://doi.org/10.1074/jbc.RA120.016573
-7KK5,3JD,Niraparib,Inhibidor clínico,Rayos X,1.70,CAT,https://doi.org/10.1074/jbc.RA120.016573
-7KK6,78P,Veliparib,Inhibidor clínico,Rayos X,2.06,CAT,https://doi.org/10.1074/jbc.RA120.016573
-7ONR,VKW,Inhibidor experimental,Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1021/acs.jmedchem.1c01012
-7ONS,VKT,Inhibidor experimental,Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1021/acs.jmedchem.1c01012
-7ONT,VKQ,Inhibidor experimental,Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1021/acs.jmedchem.1c01012
-6BHV,DQV,BAD,Análogo NAD+,Rayos X,2.30,CAT,https://doi.org/10.1038/s41467-018-03234-8
-9DMC,DQV y APR,BAD + ADP-ribosa,Análogo NAD+,Rayos X,3.00,CAT,https://doi.org/10.1016/j.molcel.2024.10.024
-9ETQ,A1H63,Saruparib (AZD5305), Inhibidor clínico selectivo,Rayos X,1.59,CAT,https://doi.org/10.2210/pdb9ETQ/pdb
-9ETR,A1H64,AZD9574,Inhibidor experimental,Rayos X,1.82,CAT,https://doi.org/10.2210/pdb9ETR/pdb
-8FYY,YH0,Inhibidor experimental,Inhibidor experimental,Rayos X,2.80,CAT,https://doi.org/10.2210/pdb8FYY/pdb
-8FYZ,YNQ,Inhibidor experimental,Inhibidor experimental,Rayos X,3.40,CAT,https://doi.org/10.2210/pdb8FYZ/pdb
-8FZ1,YVB,Inhibidor experimental,Inhibidor experimental,Rayos X,2.70,CAT,https://doi.org/10.2210/pdb8FZ1/pdb
-PARP1_AF,-,Sin ligando,Sin ligando,AlphaFold,-,Proteína completa,https://alphafold.ebi.ac.uk/entry/AF-P09874-F1
+PDB,Código_ligando,Ligando,Tipo_ligando,Método_experimental,Resolución(Å),Región_proteína,DOI,Descarga_pdb
+7AAA,-,Sin ligando,Sin ligando,Rayos X,1.74,CAT,https://doi.org/10.1093/nar/gkab020,Sí
+7AAB,UHB,EB-47,Inhibidor experimental,Rayos X,2.80,CAT,https://doi.org/10.1093/nar/gkab020,Sí
+7AAC,78P,Veliparib,Inhibidor clínico,Rayos X,1.59,CAT,https://doi.org/10.1093/nar/gkab020,Sí
+7AAD,09L,Olaparib,Inhibidor clínico,Rayos X,2.21,CAT,https://doi.org/10.1093/nar/gkab020,Sí
+7KK3,2YQ,Talazoparib,Inhibidor clínico,Rayos X,2.06,CAT,https://doi.org/10.1074/jbc.RA120.016573,Sí
+7KK4,09L,Olaparib,Inhibidor clínico,Rayos X,1.96,CAT,https://doi.org/10.1074/jbc.RA120.016573,Sí
+7KK5,3JD,Niraparib,Inhibidor clínico,Rayos X,1.70,CAT,https://doi.org/10.1074/jbc.RA120.016573,Sí
+7KK6,78P,Veliparib,Inhibidor clínico,Rayos X,2.06,CAT,https://doi.org/10.1074/jbc.RA120.016573,Sí
+7ONR,VKW,Inhibidor experimental,Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1021/acs.jmedchem.1c01012,Sí
+7ONS,VKT,Inhibidor experimental,Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1021/acs.jmedchem.1c01012,Sí
+7ONT,VKQ,Inhibidor experimental,Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1021/acs.jmedchem.1c01012,Sí
+6BHV,DQV,BAD,Análogo NAD+,Rayos X,2.30,CAT,https://doi.org/10.1038/s41467-018-03234-8,Sí
+9DMC,DQV y APR,BAD + ADP-ribosa,Análogo NAD+,Rayos X,3.00,CAT,https://doi.org/10.1016/j.molcel.2024.10.024,Sí
+9ETQ,A1H63,Saruparib (AZD5305), Inhibidor clínico selectivo,Rayos X,1.59,CAT,https://doi.org/10.2210/pdb9ETQ/pdb,No
+9ETR,A1H64,AZD9574,Inhibidor experimental,Rayos X,1.82,CAT,https://doi.org/10.2210/pdb9ETR/pdb,No
+8FYY,YH0,Inhibidor experimental,Inhibidor experimental,Rayos X,2.80,CAT,https://doi.org/10.2210/pdb8FYY/pdb,Sí
+8FYZ,YNQ,Inhibidor experimental,Inhibidor experimental,Rayos X,3.40,CAT,https://doi.org/10.2210/pdb8FYZ/pdb,Sí
+8FZ1,YVB,Inhibidor experimental,Inhibidor experimental,Rayos X,2.70,CAT,https://doi.org/10.2210/pdb8FZ1/pdb,Sí
+PARP1_AF,-,Sin ligando,Sin ligando,AlphaFold,-,Proteína completa,https://alphafold.ebi.ac.uk/entry/AF-P09874-F1,No

@@ -10,7 +10,7 @@ INPUT_FOLDER = "structures/raw"
 OUTPUT_FOLDER = "structures/filtered"
 
 
-df = pd.read_csv("info_adicional/Tabla_pdb.csv")
+df = pd.read_csv("info_adicional/tabla_pdb.csv")
 ligandos_por_pdb = dict(zip(df["PDB"], df["Código_ligando"]))
 
 

@@ -1,33 +1,24 @@
 """
-Descarga los PDB de la lista de códigos en el archivo codigos_pdb.txt 
+Descarga los PDB de la lista de códigos en el archivo tabla_pdb.csv
 y los guarda en la carpeta structures/raw.
 """
 
 import urllib.request
 import os
+import pandas as pd
 
-# Ruta del archivo de texto que contiene los códigos PDB
-CODES_FILE = "info_adicional/codigos_pdb.txt"
+# Selección de IDs con posibilidad de descarga a través de PDB
+df = pd.read_csv("info_adicional/tabla_pdb.csv")
+pdb_codes_dict = dict(zip(df["PDB"],df["Descarga_pdb"]))
+pdb_codes = []
+
+for pdb, descarga in pdb_codes_dict.items():
+
+    if descarga == "Sí":
+        pdb_codes.append(pdb)
 
 # Directorio donde se guardarán los archivos PDB descargados
 OUTPUT_FOLDER = "structures/raw"
-
-def read_pdb_codes(file):
-    """
-    Lee los códigos PDB desde un archivo de texto y 
-    devuelve una lista de códigos.
-    """
-    with open(file, "r") as f:
-        lines = f.readlines()
-
-    codes = []
-    for line in lines:
-        line = line.strip()
-        if line and not line.startswith("#"):
-            codes.append(line.upper())
-
-    return codes
-
 
 def download_pdb(pdb_code, output_folder):
     """
@@ -40,10 +31,9 @@ def download_pdb(pdb_code, output_folder):
         print(f"El archivo {output_path} ya existe. Saltando descarga.")
         return
     
-    print(f"Descargando {pdb_code} desde {url}")
+    print(f"Descargando {pdb_code} desde {url}"\n)
     urllib.request.urlretrieve(url, output_path)
     print(f"Guardado en {output_path}")
-
 
 if __name__ == "__main__":
     # Crear el directorio de salida si no existe
@@ -52,8 +42,8 @@ if __name__ == "__main__":
         print(f"Directorio creado: {OUTPUT_FOLDER}")
 
     # Leer los códigos PDB desde el archivo
-    pdb_codes = read_pdb_codes(CODES_FILE)
     print(f"Se han encontrado {len(pdb_codes)} códigos PDB para descargar.\n")
 
     for code in pdb_codes:
         download_pdb(code, OUTPUT_FOLDER)
+        print("------------------------------------------------")

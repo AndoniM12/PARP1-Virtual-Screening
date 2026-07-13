@@ -162,26 +162,25 @@ Python
 - pandas
 - numpy
 - matplotlib
+- os
+- xml.etree.ElementTree
 
 ## Bioinformática estructural
 
 - PyMOL
 - PLIP
-- Open Babel
 - AutoDock Vina (o GNINA)
-- Meeko
 
 ---
 
 # Dudas abiertas
 
-- ¿Validar docking mediante redocking?
+- ¿Validar docking mediante redocking? /  ¿Cómo evaluar el farmacóforo?
 
-Validación con las estructuras ya conocidas de los inhibidores ya cristalizados
+Tres grupos de estudio, generación del farmacoforo usando Training set y redocking con Validation set para ver si el farmacóforo creado recoge dichos fármacos
 
 - ¿Qué resolución mínima aceptar?
 - ¿Qué scoring utilizar?
-- ¿Cómo evaluar el farmacóforo?
 - ¿Qué conjunto de compuestos usar para el screening?
 
 ZINC20 / PUBCHEM ...
@@ -191,7 +190,7 @@ ZINC20 / PUBCHEM ...
 # Próximas tareas
 
 - [ ] Revisar si existe algún tipo de farmacóforo ya modelado
-- [ ] Crear tabla comparativa de PDB.
+- [x] Crear tabla comparativa de PDB.
 - [ ] Descargar ligandos desde ChEMBL.
 - [ ] Diseñar la validación del pipeline.
 
@@ -200,7 +199,6 @@ ZINC20 / PUBCHEM ...
 # Ideas futuras
 
 - Automatizar completamente el pipeline.
-- Añadir contenedor Docker.
 
 ## Pruebas de herramientas
 
@@ -225,3 +223,6 @@ No es muy buena idea ya que tiene un monton de dependencias que se tiene que ins
 ## Valorar el uso de RDKit
 
 RDKit podría utilizarse como la base quimioinformática del pipeline, permitiendo trabajar de forma reproducible con las moléculas obtenidas de bases de datos públicas como ChEMBL. Con esta herramienta podrías convertir formatos químicos (SMILES, SDF, MOL), preparar y limpiar los ligandos, calcular propiedades fisicoquímicas (peso molecular, LogP, reglas de Lipinski, donadores y aceptores de puentes de hidrógeno), generar descriptores moleculares y fingerprints para comparar estructuras, agrupar compuestos por similitud, identificar características farmacofóricas (zonas aromáticas, regiones hidrofóbicas, donadores/aceptores de hidrógeno) y ayudar en la selección y filtrado inicial de candidatos antes del docking molecular. Además, al estar integrado con Python, permitiría automatizar estas etapas dentro de un pipeline reproducible y documentado en GitHub.
+
+
+## Preguntar por la licencia de LigandScout

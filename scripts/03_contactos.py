@@ -5,32 +5,54 @@ y los resultados se guardarán en la carpeta "structures/contacts" solo mantenie
 """
 
 import os
-import subprocess   
+import subprocess 
+import pandas as pd  
 
 INPUT_FOLDER = "structures/filtered"
 OUTPUT_FOLDER = "structures/contacts"
 
-skips = [
-    "7AAA",
-    "9DMC"
-]
+df = pd.read_csv("info_adicional/tabla_pdb.csv")
+groups = dict(zip(df["PDB"], df["Grupo de estudio"]))
 
+        
+def plip_process (pdb,input_path, output_path):
 
-# Ejecutar la función de descarga si el script se ejecuta directamente
-if __name__ == "__main__":
-    # Crear la carpeta de salida si no existe
+    print(f"Calculando contactos para {pdb}")
+
+    cmd = [
+        "plip",
+        "-f", str(input_path),
+        "-o", str(output_path),
+        "-x",
+        "-t"
+    ]
+
+    subprocess.run(
+        cmd,
+        capture_output=True,
+        text=True
+    )
+    
+    for archivo in os.listdir(output_path):
+                if not archivo.endswith(".xml"):
+                    os.remove(os.path.join(output_path, archivo))
+
+def main ():
+
     if not os.path.exists(OUTPUT_FOLDER):
         os.makedirs(OUTPUT_FOLDER)
         print(f"Directorio creado: {OUTPUT_FOLDER}")
 
-    pdb_files = os.listdir(INPUT_FOLDER)
-    print(f"Se han encontrado {len(pdb_files)} estructuras para analizar:\n")
+    all_pdb = os.listdir(INPUT_FOLDER)
+    training_pdb = []
 
-    for code in pdb_files:
+    for file in all_pdb:
+        if groups.get(file[:4]) == "Training set":
+            training_pdb.append(file)
 
-        if code[:4] in skips:
-            print(f"✗ Se omite {code[:4]} (en la lista de skips)")
-            continue
+    print(f"Se han encontrado {len(training_pdb)} estructuras para analizar:\n")
+
+    for code in training_pdb:
 
         input_path = os.path.join(INPUT_FOLDER, code)
         output_path = os.path.join(OUTPUT_FOLDER, code[:4])
@@ -41,31 +63,7 @@ if __name__ == "__main__":
 
         os.makedirs(output_path, exist_ok=True)
 
-        print(f"Calculando contactos para {code[:4]}...")
+        plip_process(code[:4], input_path, output_path)
 
-        # Llamada al script externo para calcular contactos
-        
-        cmd = [
-                "plip",
-                "-f", str(input_path),
-                "-o", str(output_path),
-                "-x",
-                "-t"
-            ]
-        
-        result = subprocess.run(
-            cmd,
-            capture_output=True,
-            text=True
-        )
-        
-        if result.returncode == 0:
-            print(f"   ✓ Contactos calculados correctamente para {code[:4]}, borrando archivos intermedios...")
-
-            for archivo in os.listdir(output_path):
-                if not archivo.endswith(".xml"):
-                    os.remove(os.path.join(output_path, archivo))
-                
-        else:
-            print(f"   ✗ Error al calcular contactos para {code[:4]}")
-            print(result.stderr)
+if __name__ == "__main__":
+    main()

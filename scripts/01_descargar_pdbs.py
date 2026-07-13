@@ -31,7 +31,7 @@ def download_pdb(pdb_code, output_folder):
         print(f"El archivo {output_path} ya existe. Saltando descarga.")
         return
     
-    print(f"Descargando {pdb_code} desde {url}"\n)
+    print(f"Descargando {pdb_code} desde {url}\n")
     urllib.request.urlretrieve(url, output_path)
     print(f"Guardado en {output_path}")
 

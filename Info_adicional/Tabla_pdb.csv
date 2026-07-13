@@ -1,39 +1,35 @@
-PDB,Código_ligando,Ligando,Tipo_ligando,Método_experimental,Resolución(Å),Región_proteína,DOI,Descarga_pdb
-7AAA,-,Sin ligando,Sin ligando,Rayos X,1.74,CAT,https://doi.org/10.1093/nar/gkab020,Sí
-7AAC,78P,Veliparib,Inhibidor clínico,Rayos X,1.59,CAT,https://doi.org/10.1093/nar/gkab020,Sí
-7AAD,09L,Olaparib,Inhibidor clínico,Rayos X,2.21,CAT,https://doi.org/10.1093/nar/gkab020,Sí
-7KK3,2YQ,Talazoparib,Inhibidor clínico,Rayos X,2.06,CAT,https://doi.org/10.1074/jbc.RA120.016573,Sí
-7KK4,09L,Olaparib,Inhibidor clínico,Rayos X,1.96,CAT,https://doi.org/10.1074/jbc.RA120.016573,Sí
-7KK5,3JD,Niraparib,Inhibidor clínico,Rayos X,1.70,CAT,https://doi.org/10.1074/jbc.RA120.016573,Sí
-7KK6,78P,Veliparib,Inhibidor clínico,Rayos X,2.06,CAT,https://doi.org/10.1074/jbc.RA120.016573,Sí
-7ONR,VKW,Inhibidor experimental,Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1021/acs.jmedchem.1c01012,Sí
-7ONS,VKT,Inhibidor experimental,Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1021/acs.jmedchem.1c01012,Sí
-7ONT,VKQ,Inhibidor experimental,Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1021/acs.jmedchem.1c01012,Sí
-6BHV,DQV,BAD,Análogo NAD+,Rayos X,2.30,CAT,https://doi.org/10.1038/s41467-018-03234-8,Sí
-9ETQ,A1H63,Saruparib (AZD5305), Inhibidor clínico selectivo,Rayos X,1.59,CAT,https://doi.org/10.2210/pdb9ETQ/pdb,No
-9ETR,A1H64,AZD9574,Inhibidor experimental,Rayos X,1.82,CAT,https://doi.org/10.2210/pdb9ETR/pdb,No
-PARP1_AF,-,Sin ligando,Sin ligando,AlphaFold,-,Proteína completa,https://alphafold.ebi.ac.uk/entry/AF-P09874-F1,No
-6XVW,
-5WRY,
-5WS1,
-6GHK,
-5WRZ,
-5WTC,
-5KPN,
-8VYH,
-6VKK,
-8HE7,
-6NRG,
-6NRH,
-5XST,
-5XSR,
-6NRJ,
-6NTU,
-6NRF,
-6NRI,
-4R6E,
-4ZZZ,
-4UND,
-3GJW,
-2RD6,
-4L6S,
+PDB,Código_ligando,Ligando,Tipo_ligando,Método_experimental,Resolución(Å),Región_proteína,DOI,Descarga_pdb,Grupo de estudio
+2RD6,78P,A861695,Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.2210/pdb2RD6/pdb,Sí,Validation set
+3GJW,GJW,A968427,Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1016/j.bmcl.2009.06.016,Sí,Validation set
+4L6S,1WQ,"benzo[1,4]oxazin-3-one",Inhibidor experimental,Rayos X,2.20,CAT,https://doi.org/10.1016/j.bmcl.2013.06.055,Sí,Validation set
+4ZZZ,FSU,Derivado isoindolinonico,Inhibidor experimental,Rayos X,1.90,CAT,https://doi.org/10.1021/acs.jmedchem.5b00680,Sí,Validation set
+5KPN,6WX,"quinazoline-2,4(1H,3H)-dione",Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.2210/pdb5KPN/pdb,Sí,Validation set
+5WRY,4YR,"quinazoline-2,4(1H,3H)-dione",Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.2210/pdb5WRY/pdb,Sí,Validation set
+5WRZ,7U3,ftalazinona,Inhibidor experimental,Rayos X,2.20,CAT,https://doi.org/10.2210/pdb5WRZ/pdb,Sí,Validation set
+5WS1,7U9,Derivado benzoimidazolico,Inhibidor experimental,Rayos X,1.90,CAT,https://doi.org/10.2210/pdb5WS1/pdb,Sí,Validation set
+5WTC,7UL,"quinazoline-2,4(1H,3H)-dione",Inhibidor experimental,Rayos X,2.20,CAT,https://doi.org/10.2210/pdb5WTC/pdb,Sí,Validation set
+5XSR,8EC,"2-(4,5,6,7-tetrahydrothienopyridin-2-yl)-benzoimidazole carboxamides",Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1016/j.ejmech.2018.01.018,Sí,Validation set
+5XST,8E6,"2-(4,5,6,7-tetrahydrothienopyridin-2-yl)-benzoimidazole carboxamides",Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1016/j.ejmech.2018.01.018,Sí,Validation set
+6BHV,DQV,BAD,Análogo NAD+,Rayos X,2.30,CAT,https://doi.org/10.1038/s41467-018-03234-8,Sí,Reference set
+6GHK,EZ2,ME0527,Inhibidor experimental,Rayos X,2.28,CAT,https://doi.org/10.2210/pdb6GHK/pdb,Sí,Validation set
+6NRF,KYV,UTT103,Inhibidor experimental,Rayos X,2.00,CAT,https://doi.org/10.1021/acs.jmedchem.8b01709,Sí,Validation set
+6NRG,KYY,UTT57,Inhibidor experimental,Rayos X,1.70,CAT,https://doi.org/10.1021/acs.jmedchem.8b01709,Sí,Validation set
+6NRH,KYP,UTT63,Inhibidor experimental,Rayos X,1.50,CAT,https://doi.org/10.1021/acs.jmedchem.8b01709,Sí,Validation set
+6NRI,KYM,UTT83,Inhibidor experimental,Rayos X,2.20,CAT,https://doi.org/10.1021/acs.jmedchem.8b01709,Sí,Validation set
+6NRJ,KYJ,UTT93,Inhibidor experimental,Rayos X,1.65,CAT,https://doi.org/10.1021/acs.jmedchem.8b01709,Sí,Validation set
+6NTU,L1S,UKTT-15,Inhibidor experimental,Rayos X,1.80,CAT,https://doi.org/10.1126/science.aax6367,Sí,Validation set
+6VKK,RPB,Rucaparib,Inhibidor clínico,Rayos X,2.10,CAT,https://doi.org/10.1126/science.aax6367,Sí,Training set
+6XVW,O3H,MC2050,Inhibidor experimental,Rayos X,2.00,CAT,https://doi.org/10.1021/acsmedchemlett.9b00654,Sí,Validation set
+7AAA,-,Sin ligando,Proteína apo,Rayos X,1.74,CAT,https://doi.org/10.1093/nar/gkab020,Sí,Reference set
+7AAC,78P,Veliparib,Inhibidor clínico,Rayos X,1.59,CAT,https://doi.org/10.1093/nar/gkab020,Sí,Training set
+7AAD,09L,Olaparib,Inhibidor clínico,Rayos X,2.21,CAT,https://doi.org/10.1093/nar/gkab020,Sí,Training set
+7KK3,2YQ,Talazoparib,Inhibidor clínico,Rayos X,2.06,CAT,https://doi.org/10.1074/jbc.RA120.016573,Sí,Training set
+7KK5,3JD,Niraparib,Inhibidor clínico,Rayos X,1.70,CAT,https://doi.org/10.1074/jbc.RA120.016573,Sí,Training set
+7ONR,VKW,compound 9,Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1021/acs.jmedchem.1c01012,Sí,Validation set
+7ONS,VKT,compound 16,Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1021/acs.jmedchem.1c01012,Sí,Validation set
+7ONT,VKQ,compound 22,Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1021/acs.jmedchem.1c01012,Sí,Validation set
+8HE7,1WI,"quinazoline-2,4(1H,3H)-dione",Inhibidor experimental,Rayos X,2.10,CAT,https://doi.org/10.1021/acs.jmedchem.3c01152,Sí,Validation set
+8VYH,A1AEO,"(4S)-1-{2-fluoro-5-[(4-oxo-3,4-dihydrophthalazin-1-yl)methyl]benzoyl}-4-hydroxy-L-proline",Inhibidor experimental,Rayos X,2.05,CAT,https://doi.org/10.2210/pdb8VYH/pdb,No,Validation set
+9ETQ,A1H63,Saruparib (AZD5305),Inhibidor clínico,Rayos X,1.59,CAT,https://doi.org/10.2210/pdb9ETQ/pdb,No,Validation set
+9ETR,A1H64,AZD9574,Inhibidor experimental,Rayos X,1.82,CAT,https://doi.org/10.2210/pdb9ETR/pdb,No,Validation set
+PARP1_AF,-,Sin ligando,Sin ligando,AlphaFold,-,Proteína completa,https://alphafold.ebi.ac.uk/entry/AF-P09874-F1,No,Reference set

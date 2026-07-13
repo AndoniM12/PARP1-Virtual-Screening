@@ -1,6 +1,6 @@
 # PARP1 Virtual Screening Pipeline
 
-Pipeline bioinformático para el cribado virtual de inhibidores de PARP1 (Poli ADP-ribosa polimerasa 1) mediante farmacóforos estructurales. Desarrollado como Trabajo de Fin de Máster (TFM).
+Pipeline bioinformático para el cribado virtual de inhibidores de PARP1 (Poli ADP-ribosa polimerasa 1) mediante farmacóforos estructurale basado en el bolsillo catálitico y fármacos ya clínicamente probados. Desarrollado como Trabajo de Fin de Máster (TFM).
 
 ---
 
@@ -13,8 +13,9 @@ Este proyecto construye un pipeline reproducible y de código abierto para:
 1. Descargar y preparar estructuras cristalográficas y modelos predichos de PARP1
 2. Analizar las interacciones proteína-ligando en el bolsillo catalítico
 3. Construir un farmacóforo de consenso basado en estructuras ya publicadas y en el bolsillo catalítico
-4. Realizar un cribado virtual contra librerías de moléculas comerciales (ZINC)
+4. Realizar un cribado virtual contra librerías de moléculas comerciales (ZINC o PubCHEM)
 5. Validar el farmacóforo mediante validación retrospectiva con activos conocidos y decoys
+6. Realización del docking
 
 ---
 
@@ -25,19 +26,23 @@ PARP1-Virtual-Screening/
 ├── README.md                   # Este archivo
 ├── parp1_pipeline.yml          # Entorno conda reproducible
 ├── scripts/
-│   ├── PARP1_AF_model_download.py  # Descarga del modelo completo de AlphaFold (P09874, v6)
-│   ├── download_pdb_list.py        # Descarga por lotes desde RCSB PDB usando pdb_codes.txt
-│   ├── extract_chain_a.py          # Extracción de la cadena A de cada estructura PDB
-│   └── pdb_codes.txt               # Lista de códigos PDB utilizados en el análisis
-├── structures/
-│   └── raw/                        # Estructuras descargadas (no versionadas, ver .gitignore)
-│       └── PARP1_AF_model.pdb      # Modelo AlphaFold de PARP1 completa (1014 residuos)
-└── images/
-    ├── esquema.png                 # Esquema del pipeline
-    └── pdb_ligands.png             # Tabla de estructuras PDB y sus ligandos
+│   ├── 01_descargar_PARP1_modelo_AF.py  # Descarga del modelo completo de AlphaFold (P09874, v6)
+│   ├── 01_descargar_pdbs.py        # Descarga por lotes desde RCSB PDB usando tabla_pdb.csv
+│   ├── 02_procesar_pdb.py          # Extracción de la cadena A y el ligando de cada estructura PDB
+│   └── 03_contactos.py             # Identificación de interacciones entre ligando y proteína
+│   └── 04_lectura.py               # Consenso de las interacciones
+│   └── 05_farmacoforo.py           # Interacciones y su relevancia a la hora de la actividad
+├── structures/                     
+│   └── raw/
+│   └── filtered/
+│   └── contacts/             
+└── info_adicional
+    ├── esquema.png               # Esquema del pipeline
+    └── tabla_pdb.csv             # Tabla de estructuras PDB y sus ligandos junto a otra información
 ```
 
 > **Nota**: La carpeta `structures/` está excluida del control de versiones (`.gitignore`) por el tamaño de los archivos PDB. Los scripts de descarga permiten regenerar todas las estructuras localmente.
+> **Nota** El archivo IDEAS.md será eliminado una vez terminado el trabajo
 
 ---
 
@@ -54,21 +59,7 @@ Las estructuras correspondientes a los pdb 9ETQ y 9ETR no están disponibles par
 
 ## Residuos clave del bolsillo catalítico (REVISAR CON NUEVO PROGRAMA plip)
 
-Identificados mediante análisis de contactos (`findcontact`) en UCSF Chimera, comparando los inhibidores 09L (olaparib, 7AAD) y DQV (BAD, 6BHV):
-
-| Residuo | Tipo de interacción | Presente en 09L | Presente en DQV |
-|---------|---------------------|:-:|:-:|
-| His 862 | Puente H | ✓ | ✓ (fuerte, 0.438) |
-| Gly 863 | Puente H | ✓ | ✓ |
-| Ser 904 | Puente H | ✓ | ✓ |
-| Tyr 907 | π-π / aromático | ✓ | ✓ |
-| Tyr 896 | π-π / aromático | ✓ | ✓ |
-| Tyr 889 | Puente H / aromático | ✓ | ✓ (fuerte) |
-| Asp 766 | Puente H | ✓ | — |
-| Arg 878 | Puente H | — | ✓ (fuerte, 0.396) |
-| Gly 876 | Puente H | — | ✓ |
-
-Los residuos que aparecen en **ambos ligandos** (His862, Gly863, Ser904, Tyr907, Tyr896, Tyr889) constituyen el núcleo del farmacóforo de consenso.
+[Residuos clave](results/farmacoforo.csv)
 
 ---
 

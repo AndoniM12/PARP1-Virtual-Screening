@@ -30,7 +30,7 @@ def hydrophobic_interactions(binding_site, pdb_code, ligand_name):
             "Residue": interaction.findtext("restype"),
             "Residue_number": int(interaction.findtext("resnr")),
             "Distance": float(interaction.findtext("dist")),
-            "feature": "Hydrophobic",
+            "Feature": "Hydrophobic",
             "x_pos": float(ligcoo.findtext("x")),
             "y_pos": float(ligcoo.findtext("y")),
             "z_pos": float(ligcoo.findtext("z"))
@@ -69,7 +69,7 @@ def hydrogen_bonds(binding_site, pdb_code, ligand_name):
             "Residue": bond.findtext("restype"),
             "Residue_number": int(bond.findtext("resnr")),
             "Distance": float(bond.findtext("dist_d-a")),
-            "feature": protisdon ,
+            "Feature": protisdon ,
             "x_pos": float(ligcoo.findtext("x")),
             "y_pos": float(ligcoo.findtext("y")),
             "z_pos": float(ligcoo.findtext("z"))
@@ -101,7 +101,7 @@ def pi_stacks(binding_site, pdb_code, ligand_name):
             "Residue": stacking.findtext("restype"),
             "Residue_number": int(stacking.findtext("resnr")),
             "Distance": float(stacking.findtext("centdist")),
-            "feature": "Aromatic",
+            "Feature": "Aromatic",
             "x_pos": float(ligcoo.findtext("x")),
             "y_pos": float(ligcoo.findtext("y")),
             "z_pos": float(ligcoo.findtext("z"))

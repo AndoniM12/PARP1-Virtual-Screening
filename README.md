@@ -119,10 +119,10 @@ python scripts/04_lectura.py
 
 Lee los archivos xml de tadas las estructuras pdb y extrae datos de interes de los contactos detectados en el paso anterior. Archivo `interacciones.csv` creado en el nuevo directorio `reuslts/`
 
-### 7. Generación de farmacoforo
+### 7. Generación de data para el farmacoforo
 
 ```bash
-python scripts/05_farmacoforo.py
+python scripts/05_farmacoforo_dad.py
 ```
 
 Crea un consenso teniendo en cuenta las veces que se repite la interacción en cada pdb dando una idea de la importancia de cada interacción y residuo implicado. Genera un nuevo archivo `farmacoforo.csv` en el directorio `reuslts/`
@@ -137,7 +137,7 @@ Crea un consenso teniendo en cuenta las veces que se repite la interacción en c
 | Python | 3.11 | Scripts del pipeline |
 | Biopython | 1.87 | Lectura y procesado de PDB |
 | NumPy | 2.4.6 | Cálculos numéricos |
-| PyMol | 3.1.0 | Modificación de estructuras pdb |
+| PyMol | 3.1.0 | Modificación de estructuras pdb y visualización farmacóforo|
 | PLIP (Protein-Ligand Interaction Profiles) | 3.0.0 | Identificación automatizada de interacción proteína-ligando|
 | UCSF Chimera | — | Inspección y validación visual |
 | Pharmit | — | Construcción del farmacóforo y cribado virtual |  - ¿LigandScout como alternativa?

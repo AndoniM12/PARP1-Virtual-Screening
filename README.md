@@ -137,6 +137,7 @@ Crea un consenso teniendo en cuenta las veces que se repite la interacción en c
 | Python | 3.11 | Scripts del pipeline |
 | Biopython | 1.87 | Lectura y procesado de PDB |
 | NumPy | 2.4.6 | Cálculos numéricos |
+| PyMol | 3.1.0 | Modificación de estructuras pdb |
 | PLIP (Protein-Ligand Interaction Profiles) | 3.0.0 | Identificación automatizada de interacción proteína-ligando|
 | UCSF Chimera | — | Inspección y validación visual |
 | Pharmit | — | Construcción del farmacóforo y cribado virtual |  - ¿LigandScout como alternativa?

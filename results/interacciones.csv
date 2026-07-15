@@ -1,4 +1,4 @@
-PDB,Ligand,Interaction,Residue,Residue_number,Distance,feature,x_pos,y_pos,z_pos
+PDB,Ligand,Interaction,Residue,Residue_number,Distance,Feature,x_pos,y_pos,z_pos
 6VKK,RPB,Hydrophobic interaction,TYR,889,3.82,Hydrophobic,14.031,38.601,11.882
 6VKK,RPB,Hydrophobic interaction,TYR,896,3.6,Hydrophobic,15.72,42.627,7.775
 6VKK,RPB,Hydrophobic interaction,TYR,907,3.75,Hydrophobic,13.403,41.626,7.289

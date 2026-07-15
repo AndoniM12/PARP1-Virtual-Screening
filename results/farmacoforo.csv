@@ -1,14 +1,15 @@
-,Residue,Residue_number,Interaction,PDB,Conservation,Classification
-4,GLY,863,Hydrogen bond,5,100.0,Obligatory
-12,TYR,907,Pi stacking,5,100.0,Obligatory
-11,TYR,907,Hydrophobic interaction,4,80.0,Recommended
-6,TYR,889,Hydrophobic interaction,4,80.0,Recommended
-9,TYR,896,Hydrophobic interaction,4,80.0,Recommended
-10,TYR,896,Pi stacking,3,60.0,Optional
-3,GLU,988,Hydrophobic interaction,3,60.0,Optional
-0,ALA,898,Hydrophobic interaction,2,40.0,Optional
-2,ASP,766,Hydrophobic interaction,1,20.0,Optional
-1,ARG,878,Hydrogen bond,1,20.0,Optional
-8,TYR,896,Hydrogen bond,1,20.0,Optional
-5,LEU,769,Hydrophobic interaction,1,20.0,Optional
-7,TYR,889,Pi stacking,1,20.0,Optional
+Interaction,Residue,Residue_number,PDB,Conservation,Classification
+Hydrogen bond,GLY,863,5,100.0,Obligatory
+Pi stacking,TYR,907,5,100.0,Obligatory
+Hydrophobic interaction,TYR,889,4,80.0,Recommended
+Hydrophobic interaction,TYR,907,4,80.0,Recommended
+Hydrophobic interaction,TYR,896,4,80.0,Recommended
+Pi stacking,TYR,896,3,60.0,Optional
+Hydrophobic interaction,GLU,988,3,60.0,Optional
+Hydrophobic interaction,ALA,898,2,40.0,Optional
+Hydrogen bond,ARG,878,1,20.0,Optional
+Hydrogen bond,GLU,763,1,20.0,Optional
+Hydrophobic interaction,ASP,766,1,20.0,Optional
+Hydrogen bond,TYR,896,1,20.0,Optional
+Hydrophobic interaction,LEU,769,1,20.0,Optional
+Pi stacking,TYR,889,1,20.0,Optional

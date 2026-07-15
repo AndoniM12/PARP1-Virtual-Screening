@@ -1,9 +1,9 @@
 Interaction,Residue,Residue_number,Feature,PDB,Mean_distance,x,y,z,Std_x,Std_y,Std_z,Conservation,Classification,Radius
-Hydrogen bond,GLY,863,HBD,5,2.9,14.31,44.11,5.27,0.73,0.84,0.48,1.0,Optional,1.21
-Pi stacking,TYR,907,Aromatic,5,3.84,15.24,42.21,7.69,0.65,0.73,1.08,1.0,Optional,1.46
-Hydrophobic interaction,TYR,896,Hydrophobic,4,3.62,14.68,41.42,9.2,1.96,1.22,1.24,0.8,Optional,2.62
-Hydrophobic interaction,TYR,907,Hydrophobic,4,3.63,14.9,41.23,7.8,1.16,2.2,0.98,0.8,Optional,2.67
-Hydrophobic interaction,TYR,889,Hydrophobic,4,3.87,13.35,39.25,11.27,0.73,1.02,0.47,0.8,Optional,1.34
+Hydrogen bond,GLY,863,HBD,5,2.9,14.31,44.11,5.27,0.73,0.84,0.48,1.0,Obligatory,1.21
+Pi stacking,TYR,907,Aromatic,5,3.84,15.24,42.21,7.69,0.65,0.73,1.08,1.0,Obligatory,1.46
+Hydrophobic interaction,TYR,896,Hydrophobic,4,3.62,14.68,41.42,9.2,1.96,1.22,1.24,0.8,Recommended,2.62
+Hydrophobic interaction,TYR,907,Hydrophobic,4,3.63,14.9,41.23,7.8,1.16,2.2,0.98,0.8,Recommended,2.67
+Hydrophobic interaction,TYR,889,Hydrophobic,4,3.87,13.35,39.25,11.27,0.73,1.02,0.47,0.8,Recommended,1.34
 Hydrophobic interaction,GLU,988,Hydrophobic,3,3.85,17.86,43.37,8.32,0.14,0.69,0.46,0.6,Optional,0.84
 Pi stacking,TYR,896,Aromatic,3,4.84,13.46,39.37,10.17,0.69,1.25,0.34,0.6,Optional,1.46
 Hydrophobic interaction,ALA,898,Hydrophobic,2,3.8,16.92,44.43,6.73,0.05,0.1,0.08,0.4,Optional,0.14

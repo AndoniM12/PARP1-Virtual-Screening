@@ -7,10 +7,10 @@ OUTPUT_FILE = "results/farmacoforo.csv"
 
 def classify_interaction(conservation):
 
-    if conservation >= 90:
+    if conservation >= 0.9:
         return "Obligatory"
     
-    elif conservation >= 70:
+    elif conservation >= 0.7:
         return "Recommended"
     
     else:

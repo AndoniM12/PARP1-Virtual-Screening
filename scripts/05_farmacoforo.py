@@ -20,10 +20,10 @@ def consensus_classification(df):
 
     consensus = (
         df.groupby(
-            ["Residue", "Residue_number", "Interaction"]
+            ["Interaction", "Residue", "Residue_number"]
         )["PDB"].nunique().reset_index(name="PDB")
     )
-
+    
     consensus["Conservation"] = (
         consensus["PDB"] / total_pdb * 100
     ).round(2)
@@ -44,7 +44,8 @@ def main():
     consensus = consensus_classification(df)
 
     consensus.to_csv(
-        OUTPUT_FILE
+        OUTPUT_FILE,
+        index = False
     )
 
     print(consensus)

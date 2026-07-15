@@ -6,7 +6,7 @@ El script:
 - selecciona la cadena A,
 - conserva únicamente la proteína y el ligando de interés,
 - elimina el resto de moléculas,
-- alinea todas las estructuras respecto a una referencia.
+- alinea todas las estructuras respecto a la referencia 7AAA.pdb
 
 Las estructuras procesadas se guardan en structures/processed.
 """

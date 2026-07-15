@@ -18,15 +18,21 @@ def hydrophobic_interactions(binding_site, pdb_code, ligand_name):
     
     hydrophobic = interactions_node.find("hydrophobic_interactions")
 
+
     for interaction in hydrophobic:
-     
+    
+        ligcoo = interaction.find("ligcoo")
+       
         interaction_data = {
             "PDB": pdb_code,
             "Ligand": ligand_name,
             "Interaction": "Hydrophobic interaction",
             "Residue": interaction.findtext("restype"),
             "Residue_number": int(interaction.findtext("resnr")),
-            "Distance": float(interaction.findtext("dist"))
+            "Distance": float(interaction.findtext("dist")),
+            "x_pos": float(ligcoo.findtext("x")),
+            "y_pos": float(ligcoo.findtext("y")),
+            "z_pos": float(ligcoo.findtext("z"))
         }
 
         interactions.append(interaction_data)
@@ -45,14 +51,19 @@ def hydrogen_bonds(binding_site, pdb_code, ligand_name):
     hbonds = interactions_node.find("hydrogen_bonds")
 
     for bond in hbonds:
-     
+    
+        ligcoo = bond.find("ligcoo")
+
         interaction = {
             "PDB": pdb_code,
             "Ligand": ligand_name,
             "Interaction": "Hydrogen bond",
             "Residue": bond.findtext("restype"),
             "Residue_number": int(bond.findtext("resnr")),
-            "Distance": float(bond.findtext("dist_d-a"))
+            "Distance": float(bond.findtext("dist_d-a")),
+            "x_pos": float(ligcoo.findtext("x")),
+            "y_pos": float(ligcoo.findtext("y")),
+            "z_pos": float(ligcoo.findtext("z"))
         }
 
         interactions.append(interaction)
@@ -71,14 +82,19 @@ def pi_stacks(binding_site, pdb_code, ligand_name):
     pi_stacks = interactions_node.find("pi_stacks")
 
     for stacking in pi_stacks:
-     
+        
+        ligcoo = stacking.find("ligcoo")
+
         interaction = {
             "PDB": pdb_code,
             "Ligand": ligand_name,
             "Interaction": "Pi stacking",
             "Residue": stacking.findtext("restype"),
             "Residue_number": int(stacking.findtext("resnr")),
-            "Distance": float(stacking.findtext("centdist"))
+            "Distance": float(stacking.findtext("centdist")),
+            "x_pos": float(ligcoo.findtext("x")),
+            "y_pos": float(ligcoo.findtext("y")),
+            "z_pos": float(ligcoo.findtext("z"))
         }
 
         interactions.append(interaction)

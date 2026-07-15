@@ -8,7 +8,7 @@ import os
 import subprocess 
 import pandas as pd  
 
-INPUT_FOLDER = "structures/filtered"
+INPUT_FOLDER = "structures/processed"
 OUTPUT_FOLDER = "structures/contacts"
 
 df = pd.read_csv("info_adicional/tabla_pdb.csv")

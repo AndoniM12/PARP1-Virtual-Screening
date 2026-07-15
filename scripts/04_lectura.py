@@ -30,6 +30,7 @@ def hydrophobic_interactions(binding_site, pdb_code, ligand_name):
             "Residue": interaction.findtext("restype"),
             "Residue_number": int(interaction.findtext("resnr")),
             "Distance": float(interaction.findtext("dist")),
+            "feature": "Hydrophobic",
             "x_pos": float(ligcoo.findtext("x")),
             "y_pos": float(ligcoo.findtext("y")),
             "z_pos": float(ligcoo.findtext("z"))
@@ -54,6 +55,13 @@ def hydrogen_bonds(binding_site, pdb_code, ligand_name):
     
         ligcoo = bond.find("ligcoo")
 
+        protisdon = bond.findtext("protisdon")
+
+        if protisdon == "true":
+            protisdon = "HBA"
+        else:
+            protisdon = "HBD"
+
         interaction = {
             "PDB": pdb_code,
             "Ligand": ligand_name,
@@ -61,6 +69,7 @@ def hydrogen_bonds(binding_site, pdb_code, ligand_name):
             "Residue": bond.findtext("restype"),
             "Residue_number": int(bond.findtext("resnr")),
             "Distance": float(bond.findtext("dist_d-a")),
+            "feature": protisdon ,
             "x_pos": float(ligcoo.findtext("x")),
             "y_pos": float(ligcoo.findtext("y")),
             "z_pos": float(ligcoo.findtext("z"))
@@ -92,6 +101,7 @@ def pi_stacks(binding_site, pdb_code, ligand_name):
             "Residue": stacking.findtext("restype"),
             "Residue_number": int(stacking.findtext("resnr")),
             "Distance": float(stacking.findtext("centdist")),
+            "feature": "Aromatic",
             "x_pos": float(ligcoo.findtext("x")),
             "y_pos": float(ligcoo.findtext("y")),
             "z_pos": float(ligcoo.findtext("z"))
@@ -171,7 +181,7 @@ def main():
 
     df.to_csv(OUTPUT_FILE, index=False)
 
-    print(f"Se han guardado {len(df)} interacciones en {OUTPUT_FILE} \n correspondientes a {df['PDB'].nunique()} estructuras.")
+    print(f"Se han guardado {len(df)} interacciones en {OUTPUT_FILE} correspondientes a {df['PDB'].nunique()} estructuras.")
 
 if __name__ == "__main__":
     main()

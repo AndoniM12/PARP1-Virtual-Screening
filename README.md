@@ -81,13 +81,7 @@ conda activate parp1_pipeline
 
 ### 3. Descargar las estructuras
 
-**Modelo completo de AlphaFold (PARP1 humana, UniProt P09874):**
-
-```bash
-python scripts/01_descargar_PARP1_modelo_AF.py
-```
-
-**Estructuras cristalográficas desde RCSB PDB:**
+**Estructuras cristalográficas desde RCSB PDB y modelo completo de AlphaFold (PARP1 humana, UniProt P09874):**
 
 ```bash
 python scripts/01_descargar_pdbs.py

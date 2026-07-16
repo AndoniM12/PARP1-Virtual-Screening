@@ -26,7 +26,6 @@ PARP1-Virtual-Screening/
 ├── README.md                   # Este archivo
 ├── parp1_pipeline.yml          # Entorno conda reproducible
 ├── scripts/
-│   ├── 01_descargar_PARP1_modelo_AF.py  # Descarga del modelo completo de AlphaFold (P09874, v6)
 │   ├── 01_descargar_pdbs.py        # Descarga por lotes desde RCSB PDB usando tabla_pdb.csv
 │   ├── 02_procesar_pdb.py          # Extracción de la cadena A y el ligando de cada estructura PDB
 │   └── 03_contactos.py             # Identificación de interacciones entre ligando y proteína

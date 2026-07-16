@@ -35,6 +35,17 @@ def download_pdb(pdb_code, output_folder):
     urllib.request.urlretrieve(url, output_path)
     print(f"Guardado en {output_path}")
 
+def download_AF_model(output_folder):
+
+    URL = "https://alphafold.ebi.ac.uk/files/AF-P09874-F1-model_v6.pdb"
+
+    print(f"Descargando estructura de PARP1 (UniProt P09874)...")
+    print(f"URL: {URL}")
+
+    OUTPUT_FILENAME = "PARP1_AF_model.pdb"
+
+    urllib.request.urlretrieve(URL, f"{output_folder}/{OUTPUT_FILENAME}")
+
 if __name__ == "__main__":
     # Crear el directorio de salida si no existe
     if not os.path.exists(OUTPUT_FOLDER):
@@ -47,3 +58,5 @@ if __name__ == "__main__":
     for code in pdb_codes:
         download_pdb(code, OUTPUT_FOLDER)
         print("------------------------------------------------")
+    
+    download_AF_model(OUTPUT_FOLDER)

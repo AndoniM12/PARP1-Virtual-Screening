@@ -67,31 +67,37 @@ pseudoatom feature_8, pos=[11.69,35.79,11.32]
 hide nonbonded, feature_8
 show spheres, feature_8
 color blue, feature_8
+alter feature_8, vdw=1.0
 set sphere_transparency, 0.65, feature_8
 pseudoatom feature_9, pos=[11.09,44.08,9.96]
 hide nonbonded, feature_9
 show spheres, feature_9
 color blue, feature_9
+alter feature_9, vdw=1.0
 set sphere_transparency, 0.65, feature_9
 pseudoatom feature_10, pos=[3.57,40.79,11.59]
 hide nonbonded, feature_10
 show spheres, feature_10
 color yellow, feature_10
+alter feature_10, vdw=1.0
 set sphere_transparency, 0.65, feature_10
 pseudoatom feature_11, pos=[4.62,43.12,10.44]
 hide nonbonded, feature_11
 show spheres, feature_11
 color blue, feature_11
+alter feature_11, vdw=1.0
 set sphere_transparency, 0.65, feature_11
 pseudoatom feature_12, pos=[4.81,40.79,10.83]
 hide nonbonded, feature_12
 show spheres, feature_12
 color yellow, feature_12
+alter feature_12, vdw=1.0
 set sphere_transparency, 0.65, feature_12
 pseudoatom feature_13, pos=[14.22,38.2,10.9]
 hide nonbonded, feature_13
 show spheres, feature_13
 color forest, feature_13
+alter feature_13, vdw=1.0
 set sphere_transparency, 0.65, feature_13
 rebuild
 set_view (\

@@ -4,7 +4,7 @@ show cartoon, protein
 color gray90, protein
 set cartoon_transparency, 0.65
 bg_color white
-select pocket, protein and resi 863+889+896+907
+select pocket, protein and resi 863+889+896+907+988
 show sticks, pocket
 color gray70, pocket and elem C
 color blue, pocket and elem N
@@ -32,19 +32,31 @@ hide nonbonded, feature_2
 show spheres, feature_2
 color yellow, feature_2
 alter feature_2, vdw=1.338
-set sphere_transparency, 0.35, feature_2
+set sphere_transparency, 0.15, feature_2
 pseudoatom feature_3, pos=[14.896,41.232,7.795]
 hide nonbonded, feature_3
 show spheres, feature_3
 color yellow, feature_3
 alter feature_3, vdw=2.673
-set sphere_transparency, 0.35, feature_3
+set sphere_transparency, 0.15, feature_3
 pseudoatom feature_4, pos=[14.679,41.423,9.197]
 hide nonbonded, feature_4
 show spheres, feature_4
 color yellow, feature_4
 alter feature_4, vdw=2.618
-set sphere_transparency, 0.35, feature_4
+set sphere_transparency, 0.15, feature_4
+pseudoatom feature_5, pos=[13.457,39.371,10.175]
+hide nonbonded, feature_5
+show spheres, feature_5
+color forest, feature_5
+alter feature_5, vdw=1.464
+set sphere_transparency, 0.35, feature_5
+pseudoatom feature_6, pos=[17.858,43.368,8.318]
+hide nonbonded, feature_6
+show spheres, feature_6
+color yellow, feature_6
+alter feature_6, vdw=0.839
+set sphere_transparency, 0.35, feature_6
 rebuild
 set_view (\
 0.295335442,    0.495653808,    0.816764057,\

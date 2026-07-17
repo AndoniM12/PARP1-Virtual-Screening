@@ -35,6 +35,60 @@
             "minsize": "",
             "maxsize": "",
             "selected": true
+        },
+        {
+            "name": "Hydrophobic",
+            "hasvec": true,
+            "x": 13.348,
+            "y": 39.246,
+            "z": 11.268,
+            "radius": 1.338,
+            "enabled": true,
+            "vector_on": 1,
+            "svector": {
+                "x": 0.486,
+                "y": 0.219,
+                "z": -0.846
+            },
+            "minsize": "",
+            "maxsize": "",
+            "selected": true
+        },
+        {
+            "name": "Hydrophobic",
+            "hasvec": true,
+            "x": 14.896,
+            "y": 41.232,
+            "z": 7.795,
+            "radius": 2.673,
+            "enabled": true,
+            "vector_on": 1,
+            "svector": {
+                "x": -0.343,
+                "y": 0.448,
+                "z": 0.825
+            },
+            "minsize": "",
+            "maxsize": "",
+            "selected": true
+        },
+        {
+            "name": "Hydrophobic",
+            "hasvec": true,
+            "x": 14.679,
+            "y": 41.423,
+            "z": 9.197,
+            "radius": 2.618,
+            "enabled": true,
+            "vector_on": 1,
+            "svector": {
+                "x": -0.003,
+                "y": -0.733,
+                "z": -0.68
+            },
+            "minsize": "",
+            "maxsize": "",
+            "selected": true
         }
     ]
 }

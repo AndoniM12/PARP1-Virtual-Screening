@@ -89,6 +89,42 @@
             "minsize": "",
             "maxsize": "",
             "selected": true
+        },
+        {
+            "name": "Aromatic",
+            "hasvec": true,
+            "x": 13.457,
+            "y": 39.371,
+            "z": 10.175,
+            "radius": 1.464,
+            "enabled": true,
+            "vector_on": 1,
+            "svector": {
+                "x": -0.372,
+                "y": -0.686,
+                "z": -0.625
+            },
+            "minsize": "",
+            "maxsize": "",
+            "selected": true
+        },
+        {
+            "name": "Hydrophobic",
+            "hasvec": true,
+            "x": 17.858,
+            "y": 43.368,
+            "z": 8.318,
+            "radius": 0.839,
+            "enabled": true,
+            "vector_on": 1,
+            "svector": {
+                "x": -0.67,
+                "y": -0.442,
+                "z": -0.596
+            },
+            "minsize": "",
+            "maxsize": "",
+            "selected": true
         }
     ]
 }

@@ -39,15 +39,17 @@ def consensus_classification(df):
         consensus["PDB"] / total_pdb
     ).round(2)
 
-    consensus["Classification"] = (
-        consensus["Conservation"].apply(classify_interaction)
-    )
-
     consensus["Radius"] = np.sqrt(
         consensus["Std_x"]**2 +
         consensus["Std_y"]**2 +
         consensus["Std_z"]**2
-    ).round(3)
+        ).round(3)
+    
+    consensus.loc[consensus["PDB"] == 1, "Radius"] = 1
+
+    consensus["Classification"] = (
+        consensus["Conservation"].apply(classify_interaction)
+    )
 
     consensus = consensus.sort_values(
         by=["Conservation", "Mean_distance"],

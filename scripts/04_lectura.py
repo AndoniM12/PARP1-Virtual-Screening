@@ -2,6 +2,7 @@ import os
 import xml.etree.ElementTree as ET
 
 import pandas as pd
+import numpy as np
 
 INPUT_FOLDER = "structures/contacts"
 OUTPUT_FILE = "results/interacciones.csv"
@@ -22,7 +23,19 @@ def hydrophobic_interactions(binding_site, pdb_code, ligand_name):
     for interaction in hydrophobic:
     
         ligcoo = interaction.find("ligcoo")
+        protcoo = interaction.find("protcoo")
        
+        # Vector de interaccion de puente de hidrógeno
+        vector_x= float(ligcoo.findtext("x")) - float(protcoo.findtext("x"))
+        vector_y= float(ligcoo.findtext("y")) - float(protcoo.findtext("y"))
+        vector_z= float(ligcoo.findtext("z")) - float(protcoo.findtext("z"))
+
+        norm = np.sqrt(vector_x**2 + vector_y**2 + vector_z**2)
+        vector_x /= norm
+        vector_y /= norm
+        vector_z /= norm
+
+
         interaction_data = {
             "PDB": pdb_code,
             "Ligand": ligand_name,
@@ -33,7 +46,10 @@ def hydrophobic_interactions(binding_site, pdb_code, ligand_name):
             "Feature": "Hydrophobic",
             "x_pos": float(ligcoo.findtext("x")),
             "y_pos": float(ligcoo.findtext("y")),
-            "z_pos": float(ligcoo.findtext("z"))
+            "z_pos": float(ligcoo.findtext("z")),
+            "Vector_x": vector_x.round(3),
+            "Vector_y": vector_y.round(3),
+            "Vector_z": vector_z.round(3),
         }
 
         interactions.append(interaction_data)
@@ -54,9 +70,21 @@ def hydrogen_bonds(binding_site, pdb_code, ligand_name):
     for bond in hbonds:
     
         ligcoo = bond.find("ligcoo")
-
+        protcoo = bond.find("protcoo")
         protisdon = bond.findtext("protisdon")
+        
+        # Vector de interaccion de puente de hidrógeno
+        vector_x= float(ligcoo.findtext("x")) - float(protcoo.findtext("x"))
+        vector_y= float(ligcoo.findtext("y")) - float(protcoo.findtext("y"))
+        vector_z= float(ligcoo.findtext("z")) - float(protcoo.findtext("z"))
 
+        norm = np.sqrt(vector_x**2 + vector_y**2 + vector_z**2)
+        vector_x /= norm
+        vector_y /= norm
+        vector_z /= norm
+
+        
+        # Verificación de carácter donador o aceptor
         if protisdon == "true":
             protisdon = "HBA"
         else:
@@ -72,7 +100,10 @@ def hydrogen_bonds(binding_site, pdb_code, ligand_name):
             "Feature": protisdon ,
             "x_pos": float(ligcoo.findtext("x")),
             "y_pos": float(ligcoo.findtext("y")),
-            "z_pos": float(ligcoo.findtext("z"))
+            "z_pos": float(ligcoo.findtext("z")),
+            "Vector_x": vector_x.round(3),
+            "Vector_y": vector_y.round(3),
+            "Vector_z": vector_z.round(3)
         }
 
         interactions.append(interaction)
@@ -93,6 +124,17 @@ def pi_stacks(binding_site, pdb_code, ligand_name):
     for stacking in pi_stacks:
         
         ligcoo = stacking.find("ligcoo")
+        protcoo = stacking.find("protcoo")
+       
+        # Vector de interaccion de puente de hidrógeno
+        vector_x= float(ligcoo.findtext("x")) - float(protcoo.findtext("x"))
+        vector_y= float(ligcoo.findtext("y")) - float(protcoo.findtext("y"))
+        vector_z= float(ligcoo.findtext("z")) - float(protcoo.findtext("z"))
+
+        norm = np.sqrt(vector_x**2 + vector_y**2 + vector_z**2)
+        vector_x /= norm
+        vector_y /= norm
+        vector_z /= norm
 
         interaction = {
             "PDB": pdb_code,
@@ -104,7 +146,10 @@ def pi_stacks(binding_site, pdb_code, ligand_name):
             "Feature": "Aromatic",
             "x_pos": float(ligcoo.findtext("x")),
             "y_pos": float(ligcoo.findtext("y")),
-            "z_pos": float(ligcoo.findtext("z"))
+            "z_pos": float(ligcoo.findtext("z")),
+            "Vector_x": vector_x.round(3),
+            "Vector_y": vector_y.round(3),
+            "Vector_z": vector_z.round(3),
         }
 
         interactions.append(interaction)

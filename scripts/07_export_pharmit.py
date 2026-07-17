@@ -33,17 +33,17 @@ def export_farmaophore(df):
             
             point = {
                 "name": interactions[row["Feature"]],
-                "hasvec": False,
+                "hasvec": True,
                 "x": row["x"],
                 "y": row["y"],
                 "z": row["z"],
                 "radius": row["Radius"],
                 "enabled": True,
-                "vector_on": 0,
+                "vector_on": 1,
                 "svector": {
-                    "x": 1,
-                    "y": 0,
-                    "z": 0
+                    "x": row["Vector_x"],
+                    "y": row["Vector_y"],
+                    "z": row["Vector_z"]
                 },
                 "minsize": "",
                 "maxsize": "",

@@ -15,17 +15,17 @@ set label_size, 18
 set label_color, black
 set label_font_id, 7
 set label_position, (2,1,1)
-pseudoatom feature_0, pos=[14.31,44.11,5.27]
+pseudoatom feature_0, pos=[14.312,44.108,5.27]
 hide nonbonded, feature_0
 show spheres, feature_0
 color blue, feature_0
-alter feature_0, vdw=1.21
+alter feature_0, vdw=1.209
 set sphere_transparency, 0.15, feature_0
-pseudoatom feature_1, pos=[15.24,42.21,7.69]
+pseudoatom feature_1, pos=[15.245,42.208,7.686]
 hide nonbonded, feature_1
 show spheres, feature_1
 color forest, feature_1
-alter feature_1, vdw=1.46
+alter feature_1, vdw=1.456
 set sphere_transparency, 0.15, feature_1
 rebuild
 set_view (\

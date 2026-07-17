@@ -25,41 +25,55 @@ def consensus_classification(df):
             ["Interaction", "Residue", "Residue_number", "Feature"]
         ).agg(
             PDB=("PDB", "nunique"),
-            Mean_distance=("Distance", "mean"),
             x=("x_pos", "mean"),
             y=("y_pos", "mean"),
             z=("z_pos", "mean"),
             Std_x=("x_pos", "std"),
             Std_y=("y_pos", "std"),
-            Std_z=("z_pos", "std")
+            Std_z=("z_pos", "std"),
+            Vector_x=("Vector_x", "mean"),
+            Vector_y=("Vector_y", "mean"),
+            Vector_z=("Vector_z", "mean"),
+            Mean_distance=("Distance", "mean"),
         ).reset_index()
     )
-
-    consensus["Conservation"] = (
-        consensus["PDB"] / total_pdb
-    ).round(2)
 
     consensus["Radius"] = np.sqrt(
         consensus["Std_x"]**2 +
         consensus["Std_y"]**2 +
         consensus["Std_z"]**2
-        ).round(3)
-    
+        )
     consensus.loc[consensus["PDB"] == 1, "Radius"] = 1
 
+
+    norm = np.sqrt(
+        consensus["Vector_x"]**2 +
+        consensus["Vector_y"]**2 +
+        consensus["Vector_z"]**2
+    )
+
+    consensus["Vector_x"] /= norm
+    consensus["Vector_y"] /= norm
+    consensus["Vector_z"] /= norm
+
+
+    consensus["Conservation"] = (
+        consensus["PDB"] / total_pdb
+    ).round(2)
     consensus["Classification"] = (
         consensus["Conservation"].apply(classify_interaction)
     )
-
     consensus = consensus.sort_values(
-        by=["Conservation", "Mean_distance"],
-        ascending=[False, True]
+        by=["Conservation"],
+        ascending=[False]
     )
 
-    consensus[["x", "y", "z", "Mean_distance","Std_x", "Std_y", "Std_z", "Radius"]] = (
-    consensus[["x", "y", "z", "Mean_distance","Std_x", "Std_y", "Std_z", "Radius"]]
-    .round(2)
+
+    consensus[["x", "y", "z", "Std_x", "Std_y", "Std_z", "Vector_x", "Vector_y", "Vector_z", "Mean_distance", "Radius"]] = (
+    consensus[["x", "y", "z", "Std_x", "Std_y", "Std_z", "Vector_x", "Vector_y", "Vector_z", "Mean_distance", "Radius"]]
+    .round(3)
     )
+
     return consensus
 
 def main():

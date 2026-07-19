@@ -14,7 +14,7 @@ levels = {
 
 interactions = {
     "HBD" : "HydrogenDonor",
-    "HBA" : "HydrogenAceptor",
+    "HBA" : "HydrogenAcceptor",
     "Hydrophobic" : "Hydrophobic",
     "Aromatic" : "Aromatic"
 }

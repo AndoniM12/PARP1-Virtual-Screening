@@ -1,7 +1,7 @@
 {
     "points": [
         {
-            "name": "HydrogenAceptor",
+            "name": "HydrogenAcceptor",
             "hasvec": true,
             "x": 14.988,
             "y": 44.88,
@@ -163,7 +163,7 @@
             "selected": true
         },
         {
-            "name": "HydrogenAceptor",
+            "name": "HydrogenAcceptor",
             "hasvec": true,
             "x": 4.624,
             "y": 43.117,
@@ -217,7 +217,7 @@
             "selected": true
         },
         {
-            "name": "HydrogenAceptor",
+            "name": "HydrogenAcceptor",
             "hasvec": true,
             "x": 11.094,
             "y": 44.085,

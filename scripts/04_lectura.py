@@ -85,7 +85,7 @@ def hydrogen_bonds(binding_site, pdb_code, ligand_name):
 
         
         # Verificación de carácter donador o aceptor
-        if protisdon == "true":
+        if protisdon == "True":
             protisdon = "HBA"
         else:
             protisdon = "HBD"

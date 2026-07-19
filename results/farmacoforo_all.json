@@ -1,18 +1,36 @@
 {
     "points": [
         {
-            "name": "HydrogenDonor",
+            "name": "HydrogenAceptor",
             "hasvec": true,
-            "x": 14.312,
-            "y": 44.108,
-            "z": 5.27,
-            "radius": 1.209,
+            "x": 14.988,
+            "y": 44.88,
+            "z": 4.854,
+            "radius": 0.243,
             "enabled": true,
             "vector_on": 1,
             "svector": {
-                "x": 0.632,
-                "y": -0.152,
-                "z": 0.76
+                "x": 0.617,
+                "y": -0.276,
+                "z": 0.737
+            },
+            "minsize": "",
+            "maxsize": "",
+            "selected": true
+        },
+        {
+            "name": "HydrogenDonor",
+            "hasvec": true,
+            "x": 13.635,
+            "y": 43.337,
+            "z": 5.685,
+            "radius": 0.408,
+            "enabled": true,
+            "vector_on": 1,
+            "svector": {
+                "x": 0.637,
+                "y": -0.026,
+                "z": 0.771
             },
             "minsize": "",
             "maxsize": "",
@@ -145,7 +163,7 @@
             "selected": true
         },
         {
-            "name": "HydrogenDonor",
+            "name": "HydrogenAceptor",
             "hasvec": true,
             "x": 4.624,
             "y": 43.117,
@@ -199,7 +217,7 @@
             "selected": true
         },
         {
-            "name": "HydrogenDonor",
+            "name": "HydrogenAceptor",
             "hasvec": true,
             "x": 11.094,
             "y": 44.085,

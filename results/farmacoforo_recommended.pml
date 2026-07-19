@@ -15,48 +15,54 @@ set label_size, 18
 set label_color, black
 set label_font_id, 7
 set label_position, (2,1,1)
-pseudoatom feature_0, pos=[14.312,44.108,5.27]
+pseudoatom feature_0, pos=[14.988,44.88,4.854]
 hide nonbonded, feature_0
 show spheres, feature_0
-color blue, feature_0
-alter feature_0, vdw=1.209
+color red, feature_0
+alter feature_0, vdw=0.243
 set sphere_transparency, 0.15, feature_0
-pseudoatom feature_1, pos=[15.245,42.208,7.686]
+pseudoatom feature_1, pos=[13.635,43.337,5.685]
 hide nonbonded, feature_1
 show spheres, feature_1
-color forest, feature_1
-alter feature_1, vdw=1.456
+color blue, feature_1
+alter feature_1, vdw=0.408
 set sphere_transparency, 0.15, feature_1
-pseudoatom feature_2, pos=[13.348,39.246,11.268]
+pseudoatom feature_2, pos=[15.245,42.208,7.686]
 hide nonbonded, feature_2
 show spheres, feature_2
-color yellow, feature_2
-alter feature_2, vdw=1.338
+color forest, feature_2
+alter feature_2, vdw=1.456
 set sphere_transparency, 0.15, feature_2
-pseudoatom feature_3, pos=[14.896,41.232,7.795]
+pseudoatom feature_3, pos=[13.348,39.246,11.268]
 hide nonbonded, feature_3
 show spheres, feature_3
 color yellow, feature_3
-alter feature_3, vdw=2.673
+alter feature_3, vdw=1.338
 set sphere_transparency, 0.15, feature_3
-pseudoatom feature_4, pos=[14.679,41.423,9.197]
+pseudoatom feature_4, pos=[14.896,41.232,7.795]
 hide nonbonded, feature_4
 show spheres, feature_4
 color yellow, feature_4
-alter feature_4, vdw=2.618
+alter feature_4, vdw=2.673
 set sphere_transparency, 0.15, feature_4
-pseudoatom feature_5, pos=[13.457,39.371,10.175]
+pseudoatom feature_5, pos=[14.679,41.423,9.197]
 hide nonbonded, feature_5
 show spheres, feature_5
-color forest, feature_5
-alter feature_5, vdw=1.464
-set sphere_transparency, 0.35, feature_5
-pseudoatom feature_6, pos=[17.858,43.368,8.318]
+color yellow, feature_5
+alter feature_5, vdw=2.618
+set sphere_transparency, 0.15, feature_5
+pseudoatom feature_6, pos=[13.457,39.371,10.175]
 hide nonbonded, feature_6
 show spheres, feature_6
-color yellow, feature_6
-alter feature_6, vdw=0.839
+color forest, feature_6
+alter feature_6, vdw=1.464
 set sphere_transparency, 0.35, feature_6
+pseudoatom feature_7, pos=[17.858,43.368,8.318]
+hide nonbonded, feature_7
+show spheres, feature_7
+color yellow, feature_7
+alter feature_7, vdw=0.839
+set sphere_transparency, 0.35, feature_7
 rebuild
 set_view (\
 0.295335442,    0.495653808,    0.816764057,\

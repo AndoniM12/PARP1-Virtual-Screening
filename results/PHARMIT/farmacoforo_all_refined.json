@@ -6,7 +6,7 @@
             "x": 13.588,
             "y": 43.338,
             "z": 5.593,
-            "radius": 0.445,
+            "radius": 0.6,
             "enabled": true,
             "vector_on": 1,
             "svector": {
@@ -24,7 +24,7 @@
             "x": 14.976,
             "y": 44.86,
             "z": 4.775,
-            "radius": 0.297,
+            "radius": 0.6,
             "enabled": true,
             "vector_on": 1,
             "svector": {
@@ -55,84 +55,12 @@
             "selected": true
         },
         {
-            "name": "Hydrophobic",
-            "hasvec": true,
-            "x": 14.707,
-            "y": 41.61,
-            "z": 8.927,
-            "radius": 2.545,
-            "enabled": true,
-            "vector_on": 1,
-            "svector": {
-                "x": 0.017,
-                "y": -0.688,
-                "z": -0.726
-            },
-            "minsize": "",
-            "maxsize": "",
-            "selected": true
-        },
-        {
-            "name": "Hydrophobic",
-            "hasvec": true,
-            "x": 15.076,
-            "y": 41.54,
-            "z": 7.671,
-            "radius": 2.788,
-            "enabled": true,
-            "vector_on": 1,
-            "svector": {
-                "x": -0.316,
-                "y": 0.514,
-                "z": 0.797
-            },
-            "minsize": "",
-            "maxsize": "",
-            "selected": true
-        },
-        {
-            "name": "Hydrophobic",
-            "hasvec": true,
-            "x": 13.348,
-            "y": 39.246,
-            "z": 11.268,
-            "radius": 1.338,
-            "enabled": true,
-            "vector_on": 1,
-            "svector": {
-                "x": 0.486,
-                "y": 0.219,
-                "z": -0.846
-            },
-            "minsize": "",
-            "maxsize": "",
-            "selected": true
-        },
-        {
-            "name": "Hydrophobic",
-            "hasvec": true,
-            "x": 16.847,
-            "y": 44.389,
-            "z": 6.672,
-            "radius": 0.204,
-            "enabled": true,
-            "vector_on": 1,
-            "svector": {
-                "x": -0.717,
-                "y": -0.615,
-                "z": 0.328
-            },
-            "minsize": "",
-            "maxsize": "",
-            "selected": true
-        },
-        {
             "name": "Aromatic",
             "hasvec": true,
             "x": 13.457,
             "y": 39.371,
             "z": 10.175,
-            "radius": 1.464,
+            "radius": 1.75,
             "enabled": true,
             "vector_on": 1,
             "svector": {
@@ -145,54 +73,18 @@
             "selected": true
         },
         {
-            "name": "Hydrophobic",
-            "hasvec": true,
-            "x": 17.858,
-            "y": 43.368,
-            "z": 8.318,
-            "radius": 0.839,
-            "enabled": true,
-            "vector_on": 1,
-            "svector": {
-                "x": -0.67,
-                "y": -0.442,
-                "z": -0.596
-            },
-            "minsize": "",
-            "maxsize": "",
-            "selected": true
-        },
-        {
             "name": "HydrogenAcceptor",
             "hasvec": true,
             "x": 2.519,
             "y": 42.647,
             "z": 10.828,
-            "radius": 3.1,
+            "radius": 1.2,
             "enabled": true,
             "vector_on": 1,
             "svector": {
                 "x": 0.362,
                 "y": -0.908,
                 "z": 0.21
-            },
-            "minsize": "",
-            "maxsize": "",
-            "selected": true
-        },
-        {
-            "name": "Hydrophobic",
-            "hasvec": true,
-            "x": 3.108,
-            "y": 41.242,
-            "z": 10.56,
-            "radius": 1.72,
-            "enabled": true,
-            "vector_on": 1,
-            "svector": {
-                "x": 0.785,
-                "y": 0.619,
-                "z": -0.03
             },
             "minsize": "",
             "maxsize": "",
@@ -211,24 +103,6 @@
                 "x": -0.326,
                 "y": 0.524,
                 "z": 0.787
-            },
-            "minsize": "",
-            "maxsize": "",
-            "selected": true
-        },
-        {
-            "name": "Hydrophobic",
-            "hasvec": true,
-            "x": 4.808,
-            "y": 40.793,
-            "z": 10.83,
-            "radius": 1.0,
-            "enabled": true,
-            "vector_on": 1,
-            "svector": {
-                "x": -0.335,
-                "y": 0.853,
-                "z": 0.401
             },
             "minsize": "",
             "maxsize": "",
@@ -276,13 +150,67 @@
             "x": 14.215,
             "y": 38.202,
             "z": 10.901,
-            "radius": 1.0,
+            "radius": 1.75,
             "enabled": true,
             "vector_on": 1,
             "svector": {
                 "x": 0.636,
                 "y": -0.102,
                 "z": -0.765
+            },
+            "minsize": "",
+            "maxsize": "",
+            "selected": true
+        },
+        {
+            "name": "Hydrophobic",
+            "hasvec": true,
+            "x": 16.847,
+            "y": 44.389,
+            "z": 6.672,
+            "radius": 2.2,
+            "enabled": true,
+            "vector_on": 1,
+            "svector": {
+                "x": -0.717,
+                "y": -0.615,
+                "z": 0.328
+            },
+            "minsize": "",
+            "maxsize": "",
+            "selected": true
+        },
+        {
+            "name": "Hydrophobic",
+            "hasvec": true,
+            "x": 17.858,
+            "y": 43.368,
+            "z": 8.318,
+            "radius": 2.2,
+            "enabled": true,
+            "vector_on": 1,
+            "svector": {
+                "x": -0.67,
+                "y": -0.442,
+                "z": -0.596
+            },
+            "minsize": "",
+            "maxsize": "",
+            "selected": true
+        },
+        {
+            "name": "Hydrophobic",
+            "hasvec": true,
+            "x": 3.958,
+            "y": 41.0175,
+            "z": 10.695,
+            "radius": 2.609,
+            "enabled": true,
+            "vector_on": 1,
+            "svector": {
+                "x": 0.785,
+                "y": 0.619,
+                "z": -0.03
             },
             "minsize": "",
             "maxsize": "",

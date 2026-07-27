@@ -8,7 +8,6 @@ El script:
 - elimina el resto de moléculas,
 - alinea todas las estructuras respecto a la referencia 7AAA.pdb
 - devuelve información sobre el alineamiento
-- extrae el ligando de los Validation set y los guarda en la base de datos sdf
 
 Las estructuras procesadas se guardan en structures/processed.
 """
@@ -24,7 +23,6 @@ import re
 INPUT_FOLDER = "structures/raw"
 OUTPUT_FOLDER = "structures/processed"
 reference_pdb = "structures/processed/7AAA_chainA.pdb"
-ligand_list = "info_adicional/validation_set_db.sdf"
 
 df = pd.read_csv("info_adicional/tabla_pdb.csv")
 ligandos_por_pdb = dict(zip(df["PDB"], df["Código_ligando"]))
@@ -81,47 +79,6 @@ def align_pdb(reference_pdb, pdb):
         
         return float(match.group(1))
 
-def extract_ligand(pdb, ligand):
-
-    with tempfile.NamedTemporaryFile(
-            mode="w",
-            suffix=".sdf",
-            delete=False,
-        ) as tmp:
-            output_sdf = tmp.name
-
-    script = f"""
-        load {pdb}, prot
-
-        select lig, resn {ligand}
-
-        save {output_sdf}, lig
-
-        quit
-    """
-
-    with tempfile.NamedTemporaryFile(
-        mode="w",
-        suffix=".pml",
-        delete=False
-    ) as f:
-
-        f.write(script)
-        script_name = f.name
-
-    subprocess.run(
-        ["pymol", "-cq", script_name],
-        check=True,
-        capture_output=True,
-        text=True
-    )
-
-    with open(output_sdf, "r") as infile, open(ligand_list, "a") as outfile:
-        outfile.write(infile.read())
-
-    os.remove(output_sdf)
-    os.remove(script_name)
-
 if __name__ == "__main__":
 
     pdb_files = os.listdir(INPUT_FOLDER)
@@ -138,6 +95,9 @@ if __name__ == "__main__":
         os.mkdir(OUTPUT_FOLDER)
         print(f"Directorio creado: {OUTPUT_FOLDER}")
 
+    if not os.path.exists("structures/ligands"):
+            os.mkdir("structures/ligands")
+
     print(f"Procesando 7AAA...")
 
     clean_pdb(f"{INPUT_FOLDER}/7AAA.pdb", reference_pdb)
@@ -147,9 +107,8 @@ if __name__ == "__main__":
         code = row["PDB"]
         ligand = row["Código_ligando"]
         group = row["Grupo de estudio"]
-        download = row["Descarga_pdb"]
 
-        if download == "Sí":
+        if group != "-" and code != "PARP1_AF":
 
             input_path = os.path.join(INPUT_FOLDER, f"{code}.pdb")
             output_path = os.path.join(OUTPUT_FOLDER, f"{code}_chainA.pdb")
@@ -166,12 +125,8 @@ if __name__ == "__main__":
 
             rmsd_values.append(rmsd)
 
-            if group == "Validation set":
-
-                extract_ligand(output_path,ligand)
-
             print(f"  -> Guardado en: {output_path}")
-    
+
     print("\n===== Resumen RMSD =====")
     print(f"Estructuras alineadas contra la referencia : {len(rmsd_values)}")
     print(f"RMSD medio            : {np.mean(rmsd_values):.3f} Å")

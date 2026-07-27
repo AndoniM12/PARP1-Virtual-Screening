@@ -6,7 +6,7 @@
             "x": 13.588,
             "y": 43.338,
             "z": 5.593,
-            "radius": 0.445,
+            "radius": 0.6,
             "enabled": true,
             "vector_on": 1,
             "svector": {
@@ -24,7 +24,7 @@
             "x": 14.976,
             "y": 44.86,
             "z": 4.775,
-            "radius": 0.297,
+            "radius": 0.6,
             "enabled": true,
             "vector_on": 1,
             "svector": {

@@ -29,7 +29,7 @@ PDB,Código_ligando,Ligando,Tipo_ligando,Método_experimental,Resolución(Å),Re
 7ONS,VKT,compound 16,Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1021/acs.jmedchem.1c01012,Sí,Validation set
 7ONT,VKQ,compound 22,Inhibidor experimental,Rayos X,2.30,CAT,https://doi.org/10.1021/acs.jmedchem.1c01012,Sí,Validation set
 8HE7,1WI,"quinazoline-2,4(1H,3H)-dione",Inhibidor experimental,Rayos X,2.10,CAT,https://doi.org/10.1021/acs.jmedchem.3c01152,Sí,Validation set
-8VYH,A1AEO,"(4S)-1-{2-fluoro-5-[(4-oxo-3,4-dihydrophthalazin-1-yl)methyl]benzoyl}-4-hydroxy-L-proline",Inhibidor experimental,Rayos X,2.05,CAT,https://doi.org/10.2210/pdb8VYH/pdb,No,Validation set
-9ETQ,A1H63,Saruparib (AZD5305),Inhibidor clínico,Rayos X,1.59,CAT,https://doi.org/10.2210/pdb9ETQ/pdb,No,Validation set
-9ETR,A1H64,AZD9574,Inhibidor experimental,Rayos X,1.82,CAT,https://doi.org/10.2210/pdb9ETR/pdb,No,Validation set
+8VYH,A1AEO,"(4S)-1-{2-fluoro-5-[(4-oxo-3,4-dihydrophthalazin-1-yl)methyl]benzoyl}-4-hydroxy-L-proline",Inhibidor experimental,Rayos X,2.05,CAT,https://doi.org/10.2210/pdb8VYH/pdb,No,-
+9ETQ,A1H,Saruparib (AZD5305),Inhibidor de nueva generación,Rayos X,1.59,CAT,https://doi.org/10.2210/pdb9ETQ/pdb,No,Training set
+9ETR,A1H64,AZD9574,Inhibidor de nueva generación,Rayos X,1.82,CAT,https://doi.org/10.2210/pdb9ETR/pdb,No,-
 PARP1_AF,-,Sin ligando,Sin ligando,AlphaFold,-,Proteína completa,https://alphafold.ebi.ac.uk/entry/AF-P09874-F1,No,Reference set

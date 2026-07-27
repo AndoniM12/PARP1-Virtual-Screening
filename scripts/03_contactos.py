@@ -14,7 +14,7 @@ OUTPUT_FOLDER = "structures/contacts"
 df = pd.read_csv("info_adicional/tabla_pdb.csv")
 groups = dict(zip(df["PDB"], df["Grupo de estudio"]))
         
-def plip_process (pdb,input_path, output_path):
+def plip_process (pdb, input_path, output_path):
 
     print(f"Calculando contactos para {pdb}")
 

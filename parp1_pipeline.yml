@@ -1,12 +1,14 @@
 name: parp1_pipeline
 channels:
-  - bioconda
   - conda-forge
+  - bioconda
   - defaults
 dependencies:
+  - plip
+  - pandas
   - python=3.12
   - openbabel
-  - pandas
-  - plip
   - pymol-open-source
-
+  - rdkit
+  - gemmi
+prefix: /home/andonim12/miniconda3/envs/parp1_pipeline

@@ -1,9 +1,6 @@
 # Directorio de estructuras filtradas y de salida
 structures/
 
-# Cualquier archivo 
-*.pdb
-
 # Entornos virtuales de Python y cache de Python
 __pycache__/
 *.pyc

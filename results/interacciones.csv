@@ -47,3 +47,13 @@ PDB,Ligand,Interaction,Residue,Residue_number,Distance,Feature,x_pos,y_pos,z_pos
 7KK5,3JD,Hydrogen bond,GLY,863,2.85,HBA,14.991,44.698,4.88,0.629,-0.285,0.723
 7KK5,3JD,Pi stacking,TYR,896,5.36,Aromatic,13.721,38.646,9.835,-0.283,-0.741,-0.609
 7KK5,3JD,Pi stacking,TYR,907,3.9,Aromatic,15.772,41.697,8.543,-0.04,0.528,0.849
+9ETQ,A1H,Hydrophobic interaction,LEU,769,3.59,Hydrophobic,2.644,41.696,9.531,0.619,0.785,0.005
+9ETQ,A1H,Hydrophobic interaction,TYR,896,3.51,Hydrophobic,14.875,42.736,7.303,0.119,-0.403,-0.908
+9ETQ,A1H,Hydrophobic interaction,ALA,898,3.95,Hydrophobic,16.696,44.308,6.554,-0.732,-0.616,0.291
+9ETQ,A1H,Hydrophobic interaction,TYR,907,3.98,Hydrophobic,16.696,44.308,6.554,-0.009,0.935,0.355
+9ETQ,A1H,Hydrogen bond,GLY,863,2.77,HBD,13.352,43.34,5.131,0.642,-0.079,0.763
+9ETQ,A1H,Hydrogen bond,GLY,863,2.83,HBA,14.917,44.762,4.378,0.633,-0.341,0.695
+9ETQ,A1H,Hydrogen bond,ARG,878,3.19,HBA,0.414,42.178,11.221,0.619,-0.661,0.425
+9ETQ,A1H,Hydrogen bond,ILE,879,2.86,HBD,1.733,42.209,13.053,-0.729,-0.242,-0.64
+9ETQ,A1H,Pi stacking,TYR,907,3.95,Aromatic,12.374,41.508,6.97,-0.777,0.357,0.518
+9ETQ,A1H,Pi stacking,TYR,907,3.48,Aromatic,14.096,43.029,6.215,-0.388,0.843,0.372

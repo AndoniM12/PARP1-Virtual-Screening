@@ -5,5 +5,14 @@ structures/
 __pycache__/
 *.pyc
 
+# SDF del cribado virtual y redocking
+results/PHARMIT/pharmit.sdf
+results/PHARMIT/top1000_rmsd.sdf
+redocking/
+results/DOCKING/ligands_sdf/
+results/DOCKING/results_mol2/
+
+
 # Script de pruebas (BORRAR)
 pruebas.py
+

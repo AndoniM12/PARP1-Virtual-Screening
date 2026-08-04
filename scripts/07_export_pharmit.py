@@ -19,7 +19,7 @@ interactions = {
     "Aromatic" : "Aromatic"
 }
 
-def export_farmaophore(df):
+def export_pharmacophore(df):
     
     for level, categories in levels.items():
 
@@ -56,4 +56,4 @@ def export_farmaophore(df):
             json.dump(session, f, indent=4)
 
 if __name__ == "__main__":
-    export_farmaophore(df)
+    export_pharmacophore(df)

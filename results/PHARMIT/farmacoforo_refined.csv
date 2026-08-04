@@ -1,0 +1,13 @@
+Interaction,Residue,Residue_number,Feature,PDB,x,y,z,Vector_x,Vector_y,Vector_z,Radius,Conservation,Classification
+Hydrogen bond,GLY,863,HBD,6,13.588,43.338,5.593,0.638,-0.035,0.769,0.600,1.00,Obligatory
+Hydrogen bond,GLY,863,HBA,6,14.976,44.860,4.775,0.620,-0.287,0.730,0.600,1.00,Obligatory
+Pi stacking,TYR,907,Aromatic,6,14.671,42.225,7.373,-0.330,0.676,0.659,1.774,1.00,Obligatory
+Hydrophobic interaction,ASP/LEU,766/769,Hydrophobic,5,3.958,41.0175,10.695,0.785,0.619,-0.030,2.609,0.83,Recommended
+Pi stacking,TYR,896,Aromatic,3,13.457,39.371,10.175,-0.372,-0.686,-0.625,1.750,0.50,Optional
+Hydrogen bond,ARG,878,HBA,2,2.519,42.647,10.828,0.362,-0.908,0.210,1.200,0.33,Optional
+Hydrogen bond,GLU,763,HBD,1,11.691,35.786,11.321,-0.326,0.524,0.787,1.000,0.17,Optional
+Hydrogen bond,TYR,896,HBA,1,11.094,44.085,9.958,-0.631,-0.646,-0.429,1.000,0.17,Optional
+Hydrogen bond,ILE,879,HBD,1,1.733,42.209,13.053,-0.729,-0.242,-0.640,1.000,0.17,Optional
+Pi stacking,TYR,889,Aromatic,1,14.215,38.202,10.901,0.636,-0.102,-0.765,1.750,0.17,Optional
+Hydrophobic interaction,ALA,898,Hydrophobic,3,16.847,44.389,6.672,-0.717,-0.615,0.328,2.200,0.50,Optional
+Hydrophobic interaction,GLU,988,Hydrophobic,3,17.858,43.368,8.318,-0.670,-0.442,-0.596,2.200,0.50,Optional

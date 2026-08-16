@@ -8,16 +8,16 @@ import os
 # CONFIGURACIÓN
 # ==========================================
 
-INPUT_SDF = "results/PHARMITpharmit.sdf"
+INPUT_SDF = "results/PHARMIT/top1000_rmsd.sdf"
 
 TOP_RMSD = 1000
 
-OUTPUT_TOP = "top1000_rmsd.sdf"
+OUTPUT_TOP = "results/PHARMIT/top1000_rmsd.sdf"
 
 OUTPUT_FINAL_PATH = "results/DOCKING"
 OUTPUT_FINAL = f"{OUTPUT_FINAL_PATH}/representantes_docking.sdf"
 
-CLUSTER_CUTOFF = 0.7
+CLUSTER_CUTOFF = 0.2
 
 
 # ==========================================
@@ -76,22 +76,21 @@ def save_sdf(mols, filename):
 # Fingerprints
 # ==========================================
 
+
 def fingerprints(mols):
+
+    generator = AllChem.GetMorganGenerator(
+        radius=2,
+        fpSize=2048
+    )
 
     fps = []
 
     for mol in mols:
-
-        fp = AllChem.GetMorganFingerprintAsBitVect(
-            mol,
-            radius=2,
-            nBits=2048
-        )
-
+        fp = generator.GetFingerprint(mol)
         fps.append(fp)
 
     return fps
-
 
 # ==========================================
 # Clustering

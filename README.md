@@ -140,3 +140,44 @@ Las estructuras correspondientes a los PDB 9ETQ y 9ETR no se encuentran disponib
 ## Análisis de interacciones proteína-ligando
 
 Las interacciones entre los inhibidores conocidos y el bolsillo catalítico de PARP1 se analizaron mediante [PLIP (*Protein-Ligand Interaction Profiler*)](https://doi.org/10.1093/nar/gkaf361)
+
+El análisis permitió identifciar los residuos y tipos de interacción más frecuentes entre los inhibidores y la proteína, proporcionando la base estructural utilizada posteriormente para la construcción del farmacóforo consenso.
+
+Entre las interaciones identificadas se encuentran:
+
+    - Puentes de hidrógeno (tanto dondadores como aceptores)
+    - Interacciones hidrofóbicas
+    - Interacciones π–π
+    - Otras interacciones que se han omitido en este trabajo debido a que no son relevantes (interacciones iónicas)
+
+Los resultados estructurados de las interaccciones pueden consultarse en [results/FARMACOFORO/interacciones.csv](./results/FARMACOFORO/interacciones.csv)
+
+---
+
+## Construcción del farmacóforo
+
+A partir de la interacciones identificadas en las estructuras experimentales inlcuidas en el [*Training set*](./info_adicional/tabla_pdb.csv), se construyeron modelos faramcofóricos que representan las características estructurales relevante para la interación con el bolsillo catalítico de PARP1.
+
+Las características farmacofóricas se definieron a partir de la frecuencia y conservación de las interacciones observadas entre los diferente complejos proteína-ligando.
+
+Se generaron así diferentes niveles de exigencia:
+
+    - **Core:** características consideradas esenciales
+    - **Recommended:** características altamente conservadas pero no estrictamente obligatorias
+    - **All:** conjunto completo de las características identificadas en todas las estructuras
+
+Los modelos farmacoforicos y los datos empleados se encuentra en [results/FARMACOFORO](./results/FARMACOFORO/)
+
+---
+
+## Validación retrospectiva y refinamiento del farmacóforo
+
+Los modelos farmacofóricos iniciales fueron evaluados mediante una **validación retrospectiva**, utilizando un conjunto formado por inhibidores conocidos y moléculas decoy.
+
+Esta etapa permitió evaluar la capacidad del farmacóforo para discriminar entre moléculas activas y moléculas que no presentan las características estructurales esperadas.
+
+A partir de los resultados obtenidos se realizó un refinamiento de las características farmacofóricas, seleccionando aquellas que proporcionaban una representación más adecuada de los patrones de reconocimiento observados experimentalmente.
+
+Los datos utilizados para esta etapa y los modelos refinados se encuentran en:
+
+results/PHARMIT/

@@ -31,49 +31,7 @@ El pipeline comprende las siguientes etapas:
 
 El flujo general desarrollado en el proyecto puede resumirse de la siguiente manera:
 
-```text
-Estructuras PARP1
-       │
-       ▼
-Preparación de estructuras
-       │
-       ▼
-Análisis de interacciones
-       │
-       ▼
-Farmacóforo de consenso
-       │
-       ▼
-Validación retrospectiva
-       │
-       ▼
-Refinamiento del farmacóforo
-       │
-       ▼
-Cribado virtual con Pharmit
-       │
-       ▼
-1000 moléculas seleccionadas
-       │
-       ▼
-Morgan fingerprints + Butina clustering
-       │
-       ▼
-855 representantes estructurales
-       │
-       ▼
-Docking molecular con GNINA
-       │
-       ▼
-Priorización mediante Vina score + CNNscore
-       │
-       ▼
-Análisis estructural e interacciones
-       │
-       ▼
-Priorización final de candidatos
-```
-
+![PARP1 Virtual Screening Pipeline](./info_adicional/esquema.png)
 ---
 ## Entorno de trabajo
 

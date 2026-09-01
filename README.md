@@ -274,7 +274,7 @@ Los resultados de este análisis se encuentran en: [results/DOCKING/interaciones
 
 # Instalación y uso
 
-# 1- Clonar el repositorio
+## 1- Clonar el repositorio
 
 ```bash
 git clone https://github.com/AndoniM12/PARP1-Virtual-Screening.git
@@ -282,7 +282,7 @@ git clone https://github.com/AndoniM12/PARP1-Virtual-Screening.git
 cd PARP1-Virtual-Screenging
 ```
 
-# 2- Crear el entorno Conda
+## 2- Crear el entorno Conda
 
 ```bash
 conda env create -f parp1_pipeline -n parp1_pipeline
@@ -290,7 +290,7 @@ conda env create -f parp1_pipeline -n parp1_pipeline
 conda activate parp1_pipeline
 ```
 
-# 3- Descargar las estructuras
+## 3- Descargar las estructuras
 
 Las estructuras experimentales de PARP1 se obtienen desde RCSB Proten Data Bank, mientra que el modelo de longitud completa se obtiene de AlphaFold Protein Structure Database.
 
@@ -317,7 +317,7 @@ python scripts/02_procesar_pdb.py
 Los resultados se almacenan en un nuevo directorio llamado `structures/processed/`
 
 ## 5- Identificar las interacciones proteína-ligando
-*
+
 Se realiza el análisis sobre el conjunto de estructuras [*Training set*](./info_adicional/tabla_pdb.csv)
 
 ```bash

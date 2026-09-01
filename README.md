@@ -75,6 +75,23 @@ Priorización final de candidatos
 ```
 
 ---
+## Entorno de trabajo
+
+| Herramienta | Versión | Uso |
+| :--- | :--- | :--- |
+| **Conda** | 26.3.2 | Gestor de dependencias e instalador de paquetes |
+| **Python** | 3.12 | Scripts del pipeline |
+| **Biopython** | 1.87 | Lectura y procesado de estructuras PDB |
+| **NumPy** | 2.4.6 | Cálculos numéricos |
+| **RDKit** | 2025.03.6 | Procesamiento molecular, fingerprints y clustering |
+| **PyMOL** | 3.1.0 | Modificación de estructuras y visualización |
+| **PLIP** | 3.0.0 | Identificación automatizada de interacciones proteína-ligando |
+| **UCSF Chimera** | — | Inspección y validación visual |
+| **Pharmit** | — | Construcción del farmacóforo y cribado virtual |
+| **GNINA** | 1.3.3 | Docking molecular y evaluación mediante CNN |
+| **AlphaFold DB** | v6 | Modelo de longitud completa de PARP1 |
+| **RCSB PDB** | — | Estructuras cristalográficas |
+---
 
 ## Estructura del repositorio
 ```
@@ -230,3 +247,145 @@ El docking se automatiza mediante: [scripts/11_docking.py](./scripts/11_docking.
 Los resultados generados se encuentran en: [results/DOCKING/](./results/DOCKING/)
 
 ---
+
+## Priorización de candidatos tras el docking
+
+La selección de candidatos no se basó exclusivamente en una única métrica de docking.
+
+En particular, se analizaron conjuntamente el *`Vina_score`* y el *`CNNscore`*, ya que ambas métricas proporcionan información complementaria sobre las poses generadas por GNINA.
+
+El *Vina_score* permite identificar poses con una estimación energética favorable, mientras que *CNNscore* proporciona información adicional sobre la plausibilidad estructural de dichas poses según el modelo de aprendizaje profundo.
+
+A partir de la distribución conjunta de estas métricas se realizó una primera selección de candidatos, priorizando aquellos que presentaban simultáneamente valores favorables de energía (*Vina_score* < -10 kcal/mol) y plausibilidad estructural (*CNNscore* > 0.5). También se selecciono la primera pose de cada candidato que cumpliera estos criterios.
+
+Los complejos pose de candidato y proteína resultantes se encuentran en: [results/DOCKING/ligandos_estudio_combined](./results/DOCKING/ligandos_estudio_combined/)
+
+---
+
+## Análisis de las interacciones de los candidatos del docking
+
+Este análisis se realizó mediante el estudio de las interacciones proteína-ligando de las poses seleccionadas utilizando PLIP.
+
+La comparación entre las interacciones observadas experimentalmente y las obtenidas después del docking permite determinar si las poses seleccionadas presentan patrones de unión compatibles con el farmacóforo de consenso.
+
+Los resultados de este análisis se encuentran en: [results/DOCKING/interaciones](./results/DOCKING/interacciones.csv)
+
+---
+
+# Instalación y uso
+
+# 1- Clonar el repositorio
+
+```bash
+git clone https://github.com/AndoniM12/PARP1-Virtual-Screening.git
+
+cd PARP1-Virtual-Screenging
+```
+
+# 2- Crear el entorno Conda
+
+```bash
+conda env create -f parp1_pipeline -n parp1_pipeline
+
+conda activate parp1_pipeline
+```
+
+# 3- Descargar las estructuras
+
+Las estructuras experimentales de PARP1 se obtienen desde RCSB Proten Data Bank, mientra que el modelo de longitud completa se obtiene de AlphaFold Protein Structure Database.
+
+```bash
+python scripts/01_descargar_pdbs.py
+```
+
+Las estructuras se almacenan en un nuevo directorio llamado `structures/raw`.
+
+> **Nota:** La estructura 9ETQ al no presentar enlace de descarga en RCSB PDB, se ha descargado manualmente y versionado en [info_adicional/9ETQ.pdb](./info_adicional/9ETQ.pdb). Moverlo al directorio creado previamente de `structures/raw`.
+
+```bash
+mv info_adicional/9ETQ.pdb structures/raw/
+```
+
+## 4- Procesar las estructuras
+
+Este paso permite procesar las estructuras y extraer la cadena utilizada posteriormente en los análisis.
+
+```bash
+python scripts/02_procesar_pdb.py
+```
+
+Los resultados se almacenan en un nuevo directorio llamado `structures/processed/`
+
+## 5- Identificar las interacciones proteína-ligando
+*
+Se realiza el análisis sobre el conjunto de estructuras [*Training set*](./info_adicional/tabla_pdb.csv)
+
+```bash
+python scripts/03_contactos.py
+```
+El análisis se realiza mediante PLIP y genera los resultados de las interacciones en `structures/contacts/`
+
+## 6- Procesar las interacciones
+
+Este script recopila los resultados obtenidos mediante PLIP y genera los datos estructurados de las interacciones detectadas guardando los resultados en [results/FARMACOFORO/interacciones.csv](./results/FARMACOFORO/interacciones.csv)
+
+```bash
+python scripts/04_lectura.py
+```
+
+## 7- Generar los datos del farmacóforo
+
+```bash
+python scripts/05_farmacoforo_data.py
+```
+
+Este paso genera los datos utilizados para construir el consenso de interacciones.
+
+## 8- Generar los farmacóforos
+
+```bash
+python scripts/06_gen_farmacoforo.py
+```
+
+Se generan los diferentes modelos farmacofóricos utilizados posteriormente en la validación y el cribado virtual.
+
+## 9- Exportar los farmacóforos a Pharmit
+
+```bash
+python scripts/07_export_pharmit.py
+```
+
+Permite preparar los modelos farmacofóricos para su utilización en Pharmit.
+
+## 10- Generar el conjunto de validación
+
+```bash
+python scripts/08_validation_set.py
+```
+
+Prepara el conjunto de moléculas utilizado para la validación retrospectiva del farmacóforo.
+
+## 11- Refinar el farmacóforo
+
+```bash
+python scripts/09_refinamiento_farmacoforo.py
+```
+
+Permite evaluar y refinar los modelos farmacofóricos utilizando el conjunto de validación.
+
+## 12- Seleccionar representantes estructurales
+
+```bash
+python scripts/10_clustering_repr.py
+```
+
+Las moléculas seleccionadas mediante Pharmit se representan mediante fingerprints de Morgan y se agrupan mediante clustering de Butina para reducir la redundancia estructural.
+
+## 13- Realizar el docking molecular
+
+```bash
+python scripts/11_docking.py
+```
+
+Los representantes estructurales seleccionados se someten a docking molecular mediante GNINA obteniedo los resultados en [results/DOCKING](./results/DOCKING/)
+

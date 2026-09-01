@@ -127,7 +127,7 @@ PARP1-Virtual-Screening/
 
 ## Estructras utilizadas
 
-Todas las estructuras experimentales utilizadas corresponden al **dominio catalítico (CAT) de PARP1 humana**, compuesto por los subdominios HD (661–786) y ART (786–1014), con la excepción del modelo de longitud completa generado mediante AlphaFold.
+Todas las estructuras experimentales utilizadas corresponden al **dominio catalítico (CAT) de PARP1 humana**, compuesto por los subdominios HD (`661–786`) y ART (`786–1014`), con la excepción del modelo de longitud completa generado mediante AlphaFold.
 
 La información relativa a las estructuras PDB empleadas, sus ligandos y los datos experimentales asociados puede consultarse en la [tabla de estructuras PDB](./info_adicional/tabla_pdb.csv).
 
@@ -166,7 +166,7 @@ Se generaron así diferentes niveles de exigencia:
 * **Recommended:** características altamente conservadas pero no estrictamente obligatorias
 * **All:** conjunto completo de las características identificadas en todas las estructuras
 
-Los modelos farmacoforicos y los datos empleados se encuentra en [results/FARMACOFORO](./results/FARMACOFORO/)
+Los modelos farmacoforicos y los datos empleados se encuentra en: [results/FARMACOFORO](./results/FARMACOFORO/)
 
 ---
 
@@ -178,6 +178,55 @@ Esta etapa permitió evaluar la capacidad del farmacóforo para discriminar entr
 
 A partir de los resultados obtenidos se realizó un refinamiento de las características farmacofóricas, seleccionando aquellas que proporcionaban una representación más adecuada de los patrones de reconocimiento observados experimentalmente.
 
-Los datos utilizados para esta etapa y los modelos refinados se encuentran en:
+Los datos utilizados para esta etapa y los modelos refinados se encuentran en: [results/PHARMIT/farmacoforo_refined](./results/PHARMIT/farmacoforo_refined.csv)
 
-results/PHARMIT/
+---
+
+## Cribado virtual mediante Pharmit
+
+Los farmacóforos refinados se utilizaron para realizar un cribado virtual mediante [Pharmit](https://doi.org/10.1093/nar/gkw287).
+
+El cribado permitió identificar moléculas compatibles con las características farmacofóricas definidas para el bolsillo catalítico de PARP1.
+
+A partir de los resultados obtenidos se seleccionaron inicialmente las **1000 moléculas con mejores resultados de ajuste al farmacóforo (RMSD)**, que fueron utilizadas como conjunto de partida para la reducción de la redundancia estructural.
+
+Los resultados del cribado se encuentran en: [results/PHARMIT/](./results/FARMACOFORO)
+
+---
+
+## Clustering y selección de representantes estructurales
+
+Las 1000 moléculas seleccionadas mediante Pharmit fueron sometidas a un proceso de clustering molecular con el objetivo de reducir la redundancia estructural antes del docking.
+
+Para representar las moléculas se utilizaron [**fingerprints de Morgan**](https://doi.org/10.1021/ci100050t), con:
+
+* Radio: `2`
+* Tamaño: `2048 bits`
+
+La similitud estructural entre moléculas se evaluó mediante el coeficiente de Tanimoto y posteriormente se realizó clustering utilizando el [**algoritmo de Butina**](https://doi.org/10.1021/ci9803381).
+
+Se utilizó una distancia de clustering de `0.2`, equivalente a considerar una similitud de Tanimoto de aproximadamente `0.8`.
+
+Este procedimiento permitió reducir el conjunto inicial de 1000 moléculas a **855 representantes estructurales**, que fueron utilizados posteriormente como conjunto de entrada para el docking molecular.
+
+El proceso de selección y clustering se automatiza mediante: [scripts/10_clustering_repr.py](./scripts/10_clustering_repr.py)
+
+---
+
+## Docking molecular
+
+Las **855 moléculas representativas** obtenidas tras el proceso de clustering se sometieron a docking molecular mediante [GNINA](https://doi.org/10.1186/s13321-025-00973-x).
+
+GNINA combina métodos de docking clásicos derivados de AutoDock Vina con modelos de aprendizaje profundo para evaluar las poses generadas.
+
+Para cada ligando se generaron múltiples poses de unión y se obtuvieron diferentes métricas:
+
+* *`Vina_score`*: estimación energética de la afinidad de unión de la pose.
+* *`CNNscore`*: estimación de la plausibilidad de la pose mediante el modelo de aprendizaje profundo.
+* *`CNNaffinity`*: estimación adicional de la afinidad mediante el modelo CNN.
+
+El docking se automatiza mediante: [scripts/11_docking.py](./scripts/11_docking.py)
+
+Los resultados generados se encuentran en: [results/DOCKING/](./results/DOCKING/)
+
+---

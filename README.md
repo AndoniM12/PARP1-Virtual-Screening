@@ -145,10 +145,10 @@ El análisis permitió identifciar los residuos y tipos de interacción más fre
 
 Entre las interaciones identificadas se encuentran:
 
-    - Puentes de hidrógeno (tanto dondadores como aceptores)
-    - Interacciones hidrofóbicas
-    - Interacciones π–π
-    - Otras interacciones que se han omitido en este trabajo debido a que no son relevantes (interacciones iónicas)
+* Puentes de hidrógeno (tanto dondadores como aceptores)
+* Interacciones hidrofóbicas
+* Interacciones π–π
+* Otras interacciones que se han omitido en este trabajo debido a que no son relevantes (interacciones iónicas)
 
 Los resultados estructurados de las interaccciones pueden consultarse en [results/FARMACOFORO/interacciones.csv](./results/FARMACOFORO/interacciones.csv)
 
@@ -162,9 +162,9 @@ Las características farmacofóricas se definieron a partir de la frecuencia y c
 
 Se generaron así diferentes niveles de exigencia:
 
-    - **Core:** características consideradas esenciales
-    - **Recommended:** características altamente conservadas pero no estrictamente obligatorias
-    - **All:** conjunto completo de las características identificadas en todas las estructuras
+* **Core:** características consideradas esenciales
+* **Recommended:** características altamente conservadas pero no estrictamente obligatorias
+* **All:** conjunto completo de las características identificadas en todas las estructuras
 
 Los modelos farmacoforicos y los datos empleados se encuentra en [results/FARMACOFORO](./results/FARMACOFORO/)
 

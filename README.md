@@ -389,3 +389,10 @@ python scripts/11_docking.py
 
 Los representantes estructurales seleccionados se someten a docking molecular mediante GNINA obteniedo los resultados en [results/DOCKING](./results/DOCKING/)
 
+# Autor
+
+**Andoni Moreno Lanceta**
+
+Trabajo de Fin de Máster - Máster en Bioinformática
+
+Universidad Internacional de Valencia (VIU)

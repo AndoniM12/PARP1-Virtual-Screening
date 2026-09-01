@@ -77,9 +77,8 @@ Priorización final de candidatos
 ---
 
 ## Estructura del repositorio
-
-PARP1-Virtual-Screening/
 ```
+PARP1-Virtual-Screening/
 ├── info_adicional/
 │   └── Información auxiliar del proyecto, estructuras de referencia,
 │       datos de validación y documentación del conjunto de estructuras.
@@ -120,4 +119,24 @@ PARP1-Virtual-Screening/
 └── README.md
     └── Documentación del proyecto.
 ```
+> **Nota:** El directorio `redocking/` se utiliza para la validación del protocolo de docking mediante el redocking de estructuras cristalográficas. Debido al elevado volumen de datos generado durante esta etapa, este directorio no se incluye en la versión final del repositorio de GitHub.
 
+> **Nota:** Los archivos estructurales de gran tamaño pueden estar excluidos del control de versiones mediante .gitignore. Las diferentes etapas del pipeline pueden reproducirse mediante los scripts y los datos auxiliares proporcionados.
+
+---
+
+## Estructras utilizadas
+
+Todas las estructuras experimentales utilizadas corresponden al **dominio catalítico (CAT) de PARP1 humana**, compuesto por los subdominios HD (661–786) y ART (786–1014), con la excepción del modelo de longitud completa generado mediante AlphaFold.
+
+La información relativa a las estructuras PDB empleadas, sus ligandos y los datos experimentales asociados puede consultarse en la [tabla de estructuras PDB](./info_adicional/tabla_pdb.csv).
+
+El modelo de longitud completa de PARP1 se obtuvo de la [AlphaFold Protein Structure Database](https://alphafold.ebi.ac.uk/entry/AF-P09874-F1) y se utilizó como referencia estructural adicional.
+
+Las estructuras correspondientes a los PDB 9ETQ y 9ETR no se encuentran disponibles para su descarga en formato PDB convencional.
+
+---
+
+## Análisis de interacciones proteína-ligando
+
+Las interacciones entre los inhibidores conocidos y el bolsillo catalítico de PARP1 se analizaron mediante [PLIP (*Protein-Ligand Interaction Profiler*)](https://doi.org/10.1093/nar/gkaf361)

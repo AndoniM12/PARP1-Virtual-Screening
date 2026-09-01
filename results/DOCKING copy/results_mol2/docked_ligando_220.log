@@ -1,0 +1,39 @@
+              _             
+             (_)            
+   __ _ _ __  _ _ __   __ _ 
+  / _` | '_ \| | '_ \ / _` |
+ | (_| | | | | | | | | (_| |
+  \__, |_| |_|_|_| |_|\__,_|
+   __/ |                    
+  |___/                     
+
+gnina v1.3.3 master:6fe1ce2   Built Jun 30 2026.
+gnina is based on smina and AutoDock Vina.
+Please cite appropriately.
+
+Commandline: gnina -r results/DOCKING/7AAA.mol2 -l results/DOCKING/ligands_sdf/ligando_220.sdf -o results/DOCKING/results_mol2/docked_ligando_220.mol2 --center_x 8.59 --center_y 39.35 --center_z 9.53 --size_x 22 --size_y 16 --size_z 24 --num_modes 10 --exhaustiveness 8 --seed 1
+Using random seed: 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+MolPort-020-292-568 MCULE-3374357361 PubChem-110265036 | pose 0 | ligand outside box
+MolPort-020-292-568 MCULE-3374357361 PubChem-110265036 | pose 0 | ligand outside box
+MolPort-020-292-568 MCULE-3374357361 PubChem-110265036 | pose 0 | ligand outside box
+MolPort-020-292-568 MCULE-3374357361 PubChem-110265036 | pose 0 | ligand outside box
+MolPort-020-292-568 MCULE-3374357361 PubChem-110265036 | pose 0 | ligand outside box
+MolPort-020-292-568 MCULE-3374357361 PubChem-110265036 | pose 0 | initial pose not within box
+
+mode |  affinity  |  intramol  |    CNN     |   CNN
+     | (kcal/mol) | (kcal/mol) | pose score | affinity
+-----+------------+------------+------------+----------
+    1       -9.75       -0.46       0.6461      7.306
+    2       -9.43       -0.82       0.4303      7.311
+    3       -8.63       -0.47       0.3482      7.213
+    4       -7.02       -0.18       0.0999      6.935
+    5       -5.32       -0.07       0.0716      6.506
+    6      -10.05       -0.73       0.0694      5.868
+    7       -4.28       -0.35       0.0684      6.763
+    8       -6.59       -0.05       0.0479      6.424
+    9       -9.64       -0.80       0.0396      5.726
+   10       -9.58       -0.55       0.0385      5.647

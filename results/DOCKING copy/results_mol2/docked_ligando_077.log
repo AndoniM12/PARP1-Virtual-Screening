@@ -1,0 +1,40 @@
+              _             
+             (_)            
+   __ _ _ __  _ _ __   __ _ 
+  / _` | '_ \| | '_ \ / _` |
+ | (_| | | | | | | | | (_| |
+  \__, |_| |_|_|_| |_|\__,_|
+   __/ |                    
+  |___/                     
+
+gnina v1.3.3 master:6fe1ce2   Built Jun 30 2026.
+gnina is based on smina and AutoDock Vina.
+Please cite appropriately.
+
+Commandline: gnina -r results/DOCKING/7AAA.mol2 -l results/DOCKING/ligands_sdf/ligando_077.sdf -o results/DOCKING/results_mol2/docked_ligando_077.mol2 --center_x 8.59 --center_y 39.35 --center_z 9.53 --size_x 22 --size_y 16 --size_z 24 --num_modes 10 --exhaustiveness 8 --seed 1
+Using random seed: 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+MolPort-002-774-447 36613597 CSSS00132996021 MCULE-6853413992 PubChem-44821655 ZINC000036613597 ZINC36613597 | pose 0 | initial pose not within box
+MolPort-002-774-447 36613597 CSSS00132996021 MCULE-6853413992 PubChem-44821655 ZINC000036613597 ZINC36613597 | pose 0 | ligand outside box
+MolPort-002-774-447 36613597 CSSS00132996021 MCULE-6853413992 PubChem-44821655 ZINC000036613597 ZINC36613597 | pose 0 | ligand outside box
+MolPort-002-774-447 36613597 CSSS00132996021 MCULE-6853413992 PubChem-44821655 ZINC000036613597 ZINC36613597 | pose 0 | ligand outside box
+MolPort-002-774-447 36613597 CSSS00132996021 MCULE-6853413992 PubChem-44821655 ZINC000036613597 ZINC36613597 | pose 0 | ligand outside box
+MolPort-002-774-447 36613597 CSSS00132996021 MCULE-6853413992 PubChem-44821655 ZINC000036613597 ZINC36613597 | pose 0 | ligand outside box
+MolPort-002-774-447 36613597 CSSS00132996021 MCULE-6853413992 PubChem-44821655 ZINC000036613597 ZINC36613597 | pose 0 | initial pose not within box
+
+mode |  affinity  |  intramol  |    CNN     |   CNN
+     | (kcal/mol) | (kcal/mol) | pose score | affinity
+-----+------------+------------+------------+----------
+    1       -7.22       -1.20       0.2043      6.184
+    2       10.23        0.70       0.1691      6.056
+    3       -5.39        0.09       0.1651      6.206
+    4       -6.80        0.14       0.1317      5.825
+    5      -10.09       -0.40       0.1173      5.726
+    6       -8.66        0.48       0.1172      6.492
+    7       -2.73        0.22       0.0983      5.977
+    8       -7.33        0.11       0.0908      6.631
+    9       -9.17        0.20       0.0742      5.514
+   10       -1.42        1.37       0.0741      5.761

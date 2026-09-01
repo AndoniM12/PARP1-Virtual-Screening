@@ -1,0 +1,35 @@
+              _             
+             (_)            
+   __ _ _ __  _ _ __   __ _ 
+  / _` | '_ \| | '_ \ / _` |
+ | (_| | | | | | | | | (_| |
+  \__, |_| |_|_|_| |_|\__,_|
+   __/ |                    
+  |___/                     
+
+gnina v1.3.3 master:6fe1ce2   Built Jun 30 2026.
+gnina is based on smina and AutoDock Vina.
+Please cite appropriately.
+
+Commandline: gnina -r results/DOCKING/7AAA.mol2 -l results/DOCKING/ligands_sdf/ligando_606.sdf -o results/DOCKING/results_mol2/docked_ligando_606.mol2 --center_x 8.59 --center_y 39.35 --center_z 9.53 --size_x 22 --size_y 16 --size_z 24 --num_modes 10 --exhaustiveness 8 --seed 1
+Using random seed: 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+MolPort-035-706-975 CSSS03437789230 MCULE-7007076804 PubChem-91938300 | pose 0 | ligand outside box
+MolPort-035-706-975 CSSS03437789230 MCULE-7007076804 PubChem-91938300 | pose 0 | ligand outside box
+
+mode |  affinity  |  intramol  |    CNN     |   CNN
+     | (kcal/mol) | (kcal/mol) | pose score | affinity
+-----+------------+------------+------------+----------
+    1        6.06       -0.29       0.4193      6.007
+    2       -8.15       -0.45       0.1514      5.144
+    3       -0.65       -0.10       0.1434      3.783
+    4       -9.22        2.25       0.1368      5.698
+    5       18.75       -0.63       0.1162      3.976
+    6       -6.54        0.17       0.1149      5.020
+    7       -9.14        0.10       0.1046      4.415
+    8       -4.87       -0.15       0.0995      4.862
+    9       -8.71       -0.03       0.0867      4.308
+   10       -7.78        0.13       0.0829      4.585

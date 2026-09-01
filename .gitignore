@@ -10,6 +10,10 @@ results/PHARMIT/pharmit.sdf
 redocking/
 results/DOCKING/ligands_sdf/
 results/DOCKING/results_mol2/
+results/DOCKING/ligandos_estudio/
+results/DOCKING/farmacoforo*
+results/DOCKING/farmacoforo.csv
+results/DOCKING/interacciones.csv
 
 
 # Script de pruebas (BORRAR)

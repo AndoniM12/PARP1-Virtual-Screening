@@ -72,13 +72,14 @@ Análisis estructural e interacciones
        │
        ▼
 Priorización final de candidatos
+```
 
 ---
 
-## Flujo de trabajo
+## Estructura del repositorio
 
 PARP1-Virtual-Screening/
-
+```
 ├── info_adicional/
 │   └── Información auxiliar del proyecto, estructuras de referencia,
 │       datos de validación y documentación del conjunto de estructuras.
@@ -118,3 +119,5 @@ PARP1-Virtual-Screening/
 │
 └── README.md
     └── Documentación del proyecto.
+```
+

@@ -1,3 +1,21 @@
+"""
+Genera los tres modelos de farmacoforo SIN REFINAR a partir de la tabla de
+consenso, en dos formatos:
+
+- .pml  escena de PyMOL para mirar el bolsillo y las esferas
+- .json sesion de Pharmit
+
+Estos son los modelos previos al refinamiento. Los que se usan para cribar son
+los refinados, que escribe 09_refinamiento_farmacoforo.py en results/pharmit/.
+
+Aqui SI es correcto filtrar por Classification: sobre la tabla de consenso cada
+caracteristica tiene una sola clase y no se ha eliminado ni fusionado nada
+todavia. Lo que no se puede filtrar asi es la tabla de union que produce el
+refinamiento (ver docs/provenance.md).
+"""
+
+import json
+
 import pandas as pd
 
 INPUT_FILE = "results/pharmacophore/farmacoforo.csv"
@@ -8,6 +26,46 @@ levels = {
     "recommended" : ["Obligatory", "Recommended"],
     "core" : ["Obligatory"]
 }
+
+# Nombres de caracteristica que entiende Pharmit.
+PHARMIT_FEATURE_NAMES = {
+    "HBD": "HydrogenDonor",
+    "HBA": "HydrogenAcceptor",
+    "Hydrophobic": "Hydrophobic",
+    "Aromatic": "Aromatic",
+}
+
+
+def write_pharmit_json(filtered_df, path):
+    """Escribe la sesion de Pharmit de un modelo sin refinar."""
+
+    points = []
+
+    for _, row in filtered_df.iterrows():
+
+        points.append({
+            "name": PHARMIT_FEATURE_NAMES[row["Feature"]],
+            "hasvec": True,
+            "x": row["x"],
+            "y": row["y"],
+            "z": row["z"],
+            "radius": row["Radius"],
+            "enabled": True,
+            "vector_on": 1,
+            "svector": {
+                "x": row["Vector_x"],
+                "y": row["Vector_y"],
+                "z": row["Vector_z"],
+            },
+            "minsize": "",
+            "maxsize": "",
+            "selected": True,
+        })
+
+    with open(path, "w") as handle:
+        json.dump({"points": points}, handle, indent=4)
+
+    return len(points)
 
 def feature_color(feature):
 
@@ -35,8 +93,12 @@ def main():
     df = pd.read_csv(INPUT_FILE)
 
     for level, categories in levels.items():
-        
+
         filtered_df = df[df["Classification"].isin(categories)]
+
+        n = write_pharmit_json(filtered_df, f"{OUTPUT_FILE}_{level}.json")
+        print(f"{level:<12s} {n:>2d} caracteristicas  ->  "
+              f"{OUTPUT_FILE}_{level}.json y _{level}.pml")
 
         with open(f"{OUTPUT_FILE}_{level}.pml", "w") as pml:
 

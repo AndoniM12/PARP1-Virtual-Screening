@@ -248,6 +248,10 @@ conda env create -f parp1_pipeline -n parp1_pipeline
 conda activate parp1_pipeline
 ```
 
+> **Antes de empezar:** activa el entorno con `conda activate parp1_pipeline`.
+> No basta con llamar al Python del entorno: el paso 5 invoca el binario `plip`
+> a través del `PATH`.
+
 ## 3- Descargar las estructuras
 
 Las estructuras experimentales de PARP1 se obtienen desde RCSB Proten Data Bank, mientra que el modelo de longitud completa se obtiene de AlphaFold Protein Structure Database.

@@ -115,6 +115,17 @@ En resumen: un entorno de Conda por fase
 `scripts/screening/` y los de la fase 2 en `scripts/md/`, lanzados desde
 la raíz del repositorio.
 
+## Aviso sobre la reproducibilidad
+
+El pipeline se ha reejecutado entero partiendo solo de lo publicado. Reproduce
+exacto las 31 estructuras procesadas, los 855 ligandos del docking (mismos
+nombres y SMILES) y los modelos `core` y `recommended`.
+
+La única diferencia está en una característica: **PLIP no es determinista** y el
+puente de hidrógeno con Arg878 en 9ETQ aparece solo en 4 de cada 10 ejecuciones.
+El farmacóforo publicado corresponde a una ejecución que lo detectó. Las cifras
+están en [provenance.md](provenance.md).
+
 ## Procedencia y lagunas
 
 Varios pasos existían solo en el historial de terminal y se han

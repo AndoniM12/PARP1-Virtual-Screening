@@ -27,6 +27,7 @@ reference_pdb = "data/structures/processed/7AAA_chainA.pdb"
 df = pd.read_csv("data/raw/tabla_pdb.csv")
 ligandos_por_pdb = dict(zip(df["PDB"], df["Código_ligando"]))
 rmsd_values = []
+faltantes = []
 
 
 def clean_pdb(input_pdb, output_pdb):
@@ -117,6 +118,14 @@ if __name__ == "__main__":
                 print(f"  -> {code} ya procesado. Se omite.")
                 continue
 
+            if not os.path.exists(input_path):
+                # No se aborta: se avisa y se sigue, para no perder el
+                # trabajo ya hecho ni ocultar las demas estructuras que
+                # pudieran faltar. El resumen final las lista todas.
+                print(f"  -> FALTA {input_path}. Se omite {code}.")
+                faltantes.append(code)
+                continue
+
             print(f"Procesando {code}...")
 
             clean_pdb(input_path, output_path)
@@ -126,6 +135,14 @@ if __name__ == "__main__":
             rmsd_values.append(rmsd)
 
             print(f"  -> Guardado en: {output_path}")
+
+    if faltantes:
+        print("\n===== Estructuras que faltan =====")
+        print(f"No se han procesado {len(faltantes)}: {', '.join(faltantes)}")
+        print("Ejecuta antes scripts/screening/01_descargar_pdbs.py.")
+        print("Si alguna pertenece al Training set, el farmacoforo de "
+              "consenso saldra distinto y los resultados NO coincidiran "
+              "con los publicados.")
 
     print("\n===== Resumen RMSD =====")
     print(f"Estructuras alineadas contra la referencia : {len(rmsd_values)}")

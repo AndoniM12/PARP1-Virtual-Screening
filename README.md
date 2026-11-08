@@ -153,9 +153,9 @@ run/           working directory, git-ignored
 
 ```bash
 conda env create -f environment/screening.yml
-conda activate parp1_pipeline
+conda activate parp1_pipeline   # required: step 03 calls the `plip` binary
 
-python scripts/screening/01_descargar_pdbs.py   # download structures
+python scripts/screening/01_descargar_pdbs.py   # download + collect structures
 python scripts/screening/02_procesar_pdb.py     # clean and superpose
 python scripts/screening/03_contactos.py        # PLIP contacts
 python scripts/screening/04_lectura.py
@@ -166,6 +166,21 @@ python scripts/screening/09_refinamiento_farmacoforo.py   # refine + export Phar
 python scripts/screening/10_clustering_repr.py  # Butina clustering
 python scripts/screening/11_docking.py          # GNINA (install separately)
 ```
+
+**Structures.** Step 01 downloads 30 entries from the RCSB plus the AlphaFold
+model, and copies in the ones the RCSB does not serve in PDB format. That is the
+case of **9ETQ** (saruparib / AZD5305), for which `files.rcsb.org` returns 404:
+it ships with the repository in `data/raw/9ETQ.pdb` and step 01 copies it into
+place. It belongs to the **Training set**, so it feeds the consensus
+pharmacophore — without it the consensus is built on five structures instead of
+six and every later result changes.
+
+**Reproducibility caveat.** PLIP's hydrogen-bond detection is not deterministic.
+On a byte-identical input, ten PLIP runs on 9ETQ gave three H-bonds six times
+and four the other four times: one borderline contact with Arg878 flips between
+runs. The published pharmacophore corresponds to a run that found it. Re-running
+the pipeline reproduces everything else exactly, but may place the Arg878
+acceptor feature differently. See [docs/provenance.md](docs/provenance.md).
 
 `09_refinamiento_farmacoforo.py` refines each model separately and writes both the
 three Pharmit session files (`results/pharmit/farmacoforo_{core,recommended,all}.json`,

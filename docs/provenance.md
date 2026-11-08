@@ -112,6 +112,55 @@ Deducida del nombre del paquete instalado que figura en el historial
 (`ucsf-chimerax_1.12ubuntu24.04_amd64.deb`) → **1.12**. No estaba
 declarada en ningún fichero del proyecto.
 
+## PLIP no es determinista
+
+Comprobado al reejecutar el pipeline desde cero partiendo solo de lo publicado.
+
+PLIP da resultados distintos entre ejecuciones sobre un fichero de entrada
+**idéntico**. Diez ejecuciones sobre `9ETQ_chainA.pdb`:
+
+```
+3 4 3 4 3 4 3 3 4 3     enlaces de hidrógeno detectados
+- S - S - S - - S -     ¿aparece Arg878?
+```
+
+El puente de hidrógeno con **Arg878 aparece en 4 de cada 10 ejecuciones**. Es un
+contacto en el límite geométrico. La ejecución publicada lo capturó; la mayoría
+no lo hace.
+
+Lo que arrastra, cuando no se detecta:
+
+| ARG878 HBA | PDBs | x, y, z | Radio | Conservación |
+|---|---|---|---|---|
+| Publicado | 2 | 2,519 / 42,647 / 10,828 | 3,10 | 0,33 |
+| Al reejecutar | 1 | 4,624 / 43,117 / 10,436 | 1,00 | 0,17 |
+
+En el modelo `all` refinado ese punto se desplaza unos **2,2 Å** y su radio baja
+de 1,2 a 1,0. Para un farmacóforo que se usa a cribar, eso cambia qué moléculas
+encajan.
+
+**No se han regenerado los resultados publicados con una ejecución nueva**: los
+que están en el repositorio son los de la ejecución original, que es el registro
+real del trabajo. Quien reproduzca el pipeline obtendrá casi siempre la variante
+sin Arg878.
+
+### Qué sí reproduce exacto
+
+Verificado partiendo de un `git archive` del repositorio:
+
+| Paso | Resultado |
+|---|---|
+| 02, estructuras procesadas | **las 31 byte a byte idénticas** |
+| 03, contactos | 6 estructuras |
+| 05, tabla de consenso | 16 características |
+| 06, modelos sin refinar | `core` y `recommended` idénticos; `all` difiere solo en Arg878 |
+| 09, modelos refinados | `core` (3) y `recommended` (4) idénticos; `all` (12) difiere solo en Arg878 |
+| 10, representantes | **855, mismos nombres y mismos SMILES** |
+| `reparar_proteina.py` (fase 2) | idéntica átomo por átomo; solo cambia la fecha de un `REMARK` |
+
+El docking no se reejecutó: con los 855 ligandos de entrada idénticos, GNINA
+daría el mismo resultado.
+
 ## Un error corregido al reorganizar
 
 `07_export_pharmit.py` construía los tres modelos de farmacóforo filtrando

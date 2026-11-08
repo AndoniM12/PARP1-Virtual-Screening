@@ -1,4 +1,4 @@
-load structures/processed/7AAA_chainA.pdb, protein
+load data/structures/processed/7AAA_chainA.pdb, protein
 hide everything
 show cartoon, protein
 color gray90, protein

@@ -1,0 +1,42 @@
+# Escena "estilo revista" del ligando 453 (abrir en ChimeraX con: open estilo_revista.cxc)
+close
+# Rutas relativas a la raiz del repositorio: arranca ChimeraX ahi,
+# o ejecuta antes el comando `cd <raiz del repositorio>`.
+# traj_ligera.xtc no esta en el repositorio por su tamano: se
+# descarga del release y se coloca en data/md/ (ver results/md/README.md).
+open data/md/frame0.pdb
+open data/md/traj_ligera.xtc structureModel #1
+runscript scripts/md_analysis/suaviza.py
+hide #1 atoms
+set bgColor white
+cartoon #1
+cartoon style #1 modeHelix default width 1.6 thick 0.35 sides 24
+cartoon style #1 & strand width 1.6 thick 0.35 arrows true
+cartoon style #1 & coil thick 0.25
+color #1 #a9bcd3 target c
+color #1 & helix #8ea6c4 target c
+color #1 & strand #9fb5cf target c
+show #1 & :LIG & ~H atoms
+style #1 & :LIG stick
+size #1 & :LIG stickRadius 0.32
+color #1 & :LIG byhetero
+color #1 & :LIG & C #f07f1e
+show #1 & :863,896,904,907 & ~H & sidechain atoms
+show #1 & :863 & @N,CA,C,O atoms
+style #1 & protein stick
+size #1 & protein stickRadius 0.2
+color #1 & protein & C #4d6380 target a
+color #1 & protein & ~C byhetero
+label #1:863 text "Gly863" height 1.0 color #1f2933 bgColor #ffffffd0
+label #1:896 text "Tyr896" height 1.0 color #1f2933 bgColor #ffffffd0
+label #1:904 text "Ser904" height 1.0 color #1f2933 bgColor #ffffffd0
+label #1:907 text "Tyr907" height 1.0 color #1f2933 bgColor #ffffffd0
+material dull
+lighting full intensity 0.9 shadows true qualityOfShadows finer multiShadow 128 ambientIntensity 1.2 depthCue true depthCueStart 0.4 depthCueEnd 1.1
+lighting depthCueColor white
+graphics silhouettes true width 1.8 color #1b1f24
+coordset #1 300
+view #1 & (:LIG | :863,896,904,907)
+turn y -20 center #1:LIG
+zoom 0.7
+coordset #1 1

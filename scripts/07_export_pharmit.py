@@ -2,8 +2,8 @@ import os
 import pandas as pd
 import json
 
-INPUT_FILE = "results/farmacoforo.csv"
-OUTPUT_FILE = "results/farmacoforo"
+INPUT_FILE = "results/PHARMIT/farmacoforo_refined.csv"
+OUTPUT_FILE = "results/PHARMIT/farmacoforo"
 df = pd.read_csv(INPUT_FILE)
 
 levels = {

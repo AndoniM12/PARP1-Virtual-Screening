@@ -214,7 +214,7 @@ En particular, se analizaron conjuntamente el *`Vina_score`* y el *`CNNscore`*, 
 
 El *Vina_score* permite identificar poses con una estimación energética favorable, mientras que *CNNscore* proporciona información adicional sobre la plausibilidad estructural de dichas poses según el modelo de aprendizaje profundo.
 
-A partir de la distribución conjunta de estas métricas se realizó una primera selección de candidatos, priorizando aquellos que presentaban simultáneamente valores favorables de energía (*Vina_score* < -10 kcal/mol) y plausibilidad estructural (*CNNscore* > 0.5). También se selecciono la primera pose de cada candidato que cumpliera estos criterios.
+A partir de la distribución conjunta de estas métricas se realizó una primera selección de candidatos, priorizando aquellos que presentaban simultáneamente valores favorables de energía (*Vina_score* <= -10 kcal/mol) y plausibilidad estructural (*CNNscore* >= 0.5). También se selecciono la primera pose de cada candidato que cumpliera estos criterios.
 
 Los complejos pose de candidato y proteína resultantes se encuentran en: [results/DOCKING/ligandos_estudio_combined](./results/DOCKING/ligandos_estudio_combined/)
 

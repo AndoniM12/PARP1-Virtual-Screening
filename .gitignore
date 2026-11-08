@@ -15,6 +15,8 @@ results/DOCKING/farmacoforo*
 results/DOCKING/farmacoforo.csv
 results/DOCKING/interacciones.csv
 
+scripts/clustering_scaffolds
+
 
 # Script de pruebas (BORRAR)
 pruebas.py

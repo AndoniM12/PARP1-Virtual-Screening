@@ -1,0 +1,22 @@
+# Entorno de GROMACS: preparacion de la proteina y simulacion.
+#
+# Versiones de la ejecucion original (3-8 de septiembre de 2026),
+# tomadas de `conda list` y de las cabeceras de los .log de GROMACS:
+#   gromacs  2026.3  (nompi, conda-forge)   <- la que consta en los logs
+#   python   3.11.16
+#   pdbfixer 1.12
+#   openmm   8.6.0
+#   numpy    2.4.6
+#
+# Las versiones no estan fijadas abajo porque la ejecucion original no
+# las fijo. Para reproducirla exactamente, anclalas a los valores de
+# arriba.
+name: md_parp1
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - gromacs
+  - biopython
+  - python=3.11
+  - pdbfixer

@@ -1,25 +1,67 @@
-# Directorio de estructuras filtradas y de salida
+# ---------------------------------------------------------------
+# Directorio de trabajo
+# ---------------------------------------------------------------
+# Todo lo que generan los scripts al volver a ejecutarlos.
+run/
+render/
+
+# ---------------------------------------------------------------
+# GROMACS: ficheros pesados y regenerables
+# ---------------------------------------------------------------
+# Las trayectorias de la produccion de 50 ns ocupan ~1,8 GB.
+# La trayectoria ligera para el analisis (traj_ligera.xtc, 21 MB) se
+# publica como release y se coloca a mano en data/md/.
+*.xtc
+*.trr
+*.tpr
+*.cpt
+*.edr
+
+# Ficheros de respaldo que GROMACS deja al reanudar una ejecucion.
+\#*\#
+
+# Estructuras solvatadas e ionizadas: se regeneran en segundos y
+# ocupan megabytes.
+*_solvated.gro
+*_ions.gro
+complex_box.gro
+
+# Se conservan a proposito, por ser evidencia de lo que se ejecuto:
+!results/md/logs/*.log
+!results/md/logs/*.xvg
+!results/md/tables/equilibration/*.xvg
+
+# ---------------------------------------------------------------
+# Video
+# ---------------------------------------------------------------
+# Los .mp4 (31, 24 y 8 MB) van como release, no en el repositorio.
+*.mp4
+
+# ---------------------------------------------------------------
+# Cribado virtual
+# ---------------------------------------------------------------
+# Salida completa de Pharmit: ~2,8 GB, 1.479.579 moleculas.
+# No cabe en el repositorio. Ver docs/provenance.md.
+pharmit.sdf
+results/pharmit/pharmit.sdf
+
+# Estructuras del PDB: las descarga scripts/screening/01_descargar_pdbs.py
 structures/
+data/processed/
 
-# Entornos virtuales de Python y cache de Python
+# ---------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------
 __pycache__/
-*.pyc
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
 
-# SDF del cribado virtual y redocking
-results/PHARMIT/pharmit.sdf
-redocking/
-results/DOCKING/ligands_sdf/
-results/DOCKING/results_mol2/
-results/DOCKING/ligandos_estudio/
-results/DOCKING/farmacoforo*
-results/DOCKING/farmacoforo.csv
-results/DOCKING/interacciones.csv
-
-scripts/clustering_scaffolds
-
-
-# Script de pruebas (BORRAR)
+# ---------------------------------------------------------------
+# Sistema
+# ---------------------------------------------------------------
+.DS_Store
+*.swp
 pruebas.py
-
-.git
-

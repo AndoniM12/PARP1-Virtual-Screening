@@ -1,15 +1,33 @@
+# Entorno del cribado virtual y el docking (fase 1, TFM).
+#
+# Antes: parp1_pipeline.yml. Se ha quitado la linea `prefix:`, que
+# apuntaba a una ruta personal y rompe `conda env create` en otra
+# maquina.
+#
+# Versiones instaladas, tomadas de `conda list`:
+#   python             3.12.13
+#   rdkit              2025.03.6
+#   pandas             3.0.3
+#   numpy              2.5.1
+#   openbabel          3.1.1
+#   pymol-open-source  3.1.0
+#   plip               3.0.0
+#   gemmi              0.7.5
+#   meeko              0.7.1
+#
+# NO INCLUIDO: gnina, que se instalo aparte y ya no esta en el sistema,
+# por lo que su version no se ha podido recuperar. Ver docs/provenance.md.
 name: parp1_pipeline
 channels:
   - conda-forge
   - bioconda
   - defaults
 dependencies:
+  - python=3.12
   - plip
   - pandas
-  - python=3.12
   - openbabel
   - pymol-open-source
   - rdkit
   - gemmi
   - meeko
-prefix: /home/andonim12/miniconda3/envs/parp1_pipeline

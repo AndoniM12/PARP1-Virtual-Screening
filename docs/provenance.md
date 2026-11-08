@@ -127,15 +127,19 @@ pero eran **anteriores** a los dos scripts de refinamiento (11:19–11:54 frente
 12:36 y 13:30 del 8 de octubre de 2026), así que el pipeline ya no sabía
 regenerarlos.
 
-La exportación vive ahora dentro de `refinamiento.py`, que la hace desde la
+La exportación vive ahora dentro de `09_refinamiento_farmacoforo.py`, que la hace desde la
 composición por modelo, que es la única correcta. Se ha comprobado que los JSON
 que genera son idénticos, coordenada a coordenada, a los que estaban guardados.
 `07_export_pharmit.py` se ha eliminado; sigue recuperable del historial de git.
 
-`09_refinamiento_farmacoforo.py` se conserva como variante anterior, con el
-mismo refinamiento y una salida distinta (una fila por característica y modelo,
-con columna `Model`). Escribe a `farmacoforo_refined_por_modelo.csv` para no
-pisar la salida del script vigente.
+La variante anterior se conserva como `09b_refinamiento_por_modelo.py`: el
+mismo refinamiento, con una salida distinta (una fila por característica y
+modelo, con columna `Model`) que sirve para inspeccionar. Escribe a
+`farmacoforo_refined_por_modelo.csv` para no pisar la salida del script vigente.
+
+Los dos scripts se llamaban antes `09_refinamiento_farmacoforo.py` y
+`refinamiento.py`; este último era el vigente pese al nombre, así que se han
+intercambiado para que el numerado sea el del pipeline.
 
 ## Rutas que se han cambiado
 

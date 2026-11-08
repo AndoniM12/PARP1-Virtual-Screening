@@ -318,7 +318,7 @@ Prepara el conjunto de moléculas utilizado para la validación retrospectiva de
 ## 10- Refinar el farmacóforo y exportarlo a Pharmit
 
 ```bash
-python scripts/screening/refinamiento.py
+python scripts/screening/09_refinamiento_farmacoforo.py
 ```
 
 Refina cada modelo por separado y escribe dos cosas:
@@ -333,10 +333,10 @@ el refinamiento depende del modelo: la hidrofóbica de Tyr889 sobrevive en
 `recommended`, donde no hay aromática que la cubra, y se elimina en `all`, donde
 la cubre la de Tyr896. Por eso la unión tiene 13 características y `all` tiene 12.
 
-Existe también `scripts/screening/09_refinamiento_farmacoforo.py`, una variante
-anterior con el mismo refinamiento que escribe una tabla con columna `Model`,
-útil para inspeccionar qué característica sobrevive en qué modelo. No la usa
-ningún otro paso.
+Existe también `scripts/screening/09b_refinamiento_por_modelo.py`, que aplica el
+mismo refinamiento y escribe una tabla con columna `Model`, útil para
+inspeccionar qué característica sobrevive en qué modelo. No la usa ningún otro
+paso.
 
 ## 11- Seleccionar representantes estructurales
 

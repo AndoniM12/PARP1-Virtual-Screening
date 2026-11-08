@@ -162,12 +162,12 @@ python scripts/screening/04_lectura.py
 python scripts/screening/05_farmacoforo_data.py
 python scripts/screening/06_gen_farmacoforo.py  # consensus pharmacophore
 python scripts/screening/08_validation_set.py
-python scripts/screening/refinamiento.py        # refine + export Pharmit sessions
+python scripts/screening/09_refinamiento_farmacoforo.py   # refine + export Pharmit sessions
 python scripts/screening/10_clustering_repr.py  # Butina clustering
 python scripts/screening/11_docking.py          # GNINA (install separately)
 ```
 
-`refinamiento.py` refines each model separately and writes both the
+`09_refinamiento_farmacoforo.py` refines each model separately and writes both the
 three Pharmit session files (`results/pharmit/farmacoforo_{core,recommended,all}.json`,
 the output that is actually used) and a union table for inspection. The
 screen itself runs in the Pharmit web interface and its output is fed

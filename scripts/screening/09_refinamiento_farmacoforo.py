@@ -1,17 +1,12 @@
 """
 09_refinamiento_farmacoforo.py
 
-VARIANTE ANTERIOR. El script vigente es refinamiento.py, que aplica EXACTAMENTE
-el mismo refinamiento (mismas reglas, mismas constantes) y ademas escribe las
-sesiones de Pharmit de cada modelo.
-
-Este conserva una salida distinta y util para inspeccionar: una fila por
-caracteristica Y modelo, con la columna Model, que deja ver de un vistazo que
-caracteristica sobrevive en que modelo. No lo usa ningun otro script.
-
 Construye y refina los tres modelos de farmacoforo (Core, Recommended, All)
-a partir de la tabla de consenso results/pharmacophore/farmacoforo.csv y escribe
-una tabla CSV por modelo.
+a partir de la tabla de consenso results/pharmacophore/farmacoforo.csv, escribe
+las sesiones de Pharmit de cada modelo y una tabla CSV de consulta.
+
+Variante para inspeccionar: 09b_refinamiento_por_modelo.py, que aplica el mismo
+refinamiento y vuelca una fila por caracteristica Y modelo.
 
 ORDEN DE OPERACIONES
 --------------------
@@ -59,10 +54,38 @@ estructuras, no solo su recuento. La tabla de consenso solo guarda el recuento.
 
 SALIDA
 ------
-Un unico CSV, results/pharmit/farmacoforo_refined_por_modelo.csv, con una fila por
-caracteristica y modelo. La columna Model dice a que modelo pertenece cada
-fila. Hace falta esa columna porque el refinamiento depende del modelo: la
-hidrofobica de Tyr889 sobrevive en Recommended y se elimina en All.
+Dos salidas, con papeles distintos:
+
+1. results/pharmit/farmacoforo_{core,recommended,all}.json
+   Las sesiones de Pharmit, una por modelo. Es LA SALIDA QUE SE USA.
+   Se escriben directamente desde el resultado de refinar cada modelo por
+   separado, que es la unica composicion correcta.
+
+2. results/pharmit/farmacoforo_refined.csv
+   Tabla de consulta, con las mismas columnas que la tabla de entrada y una
+   sola fila por caracteristica. Es la UNION de las caracteristicas que
+   sobreviven en alguno de los tres modelos.
+
+LIMITACION IMPORTANTE DE ESA TABLA
+----------------------------------
+Esta tabla NO permite reconstruir los modelos filtrando por Classification, y
+no debe usarse para eso. El refinamiento depende del modelo: la hidrofobica de
+Tyr889 sobrevive en Recommended, donde no hay ninguna aromatica que la cubra,
+y se elimina en All, donde la cubre la aromatica de Tyr896. Por eso la union
+tiene 13 filas mientras que el modelo All tiene 12.
+
+Filtrar esta tabla por Classification para construir un modelo es justamente el
+error que este script corrige. La composicion correcta de cada modelo es la de
+los JSON, y sale de refinar cada modelo por separado.
+
+Ese error estuvo activo: 07_export_pharmit.py construia los modelos filtrando
+este CSV por Classification y daba 13 caracteristicas en All en vez de 12,
+colando la hidrofobica de Tyr889. Por eso la exportacion vive ahora aqui y ese
+script ya no existe.
+
+Para las caracteristicas fusionadas, las columnas Std_x, Std_y, Std_z y
+Mean_distance se dejan vacias: son estadisticos de una interaccion concreta
+entre estructuras y no tienen valor definido para una region que agrupa varias.
 
 COMPROBACIONES
 --------------
@@ -78,6 +101,7 @@ Autor: Andoni Moreno Lanceta
 """
 
 import csv
+import json
 import math
 import os
 import sys
@@ -87,9 +111,11 @@ import sys
 # ==========================================================
 
 INPUT_FILE = "results/pharmacophore/farmacoforo.csv"
-# Salida distinta de la de refinamiento.py a proposito: los dos scripts
-# aplican el mismo refinamiento y escribirian aqui, pisandose.
-OUTPUT_FILE = "results/pharmit/farmacoforo_refined_por_modelo.csv"
+OUTPUT_FILE = "results/pharmit/farmacoforo_refined.csv"
+
+# Prefijo de las sesiones de Pharmit: se escribe un JSON por modelo,
+# farmacoforo_{core,recommended,all}.json
+PHARMIT_PREFIX = "results/pharmit/farmacoforo"
 
 HYDROPHOBIC = "Hydrophobic"
 AROMATIC = "Aromatic"
@@ -231,6 +257,12 @@ def read_consensus(path):
                 "classification": row["Classification"].strip(),
                 "members": 1,
                 "origin": [index],
+                # Estadisticos que se arrastran tal cual si la caracteristica
+                # no se fusiona; quedan vacios si se fusiona.
+                "std_x": (row.get("Std_x") or "").strip(),
+                "std_y": (row.get("Std_y") or "").strip(),
+                "std_z": (row.get("Std_z") or "").strip(),
+                "mean_distance": (row.get("Mean_distance") or "").strip(),
             })
 
     return features
@@ -383,6 +415,11 @@ def fuse(group):
         "members": sum(f["members"] for f in group),
         "origin": [i for f in group for i in f["origin"]],
         "group": group,
+        # Sin valor definido para una region que agrupa varias interacciones.
+        "std_x": "",
+        "std_y": "",
+        "std_z": "",
+        "mean_distance": "",
     }
 
     fused["radius"] = round(
@@ -585,21 +622,18 @@ def report_positions(features):
 # ESCRITURA
 # ==========================================================
 
+# Mismas columnas que results/pharmacophore/farmacoforo.csv.
 CSV_COLUMNS = [
-    "Model", "Interaction", "Residue", "Residue_number", "Feature", "PDB",
-    "x", "y", "z", "Vector_x", "Vector_y", "Vector_z",
-    "Radius", "Conservation", "Classification", "N_merged", "Merged_from",
+    "Interaction", "Residue", "Residue_number", "Feature", "PDB",
+    "x", "y", "z", "Std_x", "Std_y", "Std_z",
+    "Vector_x", "Vector_y", "Vector_z",
+    "Mean_distance", "Radius", "Conservation", "Classification",
 ]
 
 
-def csv_row(level, feature):
-
-    merged_from = "|".join(
-        label(member) for member in feature.get("group", [])
-    )
+def csv_row(feature):
 
     return [
-        level,
         feature["interaction"],
         "/".join(feature["residues"]),
         "/".join(feature["numbers"]),
@@ -608,18 +642,139 @@ def csv_row(level, feature):
         f"{feature['x']:.3f}",
         f"{feature['y']:.3f}",
         f"{feature['z']:.3f}",
+        feature["std_x"],
+        feature["std_y"],
+        feature["std_z"],
         f"{feature['vx']:.3f}",
         f"{feature['vy']:.3f}",
         f"{feature['vz']:.3f}",
+        feature["mean_distance"],
         f"{feature['radius']:.3f}",
         f"{feature['conservation']:.2f}",
         feature["classification"],
-        feature["members"],
-        merged_from,
     ]
 
 
-def write_csv(rows, path):
+# ----------------------------------------------------------------------
+# EXPORTACION A PHARMIT
+# ----------------------------------------------------------------------
+#
+# Los tres JSON se escriben AQUI, a partir de per_model, y no desde el
+# CSV de union. Es la unica forma correcta: la pertenencia de una
+# caracteristica a un modelo la decide el refinamiento, no su columna
+# Classification.
+#
+# Filtrar el CSV de union por Classification daba 13 caracteristicas en
+# el modelo All en vez de 12, colando la hidrofobica de Tyr889 que el
+# refinamiento elimina por quedar cubierta por la aromatica de Tyr896.
+
+PHARMIT_FEATURE_NAMES = {
+    "HBD": "HydrogenDonor",
+    "HBA": "HydrogenAcceptor",
+    "Hydrophobic": "Hydrophobic",
+    "Aromatic": "Aromatic",
+}
+
+
+def pharmit_point(feature):
+
+    return {
+        "name": PHARMIT_FEATURE_NAMES[feature["feature"]],
+        "hasvec": True,
+        "x": round(feature["x"], 3),
+        "y": round(feature["y"], 3),
+        "z": round(feature["z"], 3),
+        "radius": round(feature["radius"], 3),
+        "enabled": True,
+        "vector_on": 1,
+        "svector": {
+            "x": round(feature["vx"], 3),
+            "y": round(feature["vy"], 3),
+            "z": round(feature["vz"], 3),
+        },
+        "minsize": "",
+        "maxsize": "",
+        "selected": True,
+    }
+
+
+def write_pharmit_json(per_model, prefix):
+    """Escribe un JSON de sesion de Pharmit por modelo."""
+
+    written = []
+
+    for level, features in per_model:
+
+        session = {"points": [pharmit_point(f) for f in features]}
+
+        path = f"{prefix}_{level}.json"
+
+        with open(path, "w") as handle:
+            json.dump(session, handle, indent=4)
+
+        written.append((level, path, len(features)))
+
+    return written
+
+
+def feature_key(feature):
+    """Identidad de una caracteristica, para quedarnos con una sola copia."""
+
+    return (
+        feature["feature"],
+        tuple(feature["residues"]),
+        tuple(feature["numbers"]),
+        round(feature["x"], 3),
+        round(feature["y"], 3),
+        round(feature["z"], 3),
+    )
+
+
+def collect_unique(per_model):
+    """
+    Union de las caracteristicas de todos los modelos, una sola vez cada una.
+
+    Si la misma caracteristica aparece en dos modelos con radio o clase
+    distintos, avisa: significaria que el refinamiento no es estable entre
+    modelos para esa caracteristica.
+    """
+
+    unique = {}
+    warnings = []
+
+    for level, features in per_model:
+
+        for feature in features:
+
+            key = feature_key(feature)
+
+            if key not in unique:
+                unique[key] = (level, feature)
+                continue
+
+            previous_level, previous = unique[key]
+
+            if (
+                abs(previous["radius"] - feature["radius"]) > 1e-6
+                or previous["classification"] != feature["classification"]
+            ):
+                warnings.append(
+                    f"    {label(feature)} {feature['feature']}: en "
+                    f"{previous_level} radio {previous['radius']:.3f} / "
+                    f"{previous['classification']}, en {level} radio "
+                    f"{feature['radius']:.3f} / {feature['classification']}"
+                )
+
+    rows = list(unique.values())
+
+    # Mismo criterio de orden que la tabla de entrada: conservacion
+    # descendente y, a igualdad, el orden original del consenso.
+    rows.sort(key=lambda item: (-item[1]["conservation"], item[1]["order"]))
+
+    return [feature for _, feature in rows], warnings
+
+
+def write_csv(features, path):
 
     os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
 
@@ -627,7 +782,9 @@ def write_csv(rows, path):
 
         writer = csv.writer(handle)
         writer.writerow(CSV_COLUMNS)
-        writer.writerows(rows)
+
+        for feature in features:
+            writer.writerow(csv_row(feature))
 
 
 # ==========================================================
@@ -648,7 +805,7 @@ def main():
     warn_classification_mismatch(consensus)
 
     all_warnings = []
-    rows = []
+    per_model = []
 
     for level, categories in LEVELS.items():
 
@@ -659,7 +816,7 @@ def main():
 
         refined, removed, absorbed = refine(selected)
 
-        rows.extend(csv_row(level, feature) for feature in refined)
+        per_model.append((level, refined))
 
         print("=" * 72)
         print(f"Modelo {level.upper()}")
@@ -698,10 +855,28 @@ def main():
 
         print()
 
-    write_csv(rows, OUTPUT_FILE)
+    unique, conflicts = collect_unique(per_model)
+
+    if conflicts:
+        print("  AVISO  La misma caracteristica sale distinta segun el "
+              "modelo:")
+        for conflict in conflicts:
+            print(conflict)
+        print()
+
+    write_csv(unique, OUTPUT_FILE)
+    written = write_pharmit_json(per_model, PHARMIT_PREFIX)
 
     print("=" * 72)
-    print(f"Escritas {len(rows)} filas en {OUTPUT_FILE}")
+    print(f"Escritas {len(unique)} caracteristicas en {OUTPUT_FILE}")
+    print("  Es la union de los tres modelos, una fila por caracteristica,")
+    print("  para consultarla. NO reconstruye los modelos filtrando por")
+    print("  Classification.")
+    print()
+    print("Sesiones de Pharmit, una por modelo:")
+
+    for level, path, count in written:
+        print(f"    {level:<12s} {count:>2d} caracteristicas  ->  {path}")
 
     if all_warnings:
         print(f"Terminado con {len(all_warnings)} avisos de posicion.\n")

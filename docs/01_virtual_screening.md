@@ -31,7 +31,7 @@ El pipeline comprende las siguientes etapas:
 
 El flujo general desarrollado en el proyecto puede resumirse de la siguiente manera:
 
-![PARP1 Virtual Screening Pipeline](./info_adicional/esquema.png)
+![PARP1 Virtual Screening Pipeline](./img/esquema.png)
 ---
 ## Entorno de trabajo
 
@@ -104,7 +104,7 @@ PARP1-Virtual-Screening/
 
 Todas las estructuras experimentales utilizadas corresponden al **dominio catalítico (CAT) de PARP1 humana**, compuesto por los subdominios HD (`661–786`) y ART (`786–1014`), con la excepción del modelo de longitud completa generado mediante AlphaFold.
 
-La información relativa a las estructuras PDB empleadas, sus ligandos y los datos experimentales asociados puede consultarse en la [tabla de estructuras PDB](./info_adicional/tabla_pdb.csv).
+La información relativa a las estructuras PDB empleadas, sus ligandos y los datos experimentales asociados puede consultarse en la [tabla de estructuras PDB](../data/raw/tabla_pdb.csv).
 
 El modelo de longitud completa de PARP1 se obtuvo de la [AlphaFold Protein Structure Database](https://alphafold.ebi.ac.uk/entry/AF-P09874-F1) y se utilizó como referencia estructural adicional.
 
@@ -125,13 +125,13 @@ Entre las interaciones identificadas se encuentran:
 * Interacciones π–π
 * Otras interacciones que se han omitido en este trabajo debido a que no son relevantes (interacciones iónicas)
 
-Los resultados estructurados de las interaccciones pueden consultarse en [results/FARMACOFORO/interacciones.csv](./results/FARMACOFORO/interacciones.csv)
+Los resultados estructurados de las interaccciones pueden consultarse en [results/FARMACOFORO/interacciones.csv](../results/pharmacophore/interacciones.csv)
 
 ---
 
 ## Construcción del farmacóforo
 
-A partir de la interacciones identificadas en las estructuras experimentales inlcuidas en el [*Training set*](./info_adicional/tabla_pdb.csv), se construyeron modelos faramcofóricos que representan las características estructurales relevante para la interación con el bolsillo catalítico de PARP1.
+A partir de la interacciones identificadas en las estructuras experimentales inlcuidas en el [*Training set*](../data/raw/tabla_pdb.csv), se construyeron modelos faramcofóricos que representan las características estructurales relevante para la interación con el bolsillo catalítico de PARP1.
 
 Las características farmacofóricas se definieron a partir de la frecuencia y conservación de las interacciones observadas entre los diferente complejos proteína-ligando.
 
@@ -141,7 +141,7 @@ Se generaron así diferentes niveles de exigencia:
 * **Recommended:** características altamente conservadas pero no estrictamente obligatorias
 * **All:** conjunto completo de las características identificadas en todas las estructuras
 
-Los modelos farmacoforicos y los datos empleados se encuentra en: [results/FARMACOFORO](./results/FARMACOFORO/)
+Los modelos farmacoforicos y los datos empleados se encuentra en: [results/FARMACOFORO](../results/pharmacophore/)
 
 ---
 
@@ -153,7 +153,7 @@ Esta etapa permitió evaluar la capacidad del farmacóforo para discriminar entr
 
 A partir de los resultados obtenidos se realizó un refinamiento de las características farmacofóricas, seleccionando aquellas que proporcionaban una representación más adecuada de los patrones de reconocimiento observados experimentalmente.
 
-Los datos utilizados para esta etapa y los modelos refinados se encuentran en: [results/PHARMIT/farmacoforo_refined](./results/PHARMIT/farmacoforo_refined.csv)
+Los datos utilizados para esta etapa y los modelos refinados se encuentran en: [results/PHARMIT/farmacoforo_refined](../results/pharmit/farmacoforo_refined.csv)
 
 ---
 
@@ -165,7 +165,7 @@ El cribado permitió identificar moléculas compatibles con las características
 
 A partir de los resultados obtenidos se seleccionaron inicialmente las **1000 moléculas con mejores resultados de ajuste al farmacóforo (RMSD)**, que fueron utilizadas como conjunto de partida para la reducción de la redundancia estructural.
 
-Los resultados del cribado se encuentran en: [results/PHARMIT/](./results/FARMACOFORO)
+Los resultados del cribado se encuentran en: [results/PHARMIT/](../results/pharmacophore/)
 
 ---
 
@@ -184,7 +184,7 @@ Se utilizó una distancia de clustering de `0.2`, equivalente a considerar una s
 
 Este procedimiento permitió reducir el conjunto inicial de 1000 moléculas a **855 representantes estructurales**, que fueron utilizados posteriormente como conjunto de entrada para el docking molecular.
 
-El proceso de selección y clustering se automatiza mediante: [scripts/10_clustering_repr.py](./scripts/10_clustering_repr.py)
+El proceso de selección y clustering se automatiza mediante: [scripts/10_clustering_repr.py](../scripts/screening/10_clustering_repr.py)
 
 ---
 
@@ -200,9 +200,9 @@ Para cada ligando se generaron múltiples poses de unión y se obtuvieron difere
 * *`CNNscore`*: estimación de la plausibilidad de la pose mediante el modelo de aprendizaje profundo.
 * *`CNNaffinity`*: estimación adicional de la afinidad mediante el modelo CNN.
 
-El docking se automatiza mediante: [scripts/11_docking.py](./scripts/11_docking.py)
+El docking se automatiza mediante: [scripts/11_docking.py](../scripts/screening/11_docking.py)
 
-Los resultados generados se encuentran en: [results/DOCKING/](./results/DOCKING/)
+Los resultados generados se encuentran en: [results/DOCKING/](../results/docking/)
 
 ---
 
@@ -216,7 +216,7 @@ El *Vina_score* permite identificar poses con una estimación energética favora
 
 A partir de la distribución conjunta de estas métricas se realizó una primera selección de candidatos, priorizando aquellos que presentaban simultáneamente valores favorables de energía (*Vina_score* <= -10 kcal/mol) y plausibilidad estructural (*CNNscore* >= 0.5). También se selecciono la primera pose de cada candidato que cumpliera estos criterios.
 
-Los complejos pose de candidato y proteína resultantes se encuentran en: [results/DOCKING/ligandos_estudio_combined](./results/DOCKING/ligandos_estudio_combined/)
+Los complejos pose de candidato y proteína resultantes se encuentran en: [results/DOCKING/ligandos_estudio_combined](../results/docking/candidatos_complejo/)
 
 ---
 
@@ -226,7 +226,7 @@ Este análisis se realizó mediante el estudio de las interacciones proteína-li
 
 La comparación entre las interacciones observadas experimentalmente y las obtenidas después del docking permite determinar si las poses seleccionadas presentan patrones de unión compatibles con el farmacóforo de consenso.
 
-Los resultados de este análisis se encuentran en: [results/DOCKING/interaciones](./results/DOCKING/interacciones.csv)
+Los resultados de este análisis se encuentran en: [results/DOCKING/interaciones](../results/docking/interacciones.csv)
 
 ---
 
@@ -258,7 +258,7 @@ python scripts/01_descargar_pdbs.py
 
 Las estructuras se almacenan en un nuevo directorio llamado `structures/raw`.
 
-> **Nota:** La estructura 9ETQ al no presentar enlace de descarga en RCSB PDB, se ha descargado manualmente y versionado en [info_adicional/9ETQ.pdb](./info_adicional/9ETQ.pdb). Moverlo al directorio creado previamente de `structures/raw`.
+> **Nota:** La estructura 9ETQ al no presentar enlace de descarga en RCSB PDB, se ha descargado manualmente y versionado en [info_adicional/9ETQ.pdb](../data/raw/9ETQ.pdb). Moverlo al directorio creado previamente de `structures/raw`.
 
 ```bash
 mv info_adicional/9ETQ.pdb structures/raw/
@@ -276,7 +276,7 @@ Los resultados se almacenan en un nuevo directorio llamado `structures/processed
 
 ## 5- Identificar las interacciones proteína-ligando
 
-Se realiza el análisis sobre el conjunto de estructuras [*Training set*](./info_adicional/tabla_pdb.csv)
+Se realiza el análisis sobre el conjunto de estructuras [*Training set*](../data/raw/tabla_pdb.csv)
 
 ```bash
 python scripts/03_contactos.py
@@ -285,7 +285,7 @@ El análisis se realiza mediante PLIP y genera los resultados de las interaccion
 
 ## 6- Procesar las interacciones
 
-Este script recopila los resultados obtenidos mediante PLIP y genera los datos estructurados de las interacciones detectadas guardando los resultados en [results/FARMACOFORO/interacciones.csv](./results/FARMACOFORO/interacciones.csv)
+Este script recopila los resultados obtenidos mediante PLIP y genera los datos estructurados de las interacciones detectadas guardando los resultados en [results/FARMACOFORO/interacciones.csv](../results/pharmacophore/interacciones.csv)
 
 ```bash
 python scripts/04_lectura.py
@@ -345,7 +345,7 @@ Las moléculas seleccionadas mediante Pharmit se representan mediante fingerprin
 python scripts/11_docking.py
 ```
 
-Los representantes estructurales seleccionados se someten a docking molecular mediante GNINA obteniedo los resultados en [results/DOCKING](./results/DOCKING/)
+Los representantes estructurales seleccionados se someten a docking molecular mediante GNINA obteniedo los resultados en [results/DOCKING](../results/docking/)
 
 # Autor
 

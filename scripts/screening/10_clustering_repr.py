@@ -8,13 +8,13 @@ import os
 # CONFIGURACIÓN
 # ==========================================
 
-INPUT_SDF = "results/PHARMIT/top1000_rmsd.sdf"
+INPUT_SDF = "results/pharmit/top1000_rmsd.sdf"
 
 TOP_RMSD = 1000
 
-OUTPUT_TOP = "results/PHARMIT/top1000_rmsd.sdf"
+OUTPUT_TOP = "results/pharmit/top1000_rmsd.sdf"
 
-OUTPUT_FINAL_PATH = "results/DOCKING"
+OUTPUT_FINAL_PATH = "results/docking"
 OUTPUT_FINAL = f"{OUTPUT_FINAL_PATH}/representantes_docking.sdf"
 
 CLUSTER_CUTOFF = 0.2

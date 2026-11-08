@@ -4,8 +4,8 @@ import xml.etree.ElementTree as ET
 import pandas as pd
 import numpy as np
 
-INPUT_FOLDER = "structures/contacts"
-OUTPUT_FILE = "results/interacciones.csv"
+INPUT_FOLDER = "data/structures/contacts"
+OUTPUT_FILE = "results/pharmacophore/interacciones.csv"
 
 
 def hydrophobic_interactions(binding_site, pdb_code, ligand_name):

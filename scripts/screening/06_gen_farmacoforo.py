@@ -1,8 +1,8 @@
 import pandas as pd
 
-INPUT_FILE = "results/farmacoforo.csv"
-OUTPUT_FILE = "results/farmacoforo"
-REFERENCE_PDB = "structures/processed/7AAA_chainA.pdb"
+INPUT_FILE = "results/pharmacophore/farmacoforo.csv"
+OUTPUT_FILE = "results/pharmacophore/farmacoforo"
+REFERENCE_PDB = "data/structures/processed/7AAA_chainA.pdb"
 levels = {
     "all" : ["Obligatory", "Recommended", "Optional"],
     "recommended" : ["Obligatory", "Recommended"],

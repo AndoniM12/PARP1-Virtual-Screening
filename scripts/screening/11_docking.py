@@ -7,7 +7,7 @@ from rdkit import Chem
 # =============================================================================
 
 # Directorio principal del pipeline de docking
-WORK_DIR = "results/DOCKING"
+WORK_DIR = "results/docking"
 
 # Biblioteca final de representantes seleccionados tras el clustering
 DOCKING_RPR = f"{WORK_DIR}/representantes_docking.sdf"
@@ -90,7 +90,7 @@ def import_receptor():
 
     subprocess.run([
         "cp",
-        "structures/processed/7AAA_chainA.pdb",
+        "data/structures/processed/7AAA_chainA.pdb",
         receptor_pdb
     ], check=True)
 

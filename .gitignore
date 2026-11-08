@@ -46,8 +46,9 @@ pharmit.sdf
 results/pharmit/pharmit.sdf
 
 # Estructuras del PDB: las descarga scripts/screening/01_descargar_pdbs.py
+# y las procesan los scripts 02 y 03.
+data/structures/
 structures/
-data/processed/
 
 # ---------------------------------------------------------------
 # Python

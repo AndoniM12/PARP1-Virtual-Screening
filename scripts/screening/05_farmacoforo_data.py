@@ -2,8 +2,8 @@ import os
 import pandas as pd
 import numpy as np
 
-INPUT_FILE = "results/interacciones.csv"
-OUTPUT_FILE = "results/farmacoforo.csv"
+INPUT_FILE = "results/pharmacophore/interacciones.csv"
+OUTPUT_FILE = "results/pharmacophore/farmacoforo.csv"
 
 def classify_interaction(conservation):
 

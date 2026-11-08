@@ -20,11 +20,11 @@ import tempfile
 import numpy as np
 import re
 
-INPUT_FOLDER = "structures/raw"
-OUTPUT_FOLDER = "structures/processed"
-reference_pdb = "structures/processed/7AAA_chainA.pdb"
+INPUT_FOLDER = "data/structures/raw"
+OUTPUT_FOLDER = "data/structures/processed"
+reference_pdb = "data/structures/processed/7AAA_chainA.pdb"
 
-df = pd.read_csv("info_adicional/tabla_pdb.csv")
+df = pd.read_csv("data/raw/tabla_pdb.csv")
 ligandos_por_pdb = dict(zip(df["PDB"], df["Código_ligando"]))
 rmsd_values = []
 
@@ -95,8 +95,8 @@ if __name__ == "__main__":
         os.mkdir(OUTPUT_FOLDER)
         print(f"Directorio creado: {OUTPUT_FOLDER}")
 
-    if not os.path.exists("structures/ligands"):
-            os.mkdir("structures/ligands")
+    if not os.path.exists("data/structures/ligands"):
+            os.mkdir("data/structures/ligands")
 
     print(f"Procesando 7AAA...")
 

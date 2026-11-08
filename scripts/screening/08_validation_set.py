@@ -10,7 +10,7 @@ El script:
 - Guarda todas las conformaciones en un único fichero SDF.
 
 Salida:
-    info_adicional/validation_set_db.sdf
+    data/raw/validation_set_db.sdf
 """
 
 import os
@@ -23,8 +23,8 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 
 
-TABLE = "info_adicional/tabla_pdb.csv"
-OUTPUT = "info_adicional/validation_set_db.sdf"
+TABLE = "data/raw/tabla_pdb.csv"
+OUTPUT = "data/raw/validation_set_db.sdf"
 NCONF = 100
 total = 0
 

@@ -1,8 +1,16 @@
 """
 09_refinamiento_farmacoforo.py
 
+VARIANTE ANTERIOR. El script vigente es refinamiento.py, que aplica EXACTAMENTE
+el mismo refinamiento (mismas reglas, mismas constantes) y ademas escribe las
+sesiones de Pharmit de cada modelo.
+
+Este conserva una salida distinta y util para inspeccionar: una fila por
+caracteristica Y modelo, con la columna Model, que deja ver de un vistazo que
+caracteristica sobrevive en que modelo. No lo usa ningun otro script.
+
 Construye y refina los tres modelos de farmacoforo (Core, Recommended, All)
-a partir de la tabla de consenso results/FARMACOFORO/farmacoforo.csv y escribe
+a partir de la tabla de consenso results/pharmacophore/farmacoforo.csv y escribe
 una tabla CSV por modelo.
 
 ORDEN DE OPERACIONES
@@ -51,7 +59,7 @@ estructuras, no solo su recuento. La tabla de consenso solo guarda el recuento.
 
 SALIDA
 ------
-Un unico CSV, results/PHARMIT/farmacoforo_refined.csv, con una fila por
+Un unico CSV, results/pharmit/farmacoforo_refined_por_modelo.csv, con una fila por
 caracteristica y modelo. La columna Model dice a que modelo pertenece cada
 fila. Hace falta esa columna porque el refinamiento depende del modelo: la
 hidrofobica de Tyr889 sobrevive en Recommended y se elimina en All.
@@ -78,8 +86,10 @@ import sys
 # PARAMETROS
 # ==========================================================
 
-INPUT_FILE = "results/FARMACOFORO/farmacoforo.csv"
-OUTPUT_FILE = "results/PHARMIT/farmacoforo_refined.csv"
+INPUT_FILE = "results/pharmacophore/farmacoforo.csv"
+# Salida distinta de la de refinamiento.py a proposito: los dos scripts
+# aplican el mismo refinamiento y escribirian aqui, pisandose.
+OUTPUT_FILE = "results/pharmit/farmacoforo_refined_por_modelo.csv"
 
 HYDROPHOBIC = "Hydrophobic"
 AROMATIC = "Aromatic"

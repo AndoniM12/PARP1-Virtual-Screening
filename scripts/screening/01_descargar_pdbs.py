@@ -8,7 +8,7 @@ import os
 import pandas as pd
 
 # Selección de IDs con posibilidad de descarga a través de PDB
-df = pd.read_csv("info_adicional/tabla_pdb.csv")
+df = pd.read_csv("data/raw/tabla_pdb.csv")
 pdb_codes_dict = dict(zip(df["PDB"],df["Descarga_pdb"]))
 pdb_codes = []
 
@@ -18,7 +18,7 @@ for pdb, descarga in pdb_codes_dict.items():
         pdb_codes.append(pdb)
 
 # Directorio donde se guardarán los archivos PDB descargados
-OUTPUT_FOLDER = "structures/raw"
+OUTPUT_FOLDER = "data/structures/raw"
 
 def download_pdb(pdb_code, output_folder):
     """

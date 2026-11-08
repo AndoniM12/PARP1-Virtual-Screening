@@ -112,6 +112,31 @@ Deducida del nombre del paquete instalado que figura en el historial
 (`ucsf-chimerax_1.12ubuntu24.04_amd64.deb`) → **1.12**. No estaba
 declarada en ningún fichero del proyecto.
 
+## Un error corregido al reorganizar
+
+`07_export_pharmit.py` construía los tres modelos de farmacóforo filtrando
+`farmacoforo_refined.csv` por la columna `Classification`. Eso solo es válido si
+la tabla es por modelo, y no lo es: es la **unión** de los tres.
+
+El resultado era un modelo `all` con **13** características en vez de **12**,
+que colaba la hidrofóbica de Tyr889 — la que el refinamiento elimina
+precisamente porque la aromática de Tyr896 ya la cubre.
+
+Los JSON que estaban guardados en el repositorio sí eran correctos (12/3/4),
+pero eran **anteriores** a los dos scripts de refinamiento (11:19–11:54 frente a
+12:36 y 13:30 del 8 de octubre de 2026), así que el pipeline ya no sabía
+regenerarlos.
+
+La exportación vive ahora dentro de `refinamiento.py`, que la hace desde la
+composición por modelo, que es la única correcta. Se ha comprobado que los JSON
+que genera son idénticos, coordenada a coordenada, a los que estaban guardados.
+`07_export_pharmit.py` se ha eliminado; sigue recuperable del historial de git.
+
+`09_refinamiento_farmacoforo.py` se conserva como variante anterior, con el
+mismo refinamiento y una salida distinta (una fila por característica y modelo,
+con columna `Model`). Escribe a `farmacoforo_refined_por_modelo.csv` para no
+pisar la salida del script vigente.
+
 ## Rutas que se han cambiado
 
 Los scripts originales llevaban rutas absolutas y rutas relativas a una
@@ -128,6 +153,12 @@ lanzarlos desde la raíz del repositorio:
 | `preparation/ligand/ligand_453/` | `data/md/ligand_453/` (entrada) y `run/ligand/` (salida) |
 | `data/7AAA.pdb` | `data/raw/7AAA.pdb` |
 | `data/p-l_complex_pdb/` | `results/docking/candidatos_complejo/` |
+| `structures/{raw,processed,contacts}` | `data/structures/{raw,processed,contacts}` |
+| `info_adicional/` | `data/raw/` |
+| `results/FARMACOFORO/`, `results/farmacoforo.csv` | `results/pharmacophore/` |
+| `results/PHARMIT/` | `results/pharmit/` |
+| `results/DOCKING/` | `results/docking/` |
+| `results/interacciones.csv` | `results/pharmacophore/interacciones.csv` |
 
 `data/md/topology/topol.top` conserva sus directivas `#include` tal como
 estaban en la ejecución original: apuntan a la estructura de carpetas

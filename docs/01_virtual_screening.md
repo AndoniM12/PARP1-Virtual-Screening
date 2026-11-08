@@ -307,42 +307,49 @@ python scripts/06_gen_farmacoforo.py
 
 Se generan los diferentes modelos farmacofóricos utilizados posteriormente en la validación y el cribado virtual.
 
-## 9- Exportar los farmacóforos a Pharmit
+## 9- Generar el conjunto de validación
 
 ```bash
-python scripts/07_export_pharmit.py
-```
-
-Permite preparar los modelos farmacofóricos para su utilización en Pharmit.
-
-## 10- Generar el conjunto de validación
-
-```bash
-python scripts/08_validation_set.py
+python scripts/screening/08_validation_set.py
 ```
 
 Prepara el conjunto de moléculas utilizado para la validación retrospectiva del farmacóforo.
 
-## 11- Refinar el farmacóforo
+## 10- Refinar el farmacóforo y exportarlo a Pharmit
 
 ```bash
-python scripts/09_refinamiento_farmacoforo.py
+python scripts/screening/refinamiento.py
 ```
 
-Permite evaluar y refinar los modelos farmacofóricos utilizando el conjunto de validación.
+Refina cada modelo por separado y escribe dos cosas:
 
-## 12- Seleccionar representantes estructurales
+- `results/pharmit/farmacoforo_{core,recommended,all}.json`, las sesiones de
+  Pharmit. **Es la salida que se usa.**
+- `results/pharmit/farmacoforo_refined.csv`, tabla de consulta con la unión de
+  las características que sobreviven en algún modelo.
+
+Esa tabla **no** reconstruye los modelos filtrando por `Classification`, porque
+el refinamiento depende del modelo: la hidrofóbica de Tyr889 sobrevive en
+`recommended`, donde no hay aromática que la cubra, y se elimina en `all`, donde
+la cubre la de Tyr896. Por eso la unión tiene 13 características y `all` tiene 12.
+
+Existe también `scripts/screening/09_refinamiento_farmacoforo.py`, una variante
+anterior con el mismo refinamiento que escribe una tabla con columna `Model`,
+útil para inspeccionar qué característica sobrevive en qué modelo. No la usa
+ningún otro paso.
+
+## 11- Seleccionar representantes estructurales
 
 ```bash
-python scripts/10_clustering_repr.py
+python scripts/screening/10_clustering_repr.py
 ```
 
 Las moléculas seleccionadas mediante Pharmit se representan mediante fingerprints de Morgan y se agrupan mediante clustering de Butina para reducir la redundancia estructural.
 
-## 13- Realizar el docking molecular
+## 12- Realizar el docking molecular
 
 ```bash
-python scripts/11_docking.py
+python scripts/screening/11_docking.py
 ```
 
 Los representantes estructurales seleccionados se someten a docking molecular mediante GNINA obteniedo los resultados en [results/DOCKING](../results/docking/)

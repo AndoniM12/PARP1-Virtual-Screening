@@ -133,6 +133,7 @@ docs/          write-ups: screening, MD, limitations, provenance
 environment/   one Conda file per environment used
 data/
   raw/         input structures (7AAA, 9ETQ, PDB table)
+  structures/  downloaded and processed PDBs, git-ignored (script 01-03)
   md/          MD topology, ligand 453 parameters, frame 0
 scripts/
   screening/   phase 1 pipeline (01–11) + pharmacophore refinement
@@ -140,7 +141,8 @@ scripts/
   md_analysis/ ChimeraX analysis and rendering
 results/
   docking/     GNINA scores, 31 candidates, interactions
-  pharmacophore/, pharmit/
+  pharmacophore/ consensus table and PyMOL/JSON models
+  pharmit/     refined models: the three Pharmit sessions + union table
   md/          RMSD tables, figures, GROMACS logs
 run/           working directory, git-ignored
 ```
@@ -159,15 +161,22 @@ python scripts/screening/03_contactos.py        # PLIP contacts
 python scripts/screening/04_lectura.py
 python scripts/screening/05_farmacoforo_data.py
 python scripts/screening/06_gen_farmacoforo.py  # consensus pharmacophore
-python scripts/screening/07_export_pharmit.py   # export for Pharmit
 python scripts/screening/08_validation_set.py
-python scripts/screening/09_refinamiento_farmacoforo.py
+python scripts/screening/refinamiento.py        # refine + export Pharmit sessions
 python scripts/screening/10_clustering_repr.py  # Butina clustering
 python scripts/screening/11_docking.py          # GNINA (install separately)
 ```
 
-Step 7 produces the Pharmit query; the screen itself runs in the Pharmit
-web interface and its output is fed back in.
+`refinamiento.py` refines each model separately and writes both the
+three Pharmit session files (`results/pharmit/farmacoforo_{core,recommended,all}.json`,
+the output that is actually used) and a union table for inspection. The
+screen itself runs in the Pharmit web interface and its output is fed
+back in.
+
+The union table must **not** be filtered by `Classification` to rebuild a
+model: refinement is model-dependent, so the union has 13 features while
+the `all` model has 12. Exporting from it was a real bug, now fixed —
+see [docs/provenance.md](docs/provenance.md).
 
 ### Phase 2
 

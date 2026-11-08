@@ -2,7 +2,7 @@
 09_refinamiento_farmacoforo.py
 
 Construye y refina los tres modelos de farmacoforo (Core, Recommended, All)
-a partir de la tabla de consenso results/FARMACOFORO/farmacoforo.csv y escribe
+a partir de la tabla de consenso results/pharmacophore/farmacoforo.csv y escribe
 una tabla CSV por modelo.
 
 ORDEN DE OPERACIONES
@@ -51,9 +51,17 @@ estructuras, no solo su recuento. La tabla de consenso solo guarda el recuento.
 
 SALIDA
 ------
-Un unico CSV, results/PHARMIT/farmacoforo_refined.csv, con las mismas columnas
-que la tabla de entrada y una sola fila por caracteristica. Es la UNION de las
-caracteristicas que sobreviven en alguno de los tres modelos.
+Dos salidas, con papeles distintos:
+
+1. results/pharmit/farmacoforo_{core,recommended,all}.json
+   Las sesiones de Pharmit, una por modelo. Es LA SALIDA QUE SE USA.
+   Se escriben directamente desde el resultado de refinar cada modelo por
+   separado, que es la unica composicion correcta.
+
+2. results/pharmit/farmacoforo_refined.csv
+   Tabla de consulta, con las mismas columnas que la tabla de entrada y una
+   sola fila por caracteristica. Es la UNION de las caracteristicas que
+   sobreviven en alguno de los tres modelos.
 
 LIMITACION IMPORTANTE DE ESA TABLA
 ----------------------------------
@@ -64,8 +72,13 @@ y se elimina en All, donde la cubre la aromatica de Tyr896. Por eso la union
 tiene 13 filas mientras que el modelo All tiene 12.
 
 Filtrar esta tabla por Classification para construir un modelo es justamente el
-error que este script corrige. La composicion correcta de cada modelo es la que
-imprime el registro de ejecucion, y sale de refinar cada modelo por separado.
+error que este script corrige. La composicion correcta de cada modelo es la de
+los JSON, y sale de refinar cada modelo por separado.
+
+Ese error estuvo activo: 07_export_pharmit.py construia los modelos filtrando
+este CSV por Classification y daba 13 caracteristicas en All en vez de 12,
+colando la hidrofobica de Tyr889. Por eso la exportacion vive ahora aqui y ese
+script ya no existe.
 
 Para las caracteristicas fusionadas, las columnas Std_x, Std_y, Std_z y
 Mean_distance se dejan vacias: son estadisticos de una interaccion concreta
@@ -85,6 +98,7 @@ Autor: Andoni Moreno Lanceta
 """
 
 import csv
+import json
 import math
 import os
 import sys
@@ -93,8 +107,12 @@ import sys
 # PARAMETROS
 # ==========================================================
 
-INPUT_FILE = "results/FARMACOFORO/farmacoforo.csv"
-OUTPUT_FILE = "results/PHARMIT/farmacoforo_refined.csv"
+INPUT_FILE = "results/pharmacophore/farmacoforo.csv"
+OUTPUT_FILE = "results/pharmit/farmacoforo_refined.csv"
+
+# Prefijo de las sesiones de Pharmit: se escribe un JSON por modelo,
+# farmacoforo_{core,recommended,all}.json
+PHARMIT_PREFIX = "results/pharmit/farmacoforo"
 
 HYDROPHOBIC = "Hydrophobic"
 AROMATIC = "Aromatic"
@@ -601,7 +619,7 @@ def report_positions(features):
 # ESCRITURA
 # ==========================================================
 
-# Mismas columnas que results/FARMACOFORO/farmacoforo.csv.
+# Mismas columnas que results/pharmacophore/farmacoforo.csv.
 CSV_COLUMNS = [
     "Interaction", "Residue", "Residue_number", "Feature", "PDB",
     "x", "y", "z", "Std_x", "Std_y", "Std_z",
@@ -632,6 +650,68 @@ def csv_row(feature):
         f"{feature['conservation']:.2f}",
         feature["classification"],
     ]
+
+
+# ----------------------------------------------------------------------
+# EXPORTACION A PHARMIT
+# ----------------------------------------------------------------------
+#
+# Los tres JSON se escriben AQUI, a partir de per_model, y no desde el
+# CSV de union. Es la unica forma correcta: la pertenencia de una
+# caracteristica a un modelo la decide el refinamiento, no su columna
+# Classification.
+#
+# Filtrar el CSV de union por Classification daba 13 caracteristicas en
+# el modelo All en vez de 12, colando la hidrofobica de Tyr889 que el
+# refinamiento elimina por quedar cubierta por la aromatica de Tyr896.
+
+PHARMIT_FEATURE_NAMES = {
+    "HBD": "HydrogenDonor",
+    "HBA": "HydrogenAcceptor",
+    "Hydrophobic": "Hydrophobic",
+    "Aromatic": "Aromatic",
+}
+
+
+def pharmit_point(feature):
+
+    return {
+        "name": PHARMIT_FEATURE_NAMES[feature["feature"]],
+        "hasvec": True,
+        "x": round(feature["x"], 3),
+        "y": round(feature["y"], 3),
+        "z": round(feature["z"], 3),
+        "radius": round(feature["radius"], 3),
+        "enabled": True,
+        "vector_on": 1,
+        "svector": {
+            "x": round(feature["vx"], 3),
+            "y": round(feature["vy"], 3),
+            "z": round(feature["vz"], 3),
+        },
+        "minsize": "",
+        "maxsize": "",
+        "selected": True,
+    }
+
+
+def write_pharmit_json(per_model, prefix):
+    """Escribe un JSON de sesion de Pharmit por modelo."""
+
+    written = []
+
+    for level, features in per_model:
+
+        session = {"points": [pharmit_point(f) for f in features]}
+
+        path = f"{prefix}_{level}.json"
+
+        with open(path, "w") as handle:
+            json.dump(session, handle, indent=4)
+
+        written.append((level, path, len(features)))
+
+    return written
 
 
 def feature_key(feature):
@@ -782,14 +862,18 @@ def main():
         print()
 
     write_csv(unique, OUTPUT_FILE)
+    written = write_pharmit_json(per_model, PHARMIT_PREFIX)
 
     print("=" * 72)
     print(f"Escritas {len(unique)} caracteristicas en {OUTPUT_FILE}")
-    print("  Es la union de los tres modelos, una fila por caracteristica.")
-    print("  NO reconstruye los modelos filtrando por Classification:")
+    print("  Es la union de los tres modelos, una fila por caracteristica,")
+    print("  para consultarla. NO reconstruye los modelos filtrando por")
+    print("  Classification.")
+    print()
+    print("Sesiones de Pharmit, una por modelo:")
 
-    for level, features in per_model:
-        print(f"    {level:<12s} {len(features):>2d} caracteristicas")
+    for level, path, count in written:
+        print(f"    {level:<12s} {count:>2d} caracteristicas  ->  {path}")
 
     if all_warnings:
         print(f"Terminado con {len(all_warnings)} avisos de posicion.\n")

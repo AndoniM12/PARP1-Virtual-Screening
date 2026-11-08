@@ -1,17 +1,17 @@
 """
 Este script calcula los contactos de las estructuras PDB filtradas utilizando la herramienta PLIP.
-Se asume que los archivos PDB filtrados se encuentran en la carpeta "structures/filtered" 
-y los resultados se guardarán en la carpeta "structures/contacts" solo manteniendo los archivos XML.
+Se asume que los archivos PDB filtrados se encuentran en la carpeta "data/structures/filtered" 
+y los resultados se guardarán en la carpeta "data/structures/contacts" solo manteniendo los archivos XML.
 """
 
 import os
 import subprocess 
 import pandas as pd  
 
-INPUT_FOLDER = "structures/processed"
-OUTPUT_FOLDER = "structures/contacts"
+INPUT_FOLDER = "data/structures/processed"
+OUTPUT_FOLDER = "data/structures/contacts"
 
-df = pd.read_csv("info_adicional/tabla_pdb.csv")
+df = pd.read_csv("data/raw/tabla_pdb.csv")
 groups = dict(zip(df["PDB"], df["Grupo de estudio"]))
         
 def plip_process (pdb, input_path, output_path):

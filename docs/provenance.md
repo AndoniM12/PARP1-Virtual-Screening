@@ -136,8 +136,32 @@ Lo que arrastra, cuando no se detecta:
 | Al reejecutar | 1 | 4,624 / 43,117 / 10,436 | 1,00 | 0,17 |
 
 En el modelo `all` refinado ese punto se desplaza unos **2,2 Å** y su radio baja
-de 1,2 a 1,0. Para un farmacóforo que se usa a cribar, eso cambia qué moléculas
-encajan.
+de 1,2 a 1,0.
+
+### Alcance real: no afecta al cribado
+
+Conviene acotarlo, porque suena peor de lo que es.
+
+Arg878 HBA está clasificada como **Optional**, así que aparece **únicamente en
+el modelo `all`**. Y `all` tiene una tasa de recuperación del **0 %** en la
+validación retrospectiva (`results/pharmit/resultados_pharmit.csv`): no recupera
+ninguno de los inhibidores conocidos, de modo que no sirve para cribar y no se
+usó para ello.
+
+Los modelos que sí se usaron son los que recuperan activos:
+
+| Modelo | Características | Recuperación (refinado) | ¿Contiene Arg878? | ¿Reproduce? |
+|---|---|---|---|---|
+| `core` | 3 (Gly863 HBD, Gly863 HBA, Tyr907 aromática) | **100 %** | No | **Idéntico** |
+| `recommended` | 4 (las anteriores + Tyr889 hidrofóbica) | 82,61 % | No | **Idéntico** |
+| `all` | 12 | 0 % | Sí | Difiere en ese punto |
+
+Es decir: **la no-determinación de PLIP no toca ninguna característica de los
+farmacóforos con los que se cribó**. El cribado virtual, los 855 representantes
+y el docking son reproducibles sin reservas.
+
+Queda documentado porque es un comportamiento real de la herramienta que
+conviene conocer, no porque comprometa los resultados.
 
 **No se han regenerado los resultados publicados con una ejecución nueva**: los
 que están en el repositorio son los de la ejecución original, que es el registro

@@ -123,8 +123,11 @@ nombres y SMILES) y los modelos `core` y `recommended`.
 
 La única diferencia está en una característica: **PLIP no es determinista** y el
 puente de hidrógeno con Arg878 en 9ETQ aparece solo en 4 de cada 10 ejecuciones.
-El farmacóforo publicado corresponde a una ejecución que lo detectó. Las cifras
-están en [provenance.md](provenance.md).
+
+No afecta al cribado. Esa característica es Optional, así que solo entra en el
+modelo `all`, que recupera un **0 %** de los activos conocidos y no se usó para
+cribar. Los que sí se usaron, `core` (100 % de recuperación) y `recommended`
+(82,6 %), reproducen idénticos. Cifras en [provenance.md](provenance.md).
 
 ## Procedencia y lagunas
 

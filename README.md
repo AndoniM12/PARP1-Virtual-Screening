@@ -175,12 +175,13 @@ place. It belongs to the **Training set**, so it feeds the consensus
 pharmacophore — without it the consensus is built on five structures instead of
 six and every later result changes.
 
-**Reproducibility caveat.** PLIP's hydrogen-bond detection is not deterministic.
-On a byte-identical input, ten PLIP runs on 9ETQ gave three H-bonds six times
-and four the other four times: one borderline contact with Arg878 flips between
-runs. The published pharmacophore corresponds to a run that found it. Re-running
-the pipeline reproduces everything else exactly, but may place the Arg878
-acceptor feature differently. See [docs/provenance.md](docs/provenance.md).
+**Reproducibility caveat.** PLIP's hydrogen-bond detection is not deterministic:
+on a byte-identical input, one borderline contact with Arg878 in 9ETQ is found in
+roughly four runs out of ten. That feature is Optional, so it appears only in the
+`all` model — which has **0 % retrospective recovery** and was not used for
+screening. The two models that were used, `core` (100 % recovery) and
+`recommended` (82.6 %), reproduce **identically**, and so do the 855 docking
+inputs. See [docs/provenance.md](docs/provenance.md).
 
 `09_refinamiento_farmacoforo.py` refines each model separately and writes both the
 three Pharmit session files (`results/pharmit/farmacoforo_{core,recommended,all}.json`,

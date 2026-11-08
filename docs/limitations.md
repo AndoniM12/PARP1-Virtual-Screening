@@ -89,10 +89,11 @@ Esto no son resultados. Son cabos sueltos.
   Eso limita la reproducibilidad exacta de esa puntuación (ver
   [provenance.md](provenance.md)).
 - **PLIP no es determinista.** Sobre un fichero idéntico, el puente de
-  hidrógeno con Arg878 en 9ETQ aparece en 4 de cada 10 ejecuciones. El
-  farmacóforo publicado corresponde a una ejecución que lo detectó; al
-  reproducirlo, esa característica suele quedar desplazada unos 2,2 Å y con
-  menor radio. Detalle y cifras en [provenance.md](provenance.md).
+  hidrógeno con Arg878 en 9ETQ aparece en 4 de cada 10 ejecuciones, y al
+  reproducirlo esa característica queda desplazada unos 2,2 Å. Afecta solo al
+  modelo `all`, que tiene un 0 % de recuperación retrospectiva y no se usó para
+  cribar: los modelos `core` y `recommended`, que son los que se usaron,
+  reproducen idénticos. Cifras en [provenance.md](provenance.md).
 - El cribado con Pharmit se hizo a través de su interfaz web, sobre una
   biblioteca cuya versión y fecha no quedaron registradas.
 - No se hizo validación retrospectiva con señuelos (*decoys*) más allá

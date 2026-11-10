@@ -37,18 +37,19 @@ una sola réplica de 50 ns no se puede afirmar tal cosa.
 
 ## Vídeo
 
-La animación de 60 fps (31 MB) no está en el repositorio, por tamaño.
-Se publica como adjunto de un *release*.
+[![Dinámica de 50 ns del ligando 453, con cámara lenta ×6 en la transición](videos/ligando453_animacion_preview.webp)](videos/ligando453_animacion_60fps.mp4)
 
-> **Pendiente:** el release todavía no existe. Cuando se publique, aquí
-> va el enlace.
+Animación completa de los 50 ns, con cámara lenta ×6 en la transición y
+gráfico de RMSD sincronizado. Lo de arriba es una vista previa reducida
+(720 px, 24 fps); el vídeo original está en
+[`videos/ligando453_animacion_60fps.mp4`](videos/ligando453_animacion_60fps.mp4)
+(1600×1000, 60 fps, 31 MB).
 
-Ficheros que irán en él:
+El resto va como adjunto de un *release*, que todavía no existe:
 
 | Fichero | Tamaño | Qué es |
 |---|---|---|
-| `ligando453_animacion_60fps.mp4` | 31 MB | Animación completa de los 50 ns, con cámara lenta ×6 en la transición y gráfico de RMSD sincronizado |
-| `ligando453_animacion_30fps.mp4` | 24 MB | La misma, a 30 fps |
+| `ligando453_animacion_30fps.mp4` | 24 MB | La misma animación, a 30 fps |
 | `ligando453_cambio_modo_union.mp4` | 8 MB | Solo la transición |
 | `traj_ligera.xtc` | 21 MB | Trayectoria sin agua, 1001 fotogramas. Hace falta para regenerar tablas y figuras |
 
@@ -68,6 +69,9 @@ tables/
   ocupacion.csv                     % de puente de H y de contacto por residuo
   anillos.csv                       distancia de cada anillo al sándwich
   plan_render_60fps.csv             correspondencia fotograma de vídeo ↔ coordset
+videos/
+  ligando453_animacion_60fps.mp4    animación final (60 fps)
+  ligando453_animacion_preview.webp vista previa para el README (720 px, 24 fps)
   equilibration/                    .xvg de NVT y NPT
 logs/
   md_50ns.log                       log de GROMACS de la producción

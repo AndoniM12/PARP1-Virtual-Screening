@@ -34,8 +34,10 @@ complex_box.gro
 # ---------------------------------------------------------------
 # Video
 # ---------------------------------------------------------------
-# Los .mp4 (31, 24 y 8 MB) van como release, no en el repositorio.
+# La animacion de 60 fps (31 MB) si esta en el repositorio, para que se
+# vea desde el README. Las otras dos (30 fps y transicion) van como release.
 *.mp4
+!results/md/videos/ligando453_animacion_60fps.mp4
 
 # ---------------------------------------------------------------
 # Cribado virtual

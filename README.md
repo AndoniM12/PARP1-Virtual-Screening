@@ -93,6 +93,10 @@ stability. It does *not* indicate that the ligand is inactive.** One
 
 ![Binding mode transition](results/md/figures/transicion.png)
 
+[![50 ns MD of ligand 453 in PARP1, with 6× slow motion during the binding-mode change and a synchronised RMSD plot](results/md/videos/ligando453_animacion_preview.webp)](results/md/videos/ligando453_animacion_60fps.mp4)
+
+*Full 50 ns trajectory, 6× slow motion through the binding-mode change (27.5–30 ns), RMSD plot in sync. The animation above is a reduced preview (720 px, 24 fps); click it for the [full 60 fps video](results/md/videos/ligando453_animacion_60fps.mp4) (1600×1000, 31 MB).*
+
 Full parameters: [docs/02_molecular_dynamics.md](docs/02_molecular_dynamics.md)
 · Results: [results/md/README.md](results/md/README.md)
 
@@ -143,7 +147,7 @@ results/
   docking/     GNINA scores, 31 candidates, interactions
   pharmacophore/ consensus table and PyMOL/JSON models
   pharmit/     refined models: the three Pharmit sessions + union table
-  md/          RMSD tables, figures, GROMACS logs
+  md/          RMSD tables, figures, video, GROMACS logs
 run/           working directory, git-ignored
 ```
 
@@ -230,7 +234,7 @@ Not in the repository, by size:
 
 | File | Size | Where |
 |---|---|---|
-| `ligando453_animacion_60fps.mp4` | 31 MB | release *(pending)* |
+| `ligando453_animacion_30fps.mp4`, `ligando453_cambio_modo_union.mp4` | 24 MB, 8 MB | release *(pending)* — the 60 fps video **is** in the repo, in `results/md/videos/` |
 | `traj_ligera.xtc` | 21 MB | release *(pending)* — needed to regenerate MD tables and figures |
 | Full 50 ns trajectories | 1.8 GB | not distributed; regenerable |
 | `pharmit.sdf` (1,479,579 molecules) | 2.8 GB | not distributed; kept locally |
@@ -243,8 +247,8 @@ Not in the repository, by size:
   The open questions are listed in
   [docs/limitations.md](docs/limitations.md); the amide torsion check is
   the first one to do.
-- **Release with the video and the light trajectory** — not yet
-  published.
+- **Release with the light trajectory and the other two videos** — not
+  yet published. The 60 fps video is already in the repository.
 - A separate, ongoing repository extends this work to a systematic
   second-level validation of all 31 candidates (decoys, ensemble
   docking, MD, MM/GBSA, selectivity, ADMET). It is not part of this

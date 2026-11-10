@@ -85,6 +85,10 @@ réplica de 50 ns no permite afirmar tal cosa.
 
 ![Transición](../results/md/figures/transicion.png)
 
+[![Dinámica de 50 ns del ligando 453 en PARP1, con cámara lenta ×6 en el cambio de modo de unión y gráfico de RMSD sincronizado](../results/md/videos/ligando453_animacion_preview.webp)](../results/md/videos/ligando453_animacion_60fps.mp4)
+
+*Los 50 ns completos, con cámara lenta ×6 durante el cambio de modo de unión (27,5–30 ns) y el RMSD sincronizado. La animación es una vista previa reducida (720 px, 24 fps); al pulsarla se abre el [vídeo completo a 60 fps](../results/md/videos/ligando453_animacion_60fps.mp4) (1600×1000, 31 MB).*
+
 Parámetros completos: [02_molecular_dynamics.md](02_molecular_dynamics.md)
 · Resultados: [../results/md/README.md](../results/md/README.md)
 
@@ -142,8 +146,8 @@ reescribió al reorganizar.
 - **Fase 1** — completa.
 - **Fase 2** — exploratoria. Una sola réplica. Lo primero pendiente es
   comprobar el diedro de las amidas.
-- **Release con el vídeo y la trayectoria ligera** — sin publicar
-  todavía.
+- **Release con la trayectoria ligera y los otros dos vídeos** — sin
+  publicar todavía. El vídeo de 60 fps ya está en el repositorio.
 - Hay un repositorio aparte, en curso, que extiende esto a una
   validación sistemática de los 31 candidatos (señuelos, ensemble
   docking, dinámica, MM/GBSA, selectividad, ADMET). No forma parte de

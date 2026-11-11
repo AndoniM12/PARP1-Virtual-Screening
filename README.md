@@ -91,11 +91,34 @@ canonical PARP1 inhibitor contacts — is observed at any point.
 stability. It does *not* indicate that the ligand is inactive.** One
 50 ns replica cannot support that claim.
 
+**What drives the change:** a rotamer change in the propanamide linker
+of the benzotriazole. The CH₂–CH₂ torsion goes *gauche*+ → *gauche*− at
+**27.75 ns** and → *anti* at **30.65 ns**; the rings rearrange after it,
+not before. Of the ligand's **ten rotatable bonds it is the only one
+that changes rotamer inside the transition window**; the rest either
+never do, or do so from 31.25 ns onwards, once the rearrangement is
+over. Neither amide bond moves at all over the 50 ns. With n = 1
+the honest statement is that the torsion *precedes* the rearrangement,
+not that it causes it.
+
+**An important caveat, found the same way:** the thiophene amide entered
+the simulation **32.2° out of plane**, a geometry that is not a minimum
+of anything, inherited from the Pharmit conformer. Minimisation dropped
+it into the planar ***cis*** well, where a 17.6 kcal/mol barrier kept it
+for all 50 ns — against an equilibrium *cis* population of 0.41 % that
+the force field itself predicts. The measurement is sound; the conformer
+it was made on probably is not. See
+[docs/limitations.md](docs/limitations.md).
+
 ![Binding mode transition](results/md/figures/transicion.png)
 
 [![50 ns MD of ligand 453 in PARP1, with 6× slow motion during the binding-mode change and a synchronised RMSD plot](results/md/videos/ligando453_animacion_preview.webp)](results/md/videos/ligando453_animacion_60fps.mp4)
 
 *Full 50 ns trajectory, 6× slow motion through the binding-mode change (27.5–30 ns), RMSD plot in sync. The animation above is a reduced preview (720 px, 24 fps); click it for the [full 60 fps video](results/md/videos/ligando453_animacion_60fps.mp4) (1600×1000, 31 MB).*
+
+[![The two amide bonds and the benzotriazole linker of ligand 453 over 50 ns, with live dihedral dials](results/md/videos/ligando453_amidas_preview.webp)](results/md/videos/ligando453_amidas.mp4)
+
+*The ligand alone through the full trajectory, with both amide groups highlighted and three live dials: the ω dihedral of each amide and the CH₂–CH₂ torsion of the linker. The amide needles never move; the linker needle jumps twice. Preview above is reduced (900 px, 12 fps); click for the [full video](results/md/videos/ligando453_amidas.mp4) (2000×900, 30 fps, 13 MB).*
 
 Full parameters: [docs/02_molecular_dynamics.md](docs/02_molecular_dynamics.md)
 · Results: [results/md/README.md](results/md/README.md)
@@ -105,9 +128,8 @@ Full parameters: [docs/02_molecular_dynamics.md](docs/02_molecular_dynamics.md)
 Single replica · 50 ns · 200 ps of equilibration · no position
 restraints during equilibration · neutralised with a single counter-ion
 and no added salt · force-field and ligand-parametrisation effects not
-examined. The ligand contains two amide bonds; whether either rotates
-during the transition **has not been checked** and should be verified
-before interpreting the transition as physical.
+examined · the input conformer had one amide 32° out of plane, which the
+simulation inherited.
 
 Details: [docs/limitations.md](docs/limitations.md)
 
@@ -244,9 +266,10 @@ Not in the repository, by size:
 - **Phase 1** — complete. Pipeline runs end to end; 31 candidates
   prioritised.
 - **Phase 2** — exploratory, complete as far as it goes. One replica.
-  The open questions are listed in
-  [docs/limitations.md](docs/limitations.md); the amide torsion check is
-  the first one to do.
+  The amide torsion check is **done**: neither amide rotates, and the
+  transition is a linker rotamer change. The remaining open questions
+  are listed in [docs/limitations.md](docs/limitations.md); re-running
+  the simulation from a *trans* conformer is the substantive one.
 - **Release with the light trajectory and the other two videos** — not
   yet published. The 60 fps video is already in the repository.
 - A separate, ongoing repository extends this work to a systematic

@@ -6,7 +6,7 @@ close
 # descarga del release y se coloca en data/md/ (ver results/md/README.md).
 open data/md/frame0.pdb
 open data/md/traj_ligera.xtc structureModel #1
-runscript scripts/md_analysis/suaviza.py
+runscript scripts/md_analysis/video/suaviza.py
 hide #1 atoms
 set bgColor white
 cartoon #1

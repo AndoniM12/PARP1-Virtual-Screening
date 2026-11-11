@@ -17,7 +17,8 @@ from chimerax.atomic import Atom, all_atomic_structures
 from chimerax.core.commands import run
 from chimerax.geometry import align_points
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# amidas_lib vive en el directorio de analisis, un nivel por encima
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from amidas_lib import encuentra_amidas, exige_trayectoria, vecinos  # noqa: E402
 
 BASE = "run/render/amidas/"            # en .gitignore

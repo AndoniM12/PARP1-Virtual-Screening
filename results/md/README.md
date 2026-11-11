@@ -188,51 +188,49 @@ python scripts/md_analysis/grafica.py
 python scripts/md_analysis/grafica_torsiones.py
 ```
 
-El vídeo (~20 min de renderizado, deja ~1 GB en `run/render/`):
+## Cómo rehacer los vídeos
+
+Los tres se montan con un solo comando, que hace la cadena entera sin
+interfaz gráfica: ChimeraX, panel, composición y `ffmpeg`.
 
 ```bash
-# en ChimeraX
-open scripts/md_analysis/estilo_revista.cxc
-runscript scripts/md_analysis/render_animacion.py
-
-# en la terminal
-python scripts/md_analysis/render_inset.py
-python scripts/md_analysis/componer.py
-ffmpeg -framerate 60 -i run/render/final/%04d.png \
-       -c:v libx264 -crf 16 -pix_fmt yuv420p \
-       ligando453_animacion_60fps.mp4
+scripts/md_analysis/video/run_video.sh animacion   # ~20 min
+scripts/md_analysis/video/run_video.sh amidas      # ~40 min
+scripts/md_analysis/video/run_video.sh torsiones   # ~35 min, 60 fps
 ```
 
-El vídeo de las torsiones (~40 min de renderizado). Necesita
-`amidas.csv` y `torsiones.csv` ya generados, y **no** hay que pasar
-antes `suaviza.py`: la media móvil amortiguaría justo las oscilaciones
-del diedro que el vídeo enseña.
+Cada uno deja entre 0,5 y 1 GB de PNG intermedios en `run/`, que se
+pueden borrar en cuanto el mp4 esté. La miniatura del README se genera
+aparte a propósito, para no rehacerla sin querer; el propio script
+imprime el comando al terminar.
+
+Los de amidas y torsiones necesitan `amidas.csv`, `torsiones.csv` y
+`fragmentos.csv` ya generados, y **no** pasan por `suaviza.py`: la
+media móvil amortiguaría justo las oscilaciones del diedro que esos dos
+vídeos enseñan. El de la animación sí lo usa.
+
+Los scripts están en `scripts/md_analysis/video/`, separados de los de
+análisis: unos producen números y otros píxeles.
+
+<details>
+<summary>Los pasos por separado, si hace falta depurar alguno</summary>
 
 ```bash
 # en ChimeraX, desde la raíz del repositorio
 open data/md/frame0.pdb
 open data/md/traj_ligera.xtc structureModel #1
-runscript scripts/md_analysis/render_amidas.py
+runscript scripts/md_analysis/video/render_torsiones.py
 
 # en la terminal
-python scripts/md_analysis/inset_amidas.py
-python scripts/md_analysis/componer_amidas.py
-ffmpeg -framerate 30 -i run/render/amidas/final/%04d.png \
-       -c:v libx264 -crf 18 -pix_fmt yuv420p \
-       results/md/videos/ligando453_amidas.mp4
-
-El vídeo de las torsiones, a 60 fps (~25 min de renderizado):
-
-```bash
-# en ChimeraX, desde la raíz del repositorio
-open data/md/frame0.pdb
-open data/md/traj_ligera.xtc structureModel #1
-runscript scripts/md_analysis/render_torsiones.py
-
-# en la terminal
-python scripts/md_analysis/inset_torsiones.py
-python scripts/md_analysis/componer_torsiones.py
+python scripts/md_analysis/video/inset_torsiones.py
+python scripts/md_analysis/video/componer_torsiones.py
 ffmpeg -framerate 60 -i run/render/torsiones/final/%04d.png \
        -c:v libx264 -crf 18 -pix_fmt yuv420p \
        results/md/videos/ligando453_torsiones.mp4
 ```
+
+Para los otros dos, cambiar `torsiones` por `amidas` (30 fps), o usar
+`open scripts/md_analysis/video/estilo_revista.cxc` y
+`render_animacion.py` para la animación (60 fps, `crf 16`).
+
+</details>

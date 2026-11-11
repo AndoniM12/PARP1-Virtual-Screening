@@ -27,7 +27,7 @@ NOTA = textwrap.fill(
     "El núcleo (gris) está fijo: no cambia de forma en 50 ns. Lo que se mueve "
     "es el brazo del benzotriazol (violeta claro), y lo mueven los tres "
     "enlaces coloreados. El decisivo es el CH₂–CH₂: salta en 27,75 y 30,65 ns "
-    "y manda el brazo de 2 a 7 Å.", width=62)
+    "y manda el brazo de 2 a 7 Å.", width=64)
 
 for p in csv.DictReader(open(D + "plan.csv")):
     n = int(p["salida"])

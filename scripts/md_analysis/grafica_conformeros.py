@@ -28,11 +28,16 @@ PANELES = [
      [("pose de GNINA", "#ea580c", "115,2°"),
       ("tras minimizar y equilibrar", "#0f766e", "77,4°  ·  cae al mínimo vecino")]),
     ("par_3_dinamica.png", "3 · La dinámica cruza a anti",
-     [("inicio de la dinámica", "#0f766e", "64,1°  (g+)"),
-      ("t = 50 ns", "#7c3aed", "−173,1°  (anti)")]),
+     [("inicio de la dinámica", "#0f766e", "77,4°  (g+)"),
+      ("t = 50 ns", "#7c3aed", "−171,0°  (anti)")]),
     ("par_4_vuelta.png", "4 · El diedro vuelve, el brazo no",
      [("biblioteca de Pharmit", "#2563eb", "−179,9°"),
-      ("t = 50 ns", "#7c3aed", "−173,1°  ·  pero CO–CH₂ acabó en 2,9°")])]
+      ("t = 50 ns", "#7c3aed", "−171,0°  ·  pero CO–CH₂ acabó en −8,5°")])]
+
+# Los valores son los de las estructuras que se dibujan, instantaneos. Una
+# version anterior etiquetaba aqui las medias circulares de las dos mesetas
+# (64,2° y -172,1°), que no son el valor de ningun fotograma concreto: el panel
+# 2 y el 3 ensenan la misma estructura y la daban con dos numeros distintos.
 
 NOTA = textwrap.fill(
     "Las cuatro conformaciones superpuestas sobre el anillo central: RMSD del "

@@ -127,6 +127,7 @@ Para regenerar las tablas y la figura hay que descargar
 figures/
   transicion.png                    RMSD + posición de los anillos
   torsiones.png                     las diez torsiones y la actividad torsional
+  conformeros.png                   las cuatro conformaciones por las que pasa el ligando
   dos_poses.png                     comparación de las dos poses
   ligando453_estilo_revista.png     render del sitio de unión
   equilibration/                    T, P, densidad y RMSD del backbone
@@ -182,10 +183,12 @@ runscript scripts/md_analysis/anillos.py
 runscript scripts/md_analysis/amidas.py
 runscript scripts/md_analysis/torsiones.py
 runscript scripts/md_analysis/fragmentos.py
+runscript scripts/md_analysis/conformeros.py
 
 # en la terminal
 python scripts/md_analysis/grafica.py
 python scripts/md_analysis/grafica_torsiones.py
+python scripts/md_analysis/grafica_conformeros.py
 ```
 
 ## Cómo rehacer los vídeos

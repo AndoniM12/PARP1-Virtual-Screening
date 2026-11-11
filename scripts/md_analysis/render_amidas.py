@@ -18,7 +18,7 @@ from chimerax.core.commands import run
 from chimerax.geometry import align_points
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from amidas_lib import encuentra_amidas, vecinos  # noqa: E402
+from amidas_lib import encuentra_amidas, exige_trayectoria, vecinos  # noqa: E402
 
 BASE = "run/render/amidas/"            # en .gitignore
 PASO = int(os.environ.get("AMIDAS_PASO", "1"))   # >1 para pruebas rapidas
@@ -32,6 +32,7 @@ VIOLETA = (109, 40, 217, 255)          # el enlazador, a juego con su dial
 os.makedirs(BASE + "mol", exist_ok=True)
 
 s = [m for m in all_atomic_structures(session) if m.id == (1,)][0]
+exige_trayectoria(s)   # falla antes de sobrescribir nada
 lig = s.residues.filter(s.residues.names == "LIG")[0]
 amidas = encuentra_amidas(s, lig)
 session.logger.info(f"amidas encontradas: {len(amidas)}  ({', '.join(a[0] for a in amidas)})")

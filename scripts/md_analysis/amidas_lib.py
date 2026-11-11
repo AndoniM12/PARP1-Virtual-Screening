@@ -67,3 +67,20 @@ def desviacion_plano(w):
     anomalia. Esta es la magnitud que delato el confomero de entrada.
     """
     return min(abs(w), abs(abs(w) - 180))
+
+
+def exige_trayectoria(s, minimo=2):
+    """Aborta si en 's' no hay una trayectoria cargada.
+
+    Con un solo coordset estos scripts no fallan: hacen lo que se les pide
+    sobre el unico fotograma que hay y escriben una tabla de una fila encima
+    de la de 1001, o renderizan un video de un fotograma. Escribir en silencio
+    algo que parece valido es peor que fallar, asi que fallan.
+    """
+    n = len(s.coordset_ids)
+    if n < minimo:
+        raise RuntimeError(
+            f"Solo hay {n} coordset(s) en el modelo: falta cargar la "
+            f"trayectoria.\n  open data/md/traj_ligera.xtc structureModel #1"
+        )
+    return n

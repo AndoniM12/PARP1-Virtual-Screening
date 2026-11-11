@@ -17,11 +17,12 @@ from chimerax.atomic import all_atomic_structures
 from chimerax.geometry import dihedral
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from amidas_lib import desviacion_plano, encuentra_amidas  # noqa: E402
+from amidas_lib import desviacion_plano, encuentra_amidas, exige_trayectoria  # noqa: E402
 
 OUT = "results/md/tables/"
 
 s = [m for m in all_atomic_structures(session) if m.id == (1,)][0]
+exige_trayectoria(s)   # falla antes de sobrescribir nada
 lig = s.residues.filter(s.residues.names == "LIG")[0]
 amidas = encuentra_amidas(s, lig)
 session.logger.info(f"amidas encontradas: {len(amidas)}")

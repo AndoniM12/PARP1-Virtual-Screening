@@ -23,7 +23,7 @@ from chimerax.atomic import all_atomic_structures
 from chimerax.geometry import dihedral
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from amidas_lib import encuentra_amidas, hidrogenos, vecinos  # noqa: E402
+from amidas_lib import encuentra_amidas, exige_trayectoria, hidrogenos, vecinos  # noqa: E402
 
 OUT = "results/md/tables/"
 VENTANA = (27.5, 30.0)          # la transicion, segun results/md/README.md
@@ -31,6 +31,7 @@ SOSTENIDO = 20                  # fotogramas (1 ns) a cada lado de un salto
 SALTO_MIN = 60                  # grados minimos para contarlo como salto
 
 s = [m for m in all_atomic_structures(session) if m.id == (1,)][0]
+exige_trayectoria(s)   # falla antes de sobrescribir nada
 lig = s.residues.filter(s.residues.names == "LIG")[0]
 
 # --- Identificacion quimica de cada posicion ---------------------------------

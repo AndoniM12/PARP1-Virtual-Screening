@@ -20,7 +20,7 @@ from chimerax.core.commands import run
 from chimerax.geometry import align_points
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from amidas_lib import encuentra_amidas, vecinos  # noqa: E402
+from amidas_lib import encuentra_amidas, exige_trayectoria, vecinos  # noqa: E402
 
 BASE = "run/render/torsiones/"         # en .gitignore
 PASO = float(os.environ.get("TORS_PASO", "0.5"))   # coordsets por fotograma
@@ -36,6 +36,7 @@ COLORES = [(245, 158, 11, 255), (109, 40, 217, 255), (8, 145, 178, 255)]
 os.makedirs(BASE + "mol", exist_ok=True)
 
 s = [m for m in all_atomic_structures(session) if m.id == (1,)][0]
+exige_trayectoria(s)   # falla antes de sobrescribir nada
 lig = s.residues.filter(s.residues.names == "LIG")[0]
 amidas = encuentra_amidas(s, lig)
 

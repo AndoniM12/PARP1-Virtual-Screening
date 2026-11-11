@@ -1,11 +1,17 @@
 import csv
+import os
+import sys
 import numpy as np
 from chimerax.atomic import all_atomic_structures
 
 # Rutas relativas a la raiz del repositorio. ChimeraX debe
 # arrancarse desde ahi, o usar el comando `cd` de ChimeraX.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from amidas_lib import exige_trayectoria  # noqa: E402
+
 OUT = "results/md/tables/"
 s = [m for m in all_atomic_structures(session) if m.id == (1,)][0]
+exige_trayectoria(s)   # falla antes de sobrescribir nada
 lig = s.residues.filter(s.residues.names == "LIG")[0]
 res = {r.number: r for r in s.residues}
 

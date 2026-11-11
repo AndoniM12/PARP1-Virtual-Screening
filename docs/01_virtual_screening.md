@@ -218,6 +218,26 @@ A partir de la distribución conjunta de estas métricas se realizó una primera
 
 Los complejos pose de candidato y proteína resultantes se encuentran en: [results/DOCKING/ligandos_estudio_combined](../results/docking/candidatos_complejo/)
 
+> **Lo que estos dos criterios no comprueban.** La dinámica del ligando
+> 453 —el mejor de los 855 por las dos métricas: −10,61 y 0,83— mostró
+> después que su pose llevaba **17,3 kcal/mol de tensión torsional** que
+> ninguna de las dos refleja, y que el puente de hidrógeno con Gly863 que
+> la hacía compatible con el farmacóforo de consenso **se perdía durante
+> el equilibrado**, antes de empezar a simular.
+>
+> Ni `Vina_score` ni `CNNscore` penalizan eso: Vina resta del score la
+> energía intramolecular de la propia pose, y no tiene potencial
+> torsional. La columna `Intramol` de
+> [gnina_summary.csv](../results/docking/gnina_summary.csv) sí lo
+> señalaba —1,51 frente a una mediana de −0,07, percentil 94,9— y no se
+> usó. Cifras, mecanismo y las dos reservas sobre convertir `Intramol` en
+> filtro, en [limitations.md](limitations.md).
+>
+> **Aviso de reproducibilidad:** `scripts/screening/11_docking.py` no
+> escribe la columna `Intramol` (lee `parts[1]`, `parts[3]` y `parts[4]`,
+> y se salta `parts[2]`). El `gnina_summary.csv` versionado tiene esa
+> columna, así que lo generó algo que no está en el repositorio.
+
 ---
 
 ## Análisis de las interacciones de los candidatos del docking

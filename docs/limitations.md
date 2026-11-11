@@ -249,6 +249,160 @@ puede cribar de antemano —contando enlaces rotables entre el anclaje y
 los sustituyentes voluminosos— y es un criterio aplicable a los 31
 candidatos de la fase 1.
 
+### De dónde sale la tensión, y cuándo se suelta
+
+Medido con `scripts/md_analysis/tension.py`
+(`results/md/tables/tension_torsional.csv`): la energía de los términos
+de torsión propia de la topología, enlace por enlace, con el cero de
+cada enlace puesto en **su propio mínimo**. Solo torsión: ni no
+enlazantes, ni proteína, ni disolvente. No es una energía de unión.
+
+| Enlace | Barrera | biblioteca | pose GNINA | frame 0 | pone el docking | suelta la minimización |
+|---|---|---|---|---|---|---|
+| `benzotriazol_fenilo-Nam` | 10,87 | 2,31 | **10,82** | 2,54 | **+8,51** | −8,27 |
+| `tiofeno_CO-Nam` | 15,45 | **8,65** | 8,76 | 3,46 | +0,11 | −5,30 |
+| `fenilo-Ometoxi1` | 6,29 | 0,01 | 4,31 | 4,15 | **+4,30** | −0,15 |
+| `enlazador_CH2-CH2` | 3,30 | 0,14 | 3,28 | 1,25 | **+3,15** | −2,03 |
+| `benzotriazol_CO-Nam` | 17,25 | 1,98 | 1,98 | 1,45 | 0,00 | −0,52 |
+| `benzotriazol_CO-CH2` | 2,68 | 1,39 | 1,95 | 2,20 | +0,56 | +0,25 |
+| `tiofeno_CO-tiofeno` | 9,20 | 1,20 | 1,51 | 4,83 | +0,31 | +3,32 |
+| `enlazador_CH2-triazol` | 1,34 | 0,67 | 1,03 | 0,16 | +0,37 | −0,87 |
+| `fenilo-Ometoxi2` | 6,24 | 0,01 | 0,98 | 0,01 | +0,98 | −0,98 |
+| `tiofeno_fenilo-Nam` | 9,70 | 1,14 | 0,22 | 2,74 | −0,93 | +2,52 |
+| **TOTAL** | | **17,50** | **34,84** | **22,79** | **+17,34** | **−12,05** |
+
+Tres cosas, por orden de importancia:
+
+**1. El enlace más tensionado de la pose no es el enlazador.** Es
+`benzotriazol_fenilo-Nam`, el enlace arilo−N de la amida del
+benzotriazol, que GNINA deja a **10,82 de una barrera de 10,87**:
+prácticamente en la cima de su barrera de conjugación, con el plano de
+la amida casi perpendicular al anillo central (−82,2°). Pone él solo
+8,51 de los 17,34 que añade el docking, y los suelta enteros en la
+minimización girando 123°, hasta +41,0°.
+
+**2. La dinámica no suelta tensión torsional.** Esto corrige la lectura
+anterior («el docking retorció y la dinámica se pasó 30 ns
+destorciendo»). La primera mitad se sostiene; la segunda no:
+
+| | 0–27,5 ns | 35–50 ns |
+|---|---|---|
+| total de los diez enlaces | 21,58 | **24,25** |
+| `enlazador_CH2-CH2` | 0,40 | **0,62** |
+
+De los 17,3 kcal/mol que añade el docking, **12,0 se sueltan en la
+minimización**, antes de que empiece la producción. En los 50 ns la
+tensión no baja: sube 2,7. Así que el cambio de modo de unión de los 28
+ns **no lo mueve la relajación interna**. Lo que gana en ese cambio está
+medido y es otra cosa: los puentes de hidrógeno pasan de 0,35 a 1,06 por
+fotograma y cambian de socio. **El enlazador es la puerta, no el motor**:
+es el grado de libertad que tiene que cruzar su barrera para que el brazo
+llegue al sitio nuevo —y por eso tarda 28 ns—, pero la fuerza que tira
+viene de la proteína. Con n = 1 eso es una exclusión más una
+correlación, no una causa demostrada.
+
+**3. La amida *cis*, por fin con un número.** `tiofeno_CO-Nam` llega de
+la biblioteca a **8,65 kcal/mol: el enlace más tensionado de todo lo que
+entró al cálculo**, y el docking no le añade nada (+0,11). Es *cis* y
+además 32° fuera del plano. La minimización lo aplana a *cis* plano
+(ω = +1,2°) y con eso suelta 5,30, dejando **3,46**, que es el coste puro
+de *cis* frente a *trans* y **confirma por otra vía el 3,3 kcal/mol** de
+«Un límite de validez». No participa en nada de lo que pasa después: es
+un peaje fijo de principio a fin.
+
+Queda abierto: **`fenilo-Ometoxi1` no se arregla nunca.** Es el segundo
+en lo que pone el docking (+4,30), la minimización no lo suelta (−0,15) y
+a lo largo de la trayectoria **empeora**, de 1,08 a 4,23 kcal/mol de
+media, cerca de la cima de su barrera de 6,29. El término de torsión no
+puede decidir si lo exige el bolsillo o es tensión sin compensar, porque
+no ve la proteína.
+
+Y una comprobación de que el docking no hace todo mal: el brazo del
+tiofeno **también** lo mueve, y mucho —6,7 Å, girando 168° y 173° los dos
+enlaces que flanquean la amida—, pero eso **no cuesta nada** (−0,93 y
++0,31) y la dinámica lo mantuvo los 50 ns (0,7° de cambio en
+`tiofeno_fenilo-Nam`). La amida en sí no gira: ω cambia 0,2°. Dos giros
+de 170° de un brazo entero no son una patología; dejar un enlace en la
+cima de su barrera, sí.
+
+### Un segundo límite de validez — la interacción que justificaba la pose no sobrevive al equilibrado
+
+El puente de hidrógeno con **Gly863** es la interacción más conservada
+del farmacóforo de consenso: **67,74 %** de los complejos de referencia
+(`results/docking/interacciones.csv`). Lo acepta **N30, un nitrógeno del
+triazol**, es decir el extremo del brazo, al otro lado del enlazador.
+
+```
+GLY863 N -> aceptor mas cercano del ligando
+
+pose dockeada                              3,28 A    <- es un puente
+fotograma 0 de la dinamica                 5,72 A    <- ya no lo es
+media 0-27,5 ns                            7,43 A
+media 35-50 ns                             6,11 A
+ocupacion en los 50 ns (ocupacion.csv)      0,0 %
+```
+
+Misma definición en los dos sitios —distancia del N del esqueleto de
+Gly863 al N u O más cercano del ligando, `anillos.py:31`—, así que los
+números son comparables. **La interacción que justificaba la
+compatibilidad farmacofórica de la pose se había perdido antes de que
+empezara la producción**, durante la minimización y el equilibrado, no a
+los 28 ns. Encaja con los 4,04 Å que se mueve el brazo entre la pose y el
+fotograma 0, y con el punto 1 de arriba: lo que lo mueve es
+`benzotriazol_fenilo-Nam`.
+
+`scripts/md_analysis/alcance.py` barre los tres diedros del enlazador
+(46 656 combinaciones, paso 10°) con el resto del ligando y la proteína
+clavados, descartando las que chocan:
+
+| | en la geometría de la pose | en el fotograma 0 |
+|---|---|---|
+| distancia mínima alcanzable | 2,04 Å | **4,69 Å** |
+| combinaciones con puente (≤ 3,5 Å) sin choque | 12 | **0** |
+| la más barata de ellas | **4,23** kcal/mol | — |
+| con los tres diedros relajados (≤ 1,58) | 9,67 – 9,82 Å | 9,22 – 9,76 Å |
+
+**El puente y un enlazador relajado son incompatibles.** Con los diedros
+en sus mínimos el triazol no se queda corto: se queda a 9,7 Å, al otro
+lado del bolsillo. Y en el fotograma 0 el puente ya no se alcanza **a
+ningún valor de torsión**: el núcleo y la proteína se han relajado lo
+justo para poner Gly863 fuera del alcance del brazo.
+
+De paso, un detalle que no favorece al docking: GNINA eligió
+113°/115°/32°, que cuesta 6,26 kcal/mol, cuando hay una vía a **4,23**
+(−150°/−130°/−130°) que llega a la misma distancia. La pose no solo está
+tensionada: está más tensionada de lo necesario para la interacción que
+hace.
+
+Dos lecturas quedan abiertas y **estos datos no las separan**: que el
+puente con Gly863 fuera un artefacto del docking (receptor rígido, sin
+desolvatación explícita, sin entropía) o que lo tirara el protocolo de
+equilibrado. No se puede fechar la pérdida dentro del equilibrado porque
+de esa etapa solo se guardaron temperatura, presión y RMSD del esqueleto
+(`results/md/tables/equilibration/`), no la trayectoria del ligando.
+
+#### Lo que no dice
+
+El ligando **no se sale del bolsillo** y **acaba mejor unido que
+empezó**: Tyr896 99,9 % y His862 99,3 % de contacto en los 1001
+fotogramas; los puentes de hidrógeno pasan de 0,35 a 1,06 por fotograma y
+los fotogramas sin ninguno bajan del 65,6 % al 20,6 %. Lo que falla es
+**la prueba que se usó para justificar la selección**, no
+necesariamente la molécula. Y no hay ni una cifra de afinidad en todo
+esto.
+
+Lo que sí es un motivo real para bajar el 453 de prioridad es otra cosa,
+y es independiente de la tensión: **nunca hace ninguno de los dos puentes
+del subsitio de nicotinamida** —Gly863 0,0 %, Ser904 0,0 %— que son el
+anclaje canónico de los inhibidores de PARP1, ni en la pose de partida,
+ni en los 50 ns, ni en la pose nueva que encontró.
+
+Y ninguna de las **diez** poses que devolvió GNINA reproduce la pose que
+encontró la dinámica: el núcleo lo clava siempre (0,1–0,8 Å) pero el
+brazo del benzotriazol queda a **3,0–5,6 Å** en las diez. No es que
+GNINA tuviera la pose buena y eligiera mal: esa pose no estaba en la
+lista.
+
 ## Que hay que comprobar, y todavía no se ha comprobado
 
 Esto no son resultados. Son cabos sueltos.
@@ -269,8 +423,52 @@ Esto no son resultados. Son cabos sueltos.
    confórmero de entrada y no un fenómeno. Esto convierte el punto 4 de
    «corrección deseable» en **el experimento que decide si el resultado
    principal sobrevive**.
+6. **Repetir el equilibrado guardando la trayectoria del ligando.** Es
+   lo que permitiría fechar la pérdida del puente con Gly863 y separar
+   las dos lecturas (artefacto del docking frente a protocolo). Es más
+   barato que el punto 4 y contesta una pregunta anterior a todas las
+   demás: si la pose seleccionada sobrevive a la preparación. Si
+   resultara que no sobrevive ninguna pose dockeada, afectaría a los 31
+   candidatos, no solo al 453.
+7. **Reordenar los 31 candidatos** con las dos comprobaciones que
+   faltaban: tensión torsional respecto al confórmero relajado de cada
+   molécula, y supervivencia de las interacciones farmacofóricas a un
+   equilibrado corto. Puede que el 453 baje; puede que bajen también
+   varios de los que estaban por encima.
+8. **Si la tensión persistente de `fenilo-Ometoxi1`** (1,08 → 4,23
+   kcal/mol de media, sin soltarse nunca) la exige el bolsillo o es
+   tensión sin compensar. El término de torsión no lo puede decidir.
 
 ## De la fase 1 (cribado y docking)
+
+- **La tensión de la pose estaba en la salida de GNINA, y no en los
+  criterios de selección.** `results/docking/gnina_summary.csv` tiene una
+  columna `Intramol` —el término intramolecular de la función de
+  puntuación— y el ligando 453 marca **1,51**, frente a una mediana de
+  −0,07 sobre 855 ligandos: **percentil 94,9**, y 89,8 comparándolo solo
+  con los 187 de tamaño similar (±2 átomos pesados). La selección se hizo
+  por `Vina_score` ≤ −10 y `CNNscore` ≥ 0,5, donde el 453 es el mejor de
+  todos (−10,61 y 0,83). La correlación de `Intramol` con `Vina_score` es
+  **−0,06**: es información independiente que el criterio no usó.
+
+  Con dos avisos antes de convertirlo en filtro. **Vina no tiene
+  potencial torsional**: `Intramol` son sus términos no enlazantes
+  intramoleculares, así que no puede ver un diedro eclipsado ni una amida
+  arílica fuera de conjugación, que es exactamente el mecanismo medido
+  (los 17,3 kcal/mol son íntegramente torsionales). Y de hecho la pose
+  dockeada está **menos** congestionada internamente que el confórmero de
+  la biblioteca (5 pares pesados por debajo de 3,5 Å frente a 9). Marca
+  la molécula correcta por razones que no coinciden con lo demostrado,
+  así que sirve de aviso, no de umbral.
+- **`Intramol` no es reproducible con el script del repositorio.**
+  `scripts/screening/11_docking.py:217` escribe
+  `Ligando,Pose,Affinity,CNNscore,CNNaffinity`: lee `parts[1]`, `parts[3]`
+  y `parts[4]` y se salta `parts[2]`, que es justo esa columna. El
+  `gnina_summary.csv` versionado tiene seis columnas, así que lo generó
+  algo que no está en el repositorio. Los valores parecen correctos —el
+  emparejamiento con `representantes_docking.sdf` se verificó: índice 452
+  = `MolPort-000-056-093` = `ligando_453`—, pero hay que arreglar el
+  script antes de construir un filtro encima.
 
 - El docking con GNINA se hizo con `--exhaustiveness 8` y
   `--num_modes 10`, valores moderados. La semilla sí está fijada

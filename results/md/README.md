@@ -67,11 +67,57 @@ reserva importante sobre el confórmero de partida, en
 
 En ningún momento hay puente de hidrógeno con **Gly863** (el aceptor más
 cercano se queda a 6–7 Å) ni con **Ser904**, que son los contactos
-canónicos de los inhibidores de PARP1.
+canónicos de los inhibidores de PARP1. **Pero la pose dockeada sí lo
+tenía**, a 3,28 Å, y lo había perdido ya en el fotograma 0 (5,72 Å):
+durante la minimización y el equilibrado, no a los 28 ns. Gly863 es el
+puente más conservado del farmacóforo de consenso, 67,74 % de los
+complejos de referencia.
+
+## De dónde sale la tensión de la pose
+
+![Las cuatro conformaciones por las que pasa el ligando](figures/conformeros.png)
+
+`tables/tension_torsional.csv` mide la energía de torsión propia de los
+diez enlaces rotables en las cuatro etapas, con el cero de cada enlace en
+su propio mínimo:
+
+```
+TOTAL de los diez enlaces (kcal/mol)
+  confórmero de la biblioteca   17,50
+  pose de GNINA                 34,84     <- el docking añade 17,34
+  fotograma 0                   22,79     <- la minimización suelta 12,05
+  media 0-27,5 ns               21,58
+  media 35-50 ns                24,25     <- los 50 ns no sueltan nada
+```
+
+El 92 % de esos 17,34 está en tres enlaces, y **el mayor no es el
+enlazador**: es `benzotriazol_fenilo-Nam`, el arilo−N de la amida del
+benzotriazol, que GNINA deja a **10,82 de una barrera de 10,87** —casi en
+la cima— y que suelta los 8,27 enteros en la minimización girando 123°.
+Ese es el enlace que mueve el brazo 4 Å y rompe el puente con Gly863.
+
+Y corrige una lectura anterior: **la dinámica no destuerce nada.** La
+tensión torsional no baja en los 50 ns, sube 2,7. El cambio de modo de
+unión de los 28 ns no lo mueve la relajación interna, sino lo que se gana
+en interacciones: los puentes de hidrógeno pasan de 0,35 a 1,06 por
+fotograma. **El enlazador es la puerta, no el motor.**
+
+`alcance.py` cierra el argumento barriendo los tres diedros del enlazador
+(46 656 combinaciones) con todo lo demás clavado: en la geometría de la
+pose, el puente con Gly863 solo se hace pagando ≥ **4,23 kcal/mol**, y
+con los tres diedros relajados el triazol se queda a **9,7 Å**. En el
+fotograma 0 ya no se alcanza a ningún valor de torsión.
 
 **Qué indica esto:** que una buena puntuación de docking no garantiza
-que la pose sea estable. **No** indica que el ligando sea inactivo; con
-una sola réplica de 50 ns no se puede afirmar tal cosa.
+que la pose sea estable, y que el paso de selección evaluó una
+**geometría** en vez de un **estado**. **No** indica que el ligando sea
+inactivo: no se sale del bolsillo (Tyr896 99,9 % de contacto) y acaba
+mejor unido que empezó. Con una sola réplica de 50 ns no se puede
+afirmar tal cosa.
+
+El desglose enlace por enlace, los límites de estas cifras y las dos
+lecturas que quedan abiertas, en
+[limitations.md](../../docs/limitations.md).
 
 ## Vídeo
 
@@ -138,6 +184,7 @@ tables/
   amidas.csv                        diedro ω y desviación del plano de las dos amidas
   torsiones.csv                     los diez enlaces rotables del ligando
   fragmentos.csv                    movimiento del núcleo y del brazo, por separado
+  tension_torsional.csv             tensión de cada enlace en las cuatro etapas
   plan_render_60fps.csv             correspondencia fotograma de vídeo ↔ coordset
 videos/
   ligando453_animacion_preview.webp  vista previa (720 px, 24 fps)
@@ -189,7 +236,35 @@ runscript scripts/md_analysis/conformeros.py
 python scripts/md_analysis/grafica.py
 python scripts/md_analysis/grafica_torsiones.py
 python scripts/md_analysis/grafica_conformeros.py
+python scripts/md_analysis/escena_cuatro.py   # renombra las cuatro etapas
+python scripts/md_analysis/tension.py         # tension_torsional.csv
 ```
+
+`escena_cuatro.py` tiene que ir antes de `tension.py`: reescribe las
+cuatro conformaciones de `conformeros.py` con los átomos **nombrados
+igual en las cuatro**, que es lo que permite medir el mismo enlace en
+todas. Cada etapa viene de un formato distinto y conserva el orden de
+atomos de su fichero de origen.
+
+El barrido que contesta si el ligando puede alcanzar Gly863 sin tensión
+va aparte, porque tarda unos minutos y no escribe tabla:
+
+```bash
+python scripts/md_analysis/alcance.py 10      # paso de la rejilla, en grados
+```
+
+Y la escena para girar los enlaces a mano y comparar las cuatro
+conformaciones, con los tres diedros del enlazador y las distancias en
+vivo:
+
+```bash
+chimerax run/render/alcance/cuatro/girar_cuatro.cxc
+```
+
+El botón derecho queda en modo `bond rotation`. Ojo: **los arrastres con
+el ratón no entran en la pila de `undo`**, así que la escena define
+`reset1`…`reset4` y `reset` para devolver cada modelo a sus valores de
+origen.
 
 ## Cómo rehacer los vídeos
 

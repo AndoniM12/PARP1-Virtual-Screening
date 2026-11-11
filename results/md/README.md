@@ -75,31 +75,47 @@ una sola réplica de 50 ns no se puede afirmar tal cosa.
 
 ## Vídeo
 
-[![Dinámica de 50 ns del ligando 453, con cámara lenta ×6 en la transición](videos/ligando453_animacion_preview.webp)](videos/ligando453_animacion_60fps.mp4)
+[![Dinámica de 50 ns del ligando 453, con cámara lenta ×6 en la transición](videos/ligando453_animacion_preview.webp)](https://github.com/AndoniM12/PARP1-Virtual-Screening/releases/download/v2.1/ligando453_animacion_60fps.mp4)
 
 Animación completa de los 50 ns, con cámara lenta ×6 en la transición y
 gráfico de RMSD sincronizado. Lo de arriba es una vista previa reducida
 (720 px, 24 fps); el vídeo original está en
-[`videos/ligando453_animacion_60fps.mp4`](videos/ligando453_animacion_60fps.mp4)
+[`ligando453_animacion_60fps.mp4`](https://github.com/AndoniM12/PARP1-Virtual-Screening/releases/download/v2.1/ligando453_animacion_60fps.mp4)
 (1600×1000, 60 fps, 31 MB).
 
-### Las torsiones
+### Las torsiones del enlazador
 
-[![Las dos amidas y el enlazador del ligando 453 durante 50 ns](videos/ligando453_amidas_preview.webp)](videos/ligando453_amidas.mp4)
+[![Qué mueve el cambio de modo de unión del ligando 453](videos/ligando453_torsiones_preview.webp)](https://github.com/AndoniM12/PARP1-Virtual-Screening/releases/download/v2.1/ligando453_torsiones.mp4)
 
-[`videos/ligando453_amidas.mp4`](videos/ligando453_amidas.mp4)
+`ligando453_torsiones.mp4` (2000×900, 60 fps, 33 s) — el ligando solo,
+superpuesto sobre su **núcleo**, de modo que el núcleo queda fijo y se
+ve salir el brazo del benzotriazol. Tres diales, uno por enlace del
+enlazador, y debajo cuánto se ha desplazado el brazo. La aguja del
+CH₂−CH₂ salta en 27,75 y 30,65 ns y manda el brazo de 2 a 7 Å.
+
+### Las dos amidas
+
+[![Las dos amidas y el enlazador del ligando 453 durante 50 ns](videos/ligando453_amidas_preview.webp)](https://github.com/AndoniM12/PARP1-Virtual-Screening/releases/download/v2.1/ligando453_amidas.mp4)
+
+[`ligando453_amidas.mp4`](https://github.com/AndoniM12/PARP1-Virtual-Screening/releases/download/v2.1/ligando453_amidas.mp4)
 (2000×900, 30 fps, 33 s) — el ligando solo, girando una vuelta
 completa, con las dos amidas resaltadas y tres diales en vivo: el
 diedro ω de cada amida y la torsión CH₂−CH₂ del enlazador. Las dos
 agujas de las amidas no se mueven en 50 ns; la del enlazador salta dos
 veces.
 
-El resto va como adjunto de un *release*, que todavía no existe:
+**Los vídeos no están en el repositorio**: van como adjuntos del
+[release v2.1](https://github.com/AndoniM12/PARP1-Virtual-Screening/releases/tag/v2.1). Un binario confirmado en git se queda en el
+historial para siempre y no se comprime por diferencias, así que cada
+versión de un vídeo pesaría otra vez entera. Como adjunto se puede
+reemplazar sin dejar rastro. En el repositorio quedan solo las
+miniaturas reducidas.
 
-| Fichero | Tamaño | Qué es |
+| Fichero del release | Tamaño | Qué es |
 |---|---|---|
-| `ligando453_animacion_30fps.mp4` | 24 MB | La misma animación, a 30 fps |
-| `ligando453_cambio_modo_union.mp4` | 8 MB | Solo la transición |
+| `ligando453_animacion_60fps.mp4` | 31 MB | La animación en el sitio de unión, con cámara lenta |
+| `ligando453_amidas.mp4` | 12 MB | Las dos amidas y el enlazador, con diales |
+| `ligando453_torsiones.mp4` | 10 MB | Qué mueve el cambio de modo de unión, 60 fps |
 | `traj_ligera.xtc` | 21 MB | Trayectoria sin agua, 1001 fotogramas. Hace falta para regenerar tablas y figuras |
 
 Para regenerar las tablas y la figura hay que descargar
@@ -123,10 +139,10 @@ tables/
   fragmentos.csv                    movimiento del núcleo y del brazo, por separado
   plan_render_60fps.csv             correspondencia fotograma de vídeo ↔ coordset
 videos/
-  ligando453_animacion_60fps.mp4    animación final (60 fps)
-  ligando453_animacion_preview.webp vista previa para el README (720 px, 24 fps)
-  ligando453_amidas.mp4             amidas y enlazador, con diales (30 fps)
-  ligando453_amidas_preview.webp    vista previa para el README (900 px, 12 fps)
+  ligando453_animacion_preview.webp  vista previa (720 px, 24 fps)
+  ligando453_amidas_preview.webp     vista previa (900 px, 12 fps)
+  ligando453_torsiones_preview.webp  vista previa (720 px, 7 fps)
+  (los mp4 completos van en el release, no en el repositorio)
   equilibration/                    .xvg de NVT y NPT
 logs/
   md_50ns.log                       log de GROMACS de la producción
@@ -204,4 +220,19 @@ python scripts/md_analysis/componer_amidas.py
 ffmpeg -framerate 30 -i run/render/amidas/final/%04d.png \
        -c:v libx264 -crf 18 -pix_fmt yuv420p \
        results/md/videos/ligando453_amidas.mp4
+
+El vídeo de las torsiones, a 60 fps (~25 min de renderizado):
+
+```bash
+# en ChimeraX, desde la raíz del repositorio
+open data/md/frame0.pdb
+open data/md/traj_ligera.xtc structureModel #1
+runscript scripts/md_analysis/render_torsiones.py
+
+# en la terminal
+python scripts/md_analysis/inset_torsiones.py
+python scripts/md_analysis/componer_torsiones.py
+ffmpeg -framerate 60 -i run/render/torsiones/final/%04d.png \
+       -c:v libx264 -crf 18 -pix_fmt yuv420p \
+       results/md/videos/ligando453_torsiones.mp4
 ```

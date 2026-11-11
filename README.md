@@ -112,13 +112,14 @@ it was made on probably is not. See
 
 ![Binding mode transition](results/md/figures/transicion.png)
 
-[![50 ns MD of ligand 453 in PARP1, with 6× slow motion during the binding-mode change and a synchronised RMSD plot](results/md/videos/ligando453_animacion_preview.webp)](results/md/videos/ligando453_animacion_60fps.mp4)
+[![What drives the binding-mode change of ligand 453: the three linker torsions, with live dials](results/md/videos/ligando453_torsiones_preview.webp)](https://github.com/AndoniM12/PARP1-Virtual-Screening/releases/download/v2.1/ligando453_torsiones.mp4)
 
-*Full 50 ns trajectory, 6× slow motion through the binding-mode change (27.5–30 ns), RMSD plot in sync. The animation above is a reduced preview (720 px, 24 fps); click it for the [full 60 fps video](results/md/videos/ligando453_animacion_60fps.mp4) (1600×1000, 31 MB).*
+*The ligand alone over the full trajectory, superimposed on its **core** so that the core stays fixed and the benzotriazole arm is seen to swing. Three live dials, one per linker bond; below them, how far the arm has travelled. The CH₂–CH₂ needle jumps at 27.75 and 30.65 ns and sends the arm from 2 to 7 Å. Preview above is reduced (720 px, 7 fps); click for the [full 60 fps video](https://github.com/AndoniM12/PARP1-Virtual-Screening/releases/download/v2.1/ligando453_torsiones.mp4) (2000×900, 33 s, 10 MB).*
 
-[![The two amide bonds and the benzotriazole linker of ligand 453 over 50 ns, with live dihedral dials](results/md/videos/ligando453_amidas_preview.webp)](results/md/videos/ligando453_amidas.mp4)
-
-*The ligand alone through the full trajectory, with both amide groups highlighted and three live dials: the ω dihedral of each amide and the CH₂–CH₂ torsion of the linker. The amide needles never move; the linker needle jumps twice. Preview above is reduced (900 px, 12 fps); click for the [full video](results/md/videos/ligando453_amidas.mp4) (2000×900, 30 fps, 13 MB).*
+Two further videos — the 50 ns animation in the binding site and the amide
+analysis — are in the same release. All of them, and the light trajectory, are
+release assets rather than repository files, so cloning stays cheap:
+**[Release v2.1](https://github.com/AndoniM12/PARP1-Virtual-Screening/releases/tag/v2.1)**.
 
 Full parameters: [docs/02_molecular_dynamics.md](docs/02_molecular_dynamics.md)
 · Results: [results/md/README.md](results/md/README.md)
@@ -256,8 +257,8 @@ Not in the repository, by size:
 
 | File | Size | Where |
 |---|---|---|
-| `ligando453_animacion_30fps.mp4`, `ligando453_cambio_modo_union.mp4` | 24 MB, 8 MB | release *(pending)* — the 60 fps video **is** in the repo, in `results/md/videos/` |
-| `traj_ligera.xtc` | 21 MB | release *(pending)* — needed to regenerate MD tables and figures |
+| `ligando453_animacion_60fps.mp4`, `ligando453_amidas.mp4`, `ligando453_torsiones.mp4` | 31 MB, 12 MB, 10 MB | **[release v2.1](https://github.com/AndoniM12/PARP1-Virtual-Screening/releases/tag/v2.1)** — only the reduced previews live in the repository |
+| `traj_ligera.xtc` | 21 MB | **[release v2.1](https://github.com/AndoniM12/PARP1-Virtual-Screening/releases/tag/v2.1)** — needed to regenerate MD tables and figures |
 | Full 50 ns trajectories | 1.8 GB | not distributed; regenerable |
 | `pharmit.sdf` (1,479,579 molecules) | 2.8 GB | not distributed; kept locally |
 

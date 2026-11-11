@@ -43,7 +43,11 @@ with open(OUT + "por_fotograma.csv", "w", newline="") as f:
     w = csv.writer(f); w.writerow(["tiempo_ns", "rmsd_lig_A", "n_hbonds", "residuos_hbond"]); w.writerows(rows)
 with open(OUT + "ocupacion.csv", "w", newline="") as f:
     w = csv.writer(f); w.writerow(["residuo", "hbond_pct", "contacto_pct"])
-    for r in sorted(set(hb_count) | set(contact_count), key=lambda k: -contact_count[k]):
+    # El nombre desempata: sin el, el orden de iteracion del set (que Python
+    # aleatoriza) decide entre residuos con el mismo % y el fichero sale
+    # distinto en cada ejecucion.
+    for r in sorted(set(hb_count) | set(contact_count),
+                    key=lambda k: (-contact_count[k], k)):
         w.writerow([r, round(100 * hb_count[r] / n, 1), round(100 * contact_count[r] / n, 1)])
 r = np.array([x[1] for x in rows])
 session.logger.info(f"frames={n} rmsd_mean={r.mean():.2f} rmsd_max={r.max():.2f} rmsd_last5ns={r[-100:].mean():.2f}")

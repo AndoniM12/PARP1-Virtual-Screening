@@ -89,13 +89,25 @@ def lee_proteina(path, excluir="LIG", desplaza_residuos=0):
 
 
 def lee_mol2(path, pose=1):
-    """Una pose del mol2 de GNINA. RDKit se atraganta con sus tipos Tripos."""
+    """Una pose del mol2 de GNINA. RDKit se atraganta con sus tipos Tripos.
+
+    Entre ATOM y BOND puede haber secciones intercaladas (algunos ficheros
+    traen UNITY_ATOM_ATTR), asi que las secciones se cortan en el siguiente
+    @<TRIPOS> y las lineas se filtran por forma.
+    """
     t = open(path).read().split("@<TRIPOS>MOLECULE")[pose]
-    at = t.split("@<TRIPOS>ATOM")[1].split("@<TRIPOS>BOND")[0].strip().splitlines()
-    bo = t.split("@<TRIPOS>BOND")[1].split("@<TRIPOS>")[0].strip().splitlines()
-    els = [re.sub(r"[^A-Za-z]", "", l.split()[5].split(".")[0]) for l in at]
-    X = np.array([[float(x) for x in l.split()[2:5]] for l in at])
-    bonds = [(int(l.split()[1]) - 1, int(l.split()[2]) - 1) for l in bo]
+
+    def seccion(nombre):
+        return [l for l in t.split(f"@<TRIPOS>{nombre}")[1]
+                .split("@<TRIPOS>")[0].strip().splitlines() if l.strip()]
+
+    at = [l.split() for l in seccion("ATOM")]
+    at = [f for f in at if len(f) >= 6 and f[0].isdigit()]
+    bo = [l.split() for l in seccion("BOND")]
+    bo = [f for f in bo if len(f) >= 4 and f[0].isdigit()]
+    els = [re.sub(r"[^A-Za-z]", "", f[5].split(".")[0]) for f in at]
+    X = np.array([[float(x) for x in f[2:5]] for f in at])
+    bonds = [(int(f[1]) - 1, int(f[2]) - 1) for f in bo]
     return els, X, bonds
 
 

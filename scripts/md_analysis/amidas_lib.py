@@ -4,7 +4,7 @@
 # porque vienen de la exportacion de OpenFF, asi que no se pueden localizar por
 # nombre como se hace con los residuos de la proteina. Hay que ir por quimica.
 #
-# Lo usan amidas.py (medida) y render_amidas.py (video).
+# Lo usa amidas.py, que mide el diedro omega de las dos.
 
 
 def vecinos(a):

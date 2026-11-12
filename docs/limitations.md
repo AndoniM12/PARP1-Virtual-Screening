@@ -61,7 +61,7 @@ dinámica. Conviene leerla antes que la gráfica.
 - **El etiquetado de los anillos en la figura es una inferencia.** La
   tabla `anillos.csv` tiene dos columnas con la misma cabecera
   (`6-CCCCCC`): el dimetoxifenilo y el benceno del benzotriazol son
-  ambos anillos de seis carbonos. `grafica.py` las distingue por el
+  ambos anillos de seis carbonos. La figura las distingue por el
   orden en que ChimeraX enumera los anillos, no por un criterio
   químico. La asignación encaja con los datos (el anillo de triazol
   acompaña al benceno etiquetado como «benzotriazol», que es lo

@@ -17,25 +17,21 @@ Se ejecutan **dentro de ChimeraX**, con `runscript`:
 
 - `scripts/md_analysis/analiza.py` (usa `chimerax.hbonds.find_hbonds`)
 - `scripts/md_analysis/anillos.py`
-- `scripts/md_analysis/suaviza.py`
-- `scripts/md_analysis/render_animacion.py`
-- `scripts/md_analysis/estilo_revista.cxc`
+- `scripts/md_analysis/amidas.py`
+- `scripts/md_analysis/torsiones.py`
+- `scripts/md_analysis/fragmentos.py`
+- `scripts/md_analysis/conformeros.py`
 
 ## Scripts que NO lo necesitan
 
-Son Python normal y corriente, con matplotlib, numpy y Pillow. Valen
-tanto el entorno `parp1_pipeline` como cualquiera que tenga esos tres
-paquetes:
+Son Python normal y corriente, con numpy:
 
-- `scripts/md_analysis/grafica.py`
-- `scripts/md_analysis/render_inset.py`
-- `scripts/md_analysis/componer.py`
+- `scripts/md_analysis/escena_cuatro.py`
+- `scripts/md_analysis/tension.py`
+- `scripts/md_analysis/alcance.py`
 
-## Otras dependencias
-
-- `ffmpeg`, para montar el video a partir de los fotogramas.
-- Fuentes DejaVu en `/usr/share/fonts/truetype/dejavu/`, que
-  `componer.py` usa por ruta absoluta.
+`escena_cuatro.py` escribe una escena `.cxc` que sí se abre con
+ChimeraX, pero el script en sí no lo necesita para correr.
 
 ## Aviso sobre las rutas
 

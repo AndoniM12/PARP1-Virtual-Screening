@@ -153,7 +153,4 @@ open data/md/frame0.pdb
 open data/md/traj_ligera.xtc structureModel #1
 runscript scripts/md_analysis/analiza.py
 runscript scripts/md_analysis/anillos.py
-
-# en la terminal
-python scripts/md_analysis/grafica.py
 ```

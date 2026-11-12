@@ -175,6 +175,8 @@ figures/
   torsiones.png                     las diez torsiones y la actividad torsional
   conformeros.png                   las cuatro conformaciones por las que pasa el ligando
   dos_poses.png                     comparación de las dos poses
+  cis_amida.png                     la amida del tiofeno entró en cis
+  entrada_vs_50ns.png               el confórmero de la biblioteca contra el de 50 ns
   ligando453_estilo_revista.png     render del sitio de unión
   equilibration/                    T, P, densidad y RMSD del backbone
 tables/
@@ -212,7 +214,7 @@ logs/
    lo delatan, siempre merodeando ±180.
 3. **`anillos.csv` tiene dos columnas con la misma cabecera**
    (`6-CCCCCC`): el dimetoxifenilo y el benceno del benzotriazol son los
-   dos anillos de seis carbonos. `grafica.py` las distingue por el orden
+   dos anillos de seis carbonos. La figura las distingue por el orden
    en que ChimeraX enumera los anillos, no por un criterio químico. La
    asignación encaja con los datos, pero está sin verificar por índices
    de átomo.
@@ -233,9 +235,6 @@ runscript scripts/md_analysis/fragmentos.py
 runscript scripts/md_analysis/conformeros.py
 
 # en la terminal
-python scripts/md_analysis/grafica.py
-python scripts/md_analysis/grafica_torsiones.py
-python scripts/md_analysis/grafica_conformeros.py
 python scripts/md_analysis/escena_cuatro.py   # renombra las cuatro etapas
 python scripts/md_analysis/tension.py         # tension_torsional.csv
 ```
@@ -266,49 +265,14 @@ el ratón no entran en la pila de `undo`**, así que la escena define
 `reset1`…`reset4` y `reset` para devolver cada modelo a sus valores de
 origen.
 
-## Cómo rehacer los vídeos
+## Los vídeos y las figuras
 
-Los tres se montan con un solo comando, que hace la cadena entera sin
-interfaz gráfica: ChimeraX, panel, composición y `ffmpeg`.
+Los mp4 completos están en el [release
+v2.1](https://github.com/AndoniM12/PARP1-Virtual-Screening/releases/tag/v2.1);
+en `videos/` solo van las vistas previas.
 
-```bash
-scripts/md_analysis/video/run_video.sh animacion   # ~20 min
-scripts/md_analysis/video/run_video.sh amidas      # ~40 min
-scripts/md_analysis/video/run_video.sh torsiones   # ~35 min, 60 fps
-```
-
-Cada uno deja entre 0,5 y 1 GB de PNG intermedios en `run/`, que se
-pueden borrar en cuanto el mp4 esté. La miniatura del README se genera
-aparte a propósito, para no rehacerla sin querer; el propio script
-imprime el comando al terminar.
-
-Los de amidas y torsiones necesitan `amidas.csv`, `torsiones.csv` y
-`fragmentos.csv` ya generados, y **no** pasan por `suaviza.py`: la
-media móvil amortiguaría justo las oscilaciones del diedro que esos dos
-vídeos enseñan. El de la animación sí lo usa.
-
-Los scripts están en `scripts/md_analysis/video/`, separados de los de
-análisis: unos producen números y otros píxeles.
-
-<details>
-<summary>Los pasos por separado, si hace falta depurar alguno</summary>
-
-```bash
-# en ChimeraX, desde la raíz del repositorio
-open data/md/frame0.pdb
-open data/md/traj_ligera.xtc structureModel #1
-runscript scripts/md_analysis/video/render_torsiones.py
-
-# en la terminal
-python scripts/md_analysis/video/inset_torsiones.py
-python scripts/md_analysis/video/componer_torsiones.py
-ffmpeg -framerate 60 -i run/render/torsiones/final/%04d.png \
-       -c:v libx264 -crf 18 -pix_fmt yuv420p \
-       results/md/videos/ligando453_torsiones.mp4
-```
-
-Para los otros dos, cambiar `torsiones` por `amidas` (30 fps), o usar
-`open scripts/md_analysis/video/estilo_revista.cxc` y
-`render_animacion.py` para la animación (60 fps, `crf 16`).
-
-</details>
+Los scripts que montan esos vídeos, y los que dibujan las figuras de
+`figures/`, **no están en este repositorio**: aquí se guarda lo que
+produce los datos, no lo que los representa. Las tablas de `tables/` son
+la fuente de todas las figuras, así que cualquiera puede rehacerlas a su
+manera.

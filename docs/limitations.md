@@ -77,6 +77,8 @@ ella, y está condicionada por la primera.
 
 ### Un límite de validez — la simulación describe un confórmero que apenas se da
 
+![La amida del tiofeno: 0,41 % esperado frente al 100 % simulado](../results/md/figures/cis_amida.png)
+
 Antes era una pregunta abierta («¿gira alguna amida?»). La respuesta es
 que no gira ninguna, pero al medirlo aparece algo de más alcance: la
 del tiofeno **ya entró mal**.

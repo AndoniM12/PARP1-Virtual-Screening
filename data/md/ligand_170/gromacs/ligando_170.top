@@ -1,0 +1,15 @@
+[ defaults ]
+; nbfunc	comb-rule	gen-pairs	fudgeLJ	fudgeQQ
+     1	     2	yes   	0.500000	0.833333
+
+#include "/home/andonim12/Documents/PARP1/Molecular-Dynamics_(prueba)/ligando_170/02_topologia/ligando/ligando_170_atomtypes.itp"
+#include "/home/andonim12/Documents/PARP1/Molecular-Dynamics_(prueba)/ligando_170/02_topologia/ligando/ligando_170_LIG.itp"
+
+[ system ]
+;name
+FOO
+
+[ molecules ]
+;name	number
+LIG	1
+

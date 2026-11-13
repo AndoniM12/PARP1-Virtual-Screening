@@ -1,0 +1,48 @@
+title                   = PARP1-LIG@LIGANDO@ NVT equilibration
+
+integrator              = md
+dt                      = 0.002
+nsteps                  = 50000
+
+; Output
+nstenergy               = 1000
+nstlog                  = 1000
+nstxout-compressed      = 1000
+
+; Bonds
+constraints             = h-bonds
+constraint-algorithm    = lincs
+
+; Neighbor searching
+cutoff-scheme           = Verlet
+nstlist                 = 20
+rlist                   = 1.0
+
+; Electrostatics
+coulombtype             = PME
+rcoulomb                = 1.0
+
+; van der Waals
+vdwtype                 = cutoff
+rvdw                    = 1.0
+
+; Temperature coupling
+tcoupl                  = V-rescale
+tc-grps                 = System
+tau-t                   = 0.1
+ref-t                   = 300
+
+; Pressure coupling
+pcoupl                  = no
+
+; Periodic boundary conditions
+pbc                     = xyz
+
+; Initial velocities
+gen-vel                  = yes
+gen-temp                 = 300
+gen-seed                 = @SEED@
+
+; Center of mass motion
+nstcomm                 = 100
+comm-grps                = System

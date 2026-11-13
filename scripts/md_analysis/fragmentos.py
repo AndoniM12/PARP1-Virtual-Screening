@@ -7,8 +7,8 @@
 # y el brazo arrastra al nucleo 3,3 A dentro del bolsillo.
 #
 # En ChimeraX, desde la raiz del repositorio:
-#   open data/md/frame0.pdb
-#   open data/md/traj_ligera.xtc structureModel #1
+#   open data/md/ligand_453/frame0.pdb
+#   open data/md/ligand_453/traj_ligera.xtc structureModel #1
 #   runscript scripts/md_analysis/fragmentos.py
 import csv
 import os
@@ -21,7 +21,14 @@ from chimerax.geometry import align_points
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from amidas_lib import encuentra_amidas, exige_trayectoria, vecinos  # noqa: E402
 
-OUT = "results/md/tables/"
+# Ligando y paso entre fotogramas como argumentos:
+#   runscript scripts/md_analysis/fragmentos.py 170 0.1
+# Sin argumentos, el 453 y sus 50 ps. Lee lo que este cargado en #1 y escribe
+# en results/md/ligand_<N>/tables/.
+LIGANDO = sys.argv[1] if len(sys.argv) > 1 else "453"
+DT_NS = float(sys.argv[2]) if len(sys.argv) > 2 else 0.05
+OUT = f"results/md/ligand_{LIGANDO}/tables/"
+os.makedirs(OUT, exist_ok=True)
 
 s = [m for m in all_atomic_structures(session) if m.id == (1,)][0]
 exige_trayectoria(s)   # falla antes de sobrescribir nada
@@ -76,7 +83,7 @@ for cid in ids:
     int_n, int_b = rmsd(Y[iN], X0[iN]), rmsd(Y[iB], X0[iB])
     # Superponiendo todo el ligando: cuanto cambia de forma en conjunto.
     Z = align_points(X[iT], X0[iT])[0].transform_points(X)
-    filas.append([round((cid - 1) * 0.05, 2), round(int_n, 2), round(int_b, 2),
+    filas.append([round((cid - 1) * DT_NS, 2), round(int_n, 2), round(int_b, 2),
                   round(rmsd(Z[iT], X0[iT]), 2), round(pose_n, 2), round(pose_b, 2)])
 s.active_coordset_id = ids[0]
 

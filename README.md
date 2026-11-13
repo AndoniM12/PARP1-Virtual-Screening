@@ -110,9 +110,9 @@ the force field itself predicts. The measurement is sound; the conformer
 it was made on probably is not. See
 [docs/limitations.md](docs/limitations.md).
 
-![Binding mode transition](results/md/figures/transicion.png)
+![Binding mode transition](results/md/ligand_453/figures/transicion.png)
 
-[![What drives the binding-mode change of ligand 453: the three linker torsions, with live dials](results/md/videos/ligando453_torsiones_preview.webp)](https://github.com/AndoniM12/PARP1-Virtual-Screening/releases/download/v2.1/ligando453_torsiones.mp4)
+[![What drives the binding-mode change of ligand 453: the three linker torsions, with live dials](results/md/ligand_453/videos/ligando453_torsiones_preview.webp)](https://github.com/AndoniM12/PARP1-Virtual-Screening/releases/download/v2.1/ligando453_torsiones.mp4)
 
 *The ligand alone over the full trajectory, superimposed on its **core** so that the core stays fixed and the benzotriazole arm is seen to swing. Three live dials, one per linker bond; below them, how far the arm has travelled. The CH₂–CH₂ needle jumps at 27.75 and 30.65 ns and sends the arm from 2 to 7 Å. Preview above is reduced (720 px, 7 fps); click for the [full 60 fps video](https://github.com/AndoniM12/PARP1-Virtual-Screening/releases/download/v2.1/ligando453_torsiones.mp4) (2000×900, 33 s, 10 MB).*
 
@@ -122,7 +122,22 @@ release assets rather than repository files, so cloning stays cheap:
 **[Release v2.1](https://github.com/AndoniM12/PARP1-Virtual-Screening/releases/tag/v2.1)**.
 
 Full parameters: [docs/02_molecular_dynamics.md](docs/02_molecular_dynamics.md)
-· Results: [results/md/README.md](results/md/README.md)
+· Results: [results/md/ligand_453/README.md](results/md/ligand_453/README.md)
+
+#### A second ligand, for contrast
+
+Ligand **170** (Molport-053-317-044) was run afterwards under the same
+protocol, and it behaves the opposite way: the docked pose holds for all
+50 ns (ligand RMSD below 2.4 Å), and at ~36 ns it settles *closer* to the
+starting pose, forming the hydrogen bonds a PARP1 inhibitor is expected to
+make in the nicotinamide pocket — **Ser904** (48 % of the last 14 ns) and
+**Gly863** (18 %), neither of which ligand 453 ever formed.
+
+![Ligand 170 over 50 ns: RMSD, RMSF, pocket distance and hydrogen bonds](results/md/ligand_170/figures/analisis_preliminar.png)
+
+One replica each, so this is one trajectory against another trajectory,
+not a measurement. Results: [results/md/ligand_170/README.md](results/md/ligand_170/README.md)
+· Both side by side: [results/md/README.md](results/md/README.md)
 
 ### Limitations
 
@@ -233,12 +248,12 @@ bash scripts/md/run_md.sh prod      # 50 ns production (~5 days on 4 CPU threads
 bash scripts/md/run_md.sh analysis  # centre the trajectory
 ```
 
-Analysis and figure, with `traj_ligera.xtc` placed in `data/md/`:
+Analysis and figure, with `traj_ligera.xtc` placed in `data/md/ligand_453/`:
 
 ```bash
 # in ChimeraX, started from the repository root
-open data/md/frame0.pdb
-open data/md/traj_ligera.xtc structureModel #1
+open data/md/ligand_453/frame0.pdb
+open data/md/ligand_453/traj_ligera.xtc structureModel #1
 runscript scripts/md_analysis/analiza.py
 runscript scripts/md_analysis/anillos.py
 ```

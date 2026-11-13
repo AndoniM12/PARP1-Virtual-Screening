@@ -1,0 +1,9 @@
+magnitud,media_0_50,sd_0_50,media_10_50,sd_10_50,max,final
+RMSD backbone (Å),1.600,0.162,1.641,0.117,2.208,1.600
+RMSD ligando en bolsillo, pesados (Å),1.532,0.452,1.478,0.436,2.371,0.902
+RMSD ligando interno, pesados (Å),0.748,0.250,0.692,0.224,1.333,0.486
+Distancia COM lig–bolsillo (Å),8.219,0.388,8.131,0.341,9.490,7.990
+Radio de giro proteína (Å),21.017,0.082,21.013,0.080,21.273,20.878
+Puentes de H lig–proteína,0.886,0.950,0.975,0.991,4.000,2.000
+RMSD backbone 453 (Å),1.419,0.188,1.464,0.162,2.096,1.430
+RMSD ligando 453 en bolsillo (Å),3.018,2.099,3.487,2.095,6.343,5.196

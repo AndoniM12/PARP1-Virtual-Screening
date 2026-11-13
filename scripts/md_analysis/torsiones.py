@@ -11,8 +11,8 @@
 # reacomodo ya ha terminado. Las dos amidas son los enlaces de menor amplitud.
 #
 # En ChimeraX, desde la raiz del repositorio:
-#   open data/md/frame0.pdb
-#   open data/md/traj_ligera.xtc structureModel #1
+#   open data/md/ligand_453/frame0.pdb
+#   open data/md/ligand_453/traj_ligera.xtc structureModel #1
 #   runscript scripts/md_analysis/torsiones.py
 import csv
 import os
@@ -25,8 +25,15 @@ from chimerax.geometry import dihedral
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from amidas_lib import encuentra_amidas, exige_trayectoria, hidrogenos, vecinos  # noqa: E402
 
-OUT = "results/md/tables/"
-VENTANA = (27.5, 30.0)          # la transicion, segun results/md/README.md
+# Ligando y paso entre fotogramas como argumentos:
+#   runscript scripts/md_analysis/torsiones.py 170 0.1
+# Sin argumentos, el 453 y sus 50 ps. Lee lo que este cargado en #1 y escribe
+# en results/md/ligand_<N>/tables/.
+LIGANDO = sys.argv[1] if len(sys.argv) > 1 else "453"
+DT_NS = float(sys.argv[2]) if len(sys.argv) > 2 else 0.05
+OUT = f"results/md/ligand_{LIGANDO}/tables/"
+os.makedirs(OUT, exist_ok=True)
+VENTANA = (27.5, 30.0)          # la transicion, segun results/md/ligand_453/README.md
 SOSTENIDO = 20                  # fotogramas (1 ns) a cada lado de un salto
 SALTO_MIN = 60                  # grados minimos para contarlo como salto
 
@@ -142,7 +149,7 @@ session.logger.info(f"enlaces rotables: {len(tors)}")
 filas = []
 for cid in s.coordset_ids:
     s.active_coordset_id = cid
-    filas.append([round((cid - 1) * 0.05, 2)]
+    filas.append([round((cid - 1) * DT_NS, 2)]
                  + [round(dihedral(*(x.coord for x in t)), 1) for t in tors])
 s.active_coordset_id = 1
 

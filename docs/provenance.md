@@ -222,11 +222,12 @@ lanzarlos desde la raíz del repositorio:
 
 | Antes | Ahora |
 |---|---|
-| `/home/andonim12/Documents/PARP1/analisis_ligando453_chimerax/resultados/tablas/` | `results/md/tables/` |
+| `/home/andonim12/Documents/PARP1/analisis_ligando453_chimerax/resultados/tablas/` | `results/md/ligand_453/tables/` |
 | `/home/andonim12/Documents/PARP1/analisis_ligando453_chimerax/datos/` | `data/md/` |
 | `/home/andonim12/Documents/PARP1/analisis_ligando453_chimerax/render/` | `run/render/` |
 | `/home/andonim12/miniconda3/envs/openff/.../openff-gnn-am1bcc-1.0.0.pt` | se resuelve desde el paquete instalado |
 | `$HOME/Documents/PARP1-Molecular-Dynamics/simulation/50ns/` | `run/prod/` |
+| `Molecular-Dynamics_(prueba)/ligando_170/0*/` (la simulación del 170) | `data/md/ligand_170/`, `results/md/ligand_170/` y `scripts/md/ligando/` |
 | `preparation/ligand/ligand_453/` | `data/md/ligand_453/` (entrada) y `run/ligand/` (salida) |
 | `data/7AAA.pdb` | `data/raw/7AAA.pdb` |
 | `data/p-l_complex_pdb/` | `results/docking/candidatos_complejo/` |

@@ -11,7 +11,14 @@ from chimerax.hbonds import find_hbonds
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from amidas_lib import exige_trayectoria  # noqa: E402
 
-OUT = "results/md/tables/"
+# Ligando y paso entre fotogramas como argumentos:
+#   runscript scripts/md_analysis/analiza.py 170 0.1
+# Sin argumentos, el 453 y sus 50 ps. Lee lo que este cargado en #1 y escribe
+# en results/md/ligand_<N>/tables/.
+LIGANDO = sys.argv[1] if len(sys.argv) > 1 else "453"
+DT_NS = float(sys.argv[2]) if len(sys.argv) > 2 else 0.05
+OUT = f"results/md/ligand_{LIGANDO}/tables/"
+os.makedirs(OUT, exist_ok=True)
 s = [m for m in all_atomic_structures(session) if m.id == (1,)][0]
 exige_trayectoria(s)   # falla antes de sobrescribir nada
 lig = s.residues.filter(s.residues.names == "LIG")[0]
@@ -42,7 +49,7 @@ for cid in ids:
         dmin = np.minimum(dmin, np.linalg.norm(pxyz - p, axis=1))
     near = {f"{r.name}{r.number}" for r in prot_atoms.filter(dmin < 4.0).unique_residues}
     contact_count.update(near)
-    rows.append((len(rows) * 0.05, rmsd, len(partners), ";".join(sorted(partners))))
+    rows.append((len(rows) * DT_NS, rmsd, len(partners), ";".join(sorted(partners))))
 s.active_coordset_id = ids[0]
 n = len(ids)
 with open(OUT + "por_fotograma.csv", "w", newline="") as f:

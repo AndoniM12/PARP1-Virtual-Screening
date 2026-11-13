@@ -8,9 +8,11 @@ render/
 # ---------------------------------------------------------------
 # GROMACS: ficheros pesados y regenerables
 # ---------------------------------------------------------------
-# Las trayectorias de la produccion de 50 ns ocupan ~1,8 GB.
-# La trayectoria ligera para el analisis (traj_ligera.xtc, 21 MB) se
-# publica como release y se coloca a mano en data/md/.
+# Las trayectorias de la produccion de 50 ns ocupan ~1,8 GB cada una.
+# La trayectoria ligera para el analisis se publica como release y se
+# coloca a mano en data/md/ligand_<N>/:
+#   data/md/ligand_453/traj_ligera.xtc   21 MB, 1001 fotogramas (50 ps)
+#   data/md/ligand_170/traj_fit.xtc      10 MB,  501 fotogramas (100 ps)
 *.xtc
 *.trr
 *.tpr
@@ -27,9 +29,9 @@ render/
 complex_box.gro
 
 # Se conservan a proposito, por ser evidencia de lo que se ejecuto:
-!results/md/logs/*.log
-!results/md/logs/*.xvg
-!results/md/tables/equilibration/*.xvg
+!results/md/*/logs/*.log
+!results/md/*/logs/*.xvg
+!results/md/*/tables/equilibration/*.xvg
 
 # ---------------------------------------------------------------
 # Video
@@ -70,3 +72,6 @@ venv/
 .DS_Store
 *.swp
 pruebas.py
+
+# Indice que deja gmx hbond en el directorio de trabajo.
+hbond.ndx

@@ -11,8 +11,8 @@
 # de enlaces rotables, no el valor que toman.
 #
 # En ChimeraX, desde la raiz del repositorio:
-#   open data/md/frame0.pdb
-#   open data/md/traj_ligera.xtc structureModel #1
+#   open data/md/ligand_453/frame0.pdb
+#   open data/md/ligand_453/traj_ligera.xtc structureModel #1
 #   runscript scripts/md_analysis/conformeros.py
 import os
 import re

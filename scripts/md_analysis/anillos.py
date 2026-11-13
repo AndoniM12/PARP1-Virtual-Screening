@@ -9,7 +9,14 @@ from chimerax.atomic import all_atomic_structures
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from amidas_lib import exige_trayectoria  # noqa: E402
 
-OUT = "results/md/tables/"
+# Ligando y paso entre fotogramas como argumentos:
+#   runscript scripts/md_analysis/anillos.py 170 0.1
+# Sin argumentos, el 453 y sus 50 ps. Lee lo que este cargado en #1 y escribe
+# en results/md/ligand_<N>/tables/.
+LIGANDO = sys.argv[1] if len(sys.argv) > 1 else "453"
+DT_NS = float(sys.argv[2]) if len(sys.argv) > 2 else 0.05
+OUT = f"results/md/ligand_{LIGANDO}/tables/"
+os.makedirs(OUT, exist_ok=True)
 s = [m for m in all_atomic_structures(session) if m.id == (1,)][0]
 exige_trayectoria(s)   # falla antes de sobrescribir nada
 lig = s.residues.filter(s.residues.names == "LIG")[0]
@@ -34,7 +41,7 @@ rows = []
 for cid in s.coordset_ids:
     s.active_coordset_id = cid
     sandwich = np.mean([a.scene_coord for a in tyr], axis=0)
-    row = [round((cid - 1) * 0.05, 2)]
+    row = [round((cid - 1) * DT_NS, 2)]
     row += [round(float(np.linalg.norm(np.mean([a.scene_coord for a in ats], axis=0) - sandwich)), 2) for _, ats in rings]
     row.append(round(float(min(np.linalg.norm(a.scene_coord - gly_n.scene_coord) for a in acc)), 2))
     rows.append(row)

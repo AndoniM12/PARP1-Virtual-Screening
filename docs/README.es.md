@@ -83,14 +83,29 @@ Ser904, los contactos canónicos de los inhibidores de PARP1.
 pose sea estable. *No* indica que el ligando sea inactivo**: una sola
 réplica de 50 ns no permite afirmar tal cosa.
 
-![Transición](../results/md/figures/transicion.png)
+![Transición](../results/md/ligand_453/figures/transicion.png)
 
-[![Dinámica de 50 ns del ligando 453 en PARP1, con cámara lenta ×6 en el cambio de modo de unión y gráfico de RMSD sincronizado](../results/md/videos/ligando453_animacion_preview.webp)](../results/md/videos/ligando453_animacion_60fps.mp4)
+[![Dinámica de 50 ns del ligando 453 en PARP1, con cámara lenta ×6 en el cambio de modo de unión y gráfico de RMSD sincronizado](../results/md/ligand_453/videos/ligando453_animacion_preview.webp)](../results/md/ligand_453/videos/ligando453_animacion_60fps.mp4)
 
-*Los 50 ns completos, con cámara lenta ×6 durante el cambio de modo de unión (27,5–30 ns) y el RMSD sincronizado. La animación es una vista previa reducida (720 px, 24 fps); al pulsarla se abre el [vídeo completo a 60 fps](../results/md/videos/ligando453_animacion_60fps.mp4) (1600×1000, 31 MB).*
+*Los 50 ns completos, con cámara lenta ×6 durante el cambio de modo de unión (27,5–30 ns) y el RMSD sincronizado. La animación es una vista previa reducida (720 px, 24 fps); al pulsarla se abre el [vídeo completo a 60 fps](../results/md/ligand_453/videos/ligando453_animacion_60fps.mp4) (1600×1000, 31 MB).*
 
 Parámetros completos: [02_molecular_dynamics.md](02_molecular_dynamics.md)
-· Resultados: [../results/md/README.md](../results/md/README.md)
+· Resultados: [../results/md/ligand_453/README.md](../results/md/ligand_453/README.md)
+
+#### Un segundo ligando, para contrastar
+
+El ligando **170** (Molport-053-317-044) se simuló después con el mismo
+protocolo, y hace lo contrario: la pose del docking aguanta los 50 ns
+(RMSD del ligando por debajo de 2,4 Å) y hacia los 36 ns se reacomoda
+*acercándose* a la pose de partida, formando los puentes de hidrógeno
+canónicos del bolsillo de la nicotinamida —**Ser904** (48 % de los
+últimos 14 ns) y **Gly863** (18 %)—, que el 453 no llegó a formar nunca.
+
+![Los 50 ns del ligando 170: RMSD, RMSF, distancia al bolsillo y puentes de hidrógeno](../results/md/ligand_170/figures/analisis_preliminar.png)
+
+Una réplica de cada uno: es una trayectoria contra otra trayectoria, no
+una medida. Resultados: [../results/md/ligand_170/README.md](../results/md/ligand_170/README.md)
+· Las dos juntas: [../results/md/README.md](../results/md/README.md)
 
 ### Limitaciones
 

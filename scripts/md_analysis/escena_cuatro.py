@@ -10,7 +10,7 @@
 # Salida: run/render/alcance/cuatro/{etapa}.pdb  y  girar_cuatro.cxc
 #
 # Desde la raiz del repositorio, con run/render/conformeros/ ya generado
-# (ver results/md/README.md):
+# (ver results/md/ligand_453/README.md):
 #   python3 scripts/md_analysis/escena_cuatro.py
 #   chimerax run/render/alcance/cuatro/girar_cuatro.cxc
 import os
@@ -31,8 +31,8 @@ ETAPAS = [("pharmit", "#2563eb"), ("gnina", "#ea580c"),
 if not os.path.isdir(ORIGEN):
     raise SystemExit(
         f"falta {ORIGEN}: generalo antes con conformeros.py en ChimeraX\n"
-        "  open data/md/frame0.pdb\n"
-        "  open data/md/traj_ligera.xtc structureModel #1\n"
+        "  open data/md/ligand_453/frame0.pdb\n"
+        "  open data/md/ligand_453/traj_ligera.xtc structureModel #1\n"
         "  runscript scripts/md_analysis/conformeros.py")
 os.makedirs(BASE, exist_ok=True)
 

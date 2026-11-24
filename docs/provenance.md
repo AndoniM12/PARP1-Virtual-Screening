@@ -227,7 +227,7 @@ lanzarlos desde la raíz del repositorio:
 | `/home/andonim12/Documents/PARP1/analisis_ligando453_chimerax/render/` | `run/render/` |
 | `/home/andonim12/miniconda3/envs/openff/.../openff-gnn-am1bcc-1.0.0.pt` | se resuelve desde el paquete instalado |
 | `$HOME/Documents/PARP1-Molecular-Dynamics/simulation/50ns/` | `run/prod/` |
-| `Molecular-Dynamics_(prueba)/ligando_170/0*/` (la simulación del 170) | `data/md/ligand_170/`, `results/md/ligand_170/` y `scripts/md/ligando/` |
+| `Molecular-Dynamics_(prueba)/ligando_170/0*/` (la simulación del 170) [^ruta] | `data/md/ligand_170/`, `results/md/ligand_170/` y `scripts/md/ligando/` |
 | `preparation/ligand/ligand_453/` | `data/md/ligand_453/` (entrada) y `run/ligand/` (salida) |
 | `data/7AAA.pdb` | `data/raw/7AAA.pdb` |
 | `data/p-l_complex_pdb/` | `results/docking/candidatos_complejo/` |
@@ -238,6 +238,11 @@ lanzarlos desde la raíz del repositorio:
 | `results/DOCKING/` | `results/docking/` |
 | `results/interacciones.csv` | `results/pharmacophore/interacciones.csv` |
 
+[^ruta]: Las rutas de la columna «Antes» son las que tenían los scripts
+    originales y se dejan tal cual como registro. La carpeta
+    `Molecular-Dynamics_(prueba)/` se renombró a `MD_trabajo/` el
+    17/11/2026 (ver «Ficheros originales»).
+
 `data/md/topology/topol.top` conserva sus directivas `#include` tal como
 estaban en la ejecución original: apuntan a la estructura de carpetas
 antigua. **No se ha modificado a propósito**, por ser evidencia de lo
@@ -246,13 +251,32 @@ topología desde cero con `pdb2gmx`.
 
 ## Ficheros originales
 
-Nada de esto se ha movido ni borrado. Los directorios originales siguen
-intactos en la máquina donde se hizo el trabajo:
+Este repositorio es una copia reorganizada, no un traslado: al hacerlo no se
+movió ni se borró nada. Los directorios de los que salió todo esto están en
+la máquina donde se hizo el trabajo, con estos cambios posteriores
+(17/11/2026, ya hecha la copia):
 
-- `PARP1-Virtual-Screening/` — repositorio del TFM
-- `Molecular-Dynamics_(prueba)/` — dinámica con GROMACS, incluidas las
-  trayectorias completas (1,8 GB) que no se han traído aquí
-- `analisis_ligando453_chimerax/` — análisis, vídeos y
-  `traj_ligera.xtc`
+- `PARP1-Virtual-Screening(TFM)/` — repositorio del TFM. Intacto.
+- `Molecular-Dynamics_(prueba)/` → **renombrado a `MD_trabajo/`**, que pasa a
+  ser la carpeta donde se ejecutan y se guardan los archivos pesados de las
+  dinámicas de ligandos. Dentro, una carpeta por ligando: lo que antes estaba
+  suelto en la raíz (`data/`, `preparation/`, `simulation/`, `analysis/`,
+  `scripts/`) es ahora `ligando_453/`, y `ligando_170/` sigue igual. Conserva
+  las trayectorias completas que no se han traído aquí. Se le quitó el `.git`;
+  ese historial sigue en GitHub, en `AndoniM12/PARP1-Molecular-Dynamics`.
+- `analisis_ligando453_chimerax/` — **borrado.** Datos, tablas, figuras,
+  vídeo a 60 fps, `analiza.py` y `anillos.py` ya estaban aquí, en
+  `data/md/ligand_453/`, `results/md/ligand_453/` y `scripts/md_analysis/`,
+  en versiones iguales o posteriores. Sus scripts de dibujo (los que salieron
+  de aquí en el commit `736b523`) están en `../produccion/`. Lo único que se
+  perdió fueron dos vídeos que no estaban en ningún otro sitio: una versión
+  anterior de la animación, a 30 fps, y el vídeo de la transición.
 
-Este repositorio es una copia reorganizada, no un traslado.
+Las dinámicas de los controles positivos (olaparib, niraparib, rucaparib,
+talazoparib) no están en `MD_trabajo/`: se ejecutan en
+`../controles_inhibidores/run/ligando_N`.
+
+El 170 protonado sí está, en `MD_trabajo/ligando_170_protonado/`. Compartió
+la cola de GPU con los controles y corrió como `ligando_5`, así que sus
+ficheros conservan ese nombre; la tirada se movió a `MD_trabajo/` el
+23/11/2026, una vez terminada.

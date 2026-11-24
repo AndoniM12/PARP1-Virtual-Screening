@@ -75,3 +75,6 @@ pruebas.py
 
 # Indice que deja gmx hbond en el directorio de trabajo.
 hbond.ndx
+
+# Volcado de parametros que deja gmx grompp en el directorio de trabajo.
+mdout.mdp

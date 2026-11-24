@@ -1,0 +1,69 @@
+# This file was created Fri Nov 13 12:25:46 2026
+# Created by:
+#                 :-) GROMACS - gmx rms, 2026.3-conda_forge (-:
+# 
+# Executable:   /home/andonim12/miniconda3/envs/md_parp1_cuda/bin.AVX2_256/gmx
+# Data prefix:  /home/andonim12/miniconda3/envs/md_parp1_cuda
+# Working dir:  /home/andonim12/Documents/PARP1/PARP1-Virtual-Screening-reorganizado/results/md/ligand_170/tables/equilibration
+# Command line:
+#   gmx -quiet rms -s /home/andonim12/Documents/PARP1/Molecular-Dynamics_(prueba)/ligando_170/04_equilibrado/npt/npt.tpr -f /home/andonim12/Documents/PARP1/Molecular-Dynamics_(prueba)/ligando_170/04_equilibrado/npt/npt.xtc -n /home/andonim12/Documents/PARP1/Molecular-Dynamics_(prueba)/ligando_170/06_analisis/final/index.ndx -o npt_rmsd_backbone.xvg
+# gmx rms is part of G R O M A C S:
+#
+# Good gRace! Old Maple Actually Chews Slate
+#
+@    title "RMSD"
+@    xaxis  label "Time (ps)"
+@    yaxis  label "RMSD (nm)"
+@TYPE xy
+@ subtitle "Backbone after lsq fit to Backbone"
+   0.0000000    0.0000628
+   2.0000000    0.0637692
+   4.0000000    0.0602671
+   6.0000000    0.0683866
+   8.0000000    0.0713473
+  10.0000000    0.0788789
+  12.0000000    0.0782541
+  14.0000000    0.0693152
+  16.0000000    0.0728173
+  18.0000000    0.0643074
+  20.0000000    0.0727413
+  22.0000000    0.0757940
+  24.0000000    0.0753031
+  26.0000000    0.0694604
+  28.0000000    0.0798626
+  30.0000000    0.0792183
+  32.0000000    0.0846986
+  34.0000000    0.0814175
+  36.0000000    0.0841009
+  38.0000000    0.0882945
+  40.0000000    0.0791641
+  42.0000000    0.0816975
+  44.0000000    0.0739686
+  46.0000000    0.0774807
+  48.0000000    0.0763104
+  50.0000000    0.0897402
+  52.0000000    0.0804224
+  54.0000000    0.0821171
+  56.0000000    0.0832844
+  58.0000000    0.0828341
+  60.0000000    0.0849011
+  62.0000000    0.0881011
+  64.0000000    0.0925774
+  66.0000000    0.0891866
+  68.0000000    0.0872179
+  70.0000000    0.0984193
+  72.0000000    0.0991826
+  74.0000000    0.1019925
+  76.0000000    0.1009997
+  78.0000000    0.0930765
+  80.0000000    0.0925564
+  82.0000000    0.0912404
+  84.0000000    0.0949353
+  86.0000000    0.0924636
+  88.0000000    0.0901286
+  90.0000000    0.0955471
+  92.0000000    0.0967577
+  94.0000000    0.0988563
+  96.0000000    0.1023825
+  98.0000000    0.1064163
+ 100.0000000    0.0971558

@@ -41,7 +41,7 @@ dinámica. Conviene leerla antes que la gráfica.
   generó Pharmit (`results/pharmit/top1000_rmsd.sdf`); el clustering no
   genera confórmeros y GNINA no la corrige, así que llega intacta a la
   minimización, que la hace caer al mínimo más cercano: ***cis* plano**
-  (ω = +1,1° en `data/md/frame0.pdb`). Es un fallo de la fase 1 que la
+  (ω = +1,1° en `data/md/ligand_453/frame0.pdb`). Es un fallo de la fase 1 que la
   fase 2 heredó. Ver «Comprobado» más abajo.
 - **Solo un contraión.** El sistema se neutralizó con un único Cl⁻, sin
   sal a fuerza iónica fisiológica (~0,15 M). Eso puede afectar al
@@ -77,14 +77,14 @@ ella, y está condicionada por la primera.
 
 ### Un límite de validez — la simulación describe un confórmero que apenas se da
 
-![La amida del tiofeno: 0,41 % esperado frente al 100 % simulado](../results/md/figures/cis_amida.png)
+![La amida del tiofeno: 0,41 % esperado frente al 100 % simulado](../results/md/ligand_453/figures/cis_amida.png)
 
 Antes era una pregunta abierta («¿gira alguna amida?»). La respuesta es
 que no gira ninguna, pero al medirlo aparece algo de más alcance: la
 del tiofeno **ya entró mal**.
 
 Medido con `scripts/md_analysis/amidas.py` sobre los 1001 fotogramas
-(`results/md/tables/amidas.csv`):
+(`results/md/ligand_453/tables/amidas.csv`):
 
 | | tiofeno | benzotriazol |
 |---|---|---|
@@ -199,9 +199,9 @@ t = 33,60 ns   suma |Δ| = 220°
 El brazo del benzotriazol sigue reacomodándose hasta **~35 ns**
 (`enlazador_CH2-triazol` salta en 31,25 · 33,60 · 34,95;
 `benzotriazol_CO-CH2` en 31,85). Eso matiza la tabla de
-[results/md/README.md](../results/md/README.md), que trata 30–50 ns
+[results/md/ligand_453/README.md](../results/md/ligand_453/README.md), que trata 30–50 ns
 como un solo estado: torsionalmente, los primeros 5 ns de esos 20 son
-todavía transitorio. La figura `results/md/figures/torsiones.png` lo
+todavía transitorio. La figura `results/md/ligand_453/figures/torsiones.png` lo
 muestra con la cascada marcada.
 
 Aviso para quien abra la tabla: **los dos metoxilos se mueven mucho y
@@ -213,7 +213,7 @@ orientaciones equivalentes.
 ### Qué le hace el cambio a la molécula
 
 Medido con `scripts/md_analysis/fragmentos.py`
-(`results/md/tables/fragmentos.csv`), partiendo el ligando en **núcleo**
+(`results/md/ligand_453/tables/fragmentos.csv`), partiendo el ligando en **núcleo**
 (21 átomos pesados: dimetoxifenilo, metoxilos, las dos amidas y el
 tiofeno) y **brazo** (11: los dos CH₂ y el benzotriazol):
 
@@ -254,7 +254,7 @@ candidatos de la fase 1.
 ### De dónde sale la tensión, y cuándo se suelta
 
 Medido con `scripts/md_analysis/tension.py`
-(`results/md/tables/tension_torsional.csv`): la energía de los términos
+(`results/md/ligand_453/tables/tension_torsional.csv`): la energía de los términos
 de torsión propia de la topología, enlace por enlace, con el cero de
 cada enlace puesto en **su propio mínimo**. Solo torsión: ni no
 enlazantes, ni proteína, ni disolvente. No es una energía de unión.
@@ -381,7 +381,7 @@ puente con Gly863 fuera un artefacto del docking (receptor rígido, sin
 desolvatación explícita, sin entropía) o que lo tirara el protocolo de
 equilibrado. No se puede fechar la pérdida dentro del equilibrado porque
 de esa etapa solo se guardaron temperatura, presión y RMSD del esqueleto
-(`results/md/tables/equilibration/`), no la trayectoria del ligando.
+(`results/md/ligand_453/tables/equilibration/`), no la trayectoria del ligando.
 
 #### Lo que no dice
 

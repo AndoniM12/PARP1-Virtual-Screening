@@ -192,7 +192,7 @@ analysis() {
         -center
 
     echo
-    echo "NO RECUPERADO: el comando que genero data/md/traj_ligera.xtc"
+    echo "NO RECUPERADO: el comando que genero data/md/ligand_453/traj_ligera.xtc"
     echo "(sin agua, ajustada al backbone, 1 fotograma cada 50 ps) no"
     echo "aparece en el historial. Ver docs/provenance.md."
 }

@@ -81,6 +81,6 @@ def exige_trayectoria(s, minimo=2):
     if n < minimo:
         raise RuntimeError(
             f"Solo hay {n} coordset(s) en el modelo: falta cargar la "
-            f"trayectoria.\n  open data/md/traj_ligera.xtc structureModel #1"
+            f"trayectoria.\n  open data/md/ligand_453/traj_ligera.xtc structureModel #1"
         )
     return n

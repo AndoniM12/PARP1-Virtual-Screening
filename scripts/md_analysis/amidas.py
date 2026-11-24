@@ -5,8 +5,8 @@
 # durante la simulacion, y en particular en la ventana de la transicion.
 #
 # En ChimeraX, desde la raiz del repositorio:
-#   open data/md/frame0.pdb
-#   open data/md/traj_ligera.xtc structureModel #1
+#   open data/md/ligand_453/frame0.pdb
+#   open data/md/ligand_453/traj_ligera.xtc structureModel #1
 #   runscript scripts/md_analysis/amidas.py
 import csv
 import os
@@ -19,7 +19,14 @@ from chimerax.geometry import dihedral
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from amidas_lib import desviacion_plano, encuentra_amidas, exige_trayectoria  # noqa: E402
 
-OUT = "results/md/tables/"
+# Ligando y paso entre fotogramas como argumentos:
+#   runscript scripts/md_analysis/amidas.py 170 0.1
+# Sin argumentos, el 453 y sus 50 ps. Lee lo que este cargado en #1 y escribe
+# en results/md/ligand_<N>/tables/.
+LIGANDO = sys.argv[1] if len(sys.argv) > 1 else "453"
+DT_NS = float(sys.argv[2]) if len(sys.argv) > 2 else 0.05
+OUT = f"results/md/ligand_{LIGANDO}/tables/"
+os.makedirs(OUT, exist_ok=True)
 
 s = [m for m in all_atomic_structures(session) if m.id == (1,)][0]
 exige_trayectoria(s)   # falla antes de sobrescribir nada
@@ -30,7 +37,7 @@ session.logger.info(f"amidas encontradas: {len(amidas)}")
 filas = []
 for cid in s.coordset_ids:
     s.active_coordset_id = cid
-    fila = [round((cid - 1) * 0.05, 2)]
+    fila = [round((cid - 1) * DT_NS, 2)]
     for _, c_acilo, c, o, n, c_amino, _ in amidas:
         w = dihedral(c_acilo.coord, c.coord, n.coord, c_amino.coord)
         fila += [round(w, 1), round(desviacion_plano(w), 1)]

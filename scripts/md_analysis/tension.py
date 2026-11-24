@@ -14,7 +14,7 @@
 # torsion propia: ni no enlazantes, ni proteina, ni disolvente. No es una
 # energia de union.
 #
-# Salida: results/md/tables/tension_torsional.csv
+# Salida: results/md/ligand_453/tables/tension_torsional.csv
 #
 # Desde la raiz del repositorio, con run/render/alcance/cuatro/ ya generado:
 #   python3 scripts/md_analysis/escena_cuatro.py
@@ -30,10 +30,10 @@ from tension_lib import (Ligando, curvas_torsionales, diedro,  # noqa: E402
                          lee_pdb_ligando, lee_topologia, solo_pesados, tension)
 
 ITP = "data/md/ligand_453/gromacs/ligand_453_LIG.itp"
-FRAME0 = "data/md/frame0.pdb"
+FRAME0 = "data/md/ligand_453/frame0.pdb"
 CUATRO = "run/render/alcance/cuatro/"
-TORSIONES = "results/md/tables/torsiones.csv"
-OUT = "results/md/tables/tension_torsional.csv"
+TORSIONES = "results/md/ligand_453/tables/torsiones.csv"
+OUT = "results/md/ligand_453/tables/tension_torsional.csv"
 ETAPAS = ["pharmit", "gnina", "md_t0", "md_t50"]
 VENTANA = (27.5, 35.0)        # transicion y cola del reacomodo
 

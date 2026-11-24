@@ -43,7 +43,7 @@ from tension_lib import (Ligando, curvas_torsionales, diedro,  # noqa: E402
 
 PASO = float(sys.argv[1]) if len(sys.argv) > 1 else 10.0
 ITP = "data/md/ligand_453/gromacs/ligand_453_LIG.itp"
-FRAME0 = "data/md/frame0.pdb"
+FRAME0 = "data/md/ligand_453/frame0.pdb"
 MOL2 = "results/docking/candidatos/docked_ligando_453.mol2"
 COMPLEJO = "results/docking/candidatos_complejo/docked_ligando_453_complex.pdb"
 DESPL = 661          # el complejo esta renumerado: GLY863 -> GLY202

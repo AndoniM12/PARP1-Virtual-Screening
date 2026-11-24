@@ -1,4 +1,7 @@
-# Fase 2 — Dinámica molecular del ligando 453
+# Fase 2 — Dinámica molecular
+
+Dos simulaciones, una por ligando: el **453** (toda la primera parte de
+este documento) y el **170** (al final, en «[La segunda simulación](#la-segunda-simulación-el-ligando-170)»).
 
 > **Trabajo adicional, posterior al TFM.** Una sola réplica de 50 ns,
 > hecha unos dos meses después de terminar el TFM como ejercicio para
@@ -54,7 +57,7 @@ repositorio. Lo que no se ha podido recuperar está en
 
 | Etapa | Parámetros | Fichero |
 |---|---|---|
-| Minimización | `steep`, `emtol` 1000 kJ/mol/nm, máx. 50 000 pasos. Convergió en **1099 pasos** (Epot −7,72·10⁵ kJ/mol, Fmax 958) | `scripts/md/mdp/em.mdp`, `results/md/logs/` |
+| Minimización | `steep`, `emtol` 1000 kJ/mol/nm, máx. 50 000 pasos. Convergió en **1099 pasos** (Epot −7,72·10⁵ kJ/mol, Fmax 958) | `scripts/md/mdp/em.mdp`, `results/md/ligand_453/logs/` |
 | Equilibrado NVT | **100 ps** (50 000 × 2 fs), V-rescale, 300 K, τ_t 0,1 ps, velocidades generadas | `mdp/nvt.mdp` |
 | Equilibrado NPT | **100 ps**, C-rescale, 1 bar, τ_p 2,0 ps, isotrópico | `mdp/npt.mdp` |
 | Producción | **50 ns** (25 000 000 × 2 fs), NPT, fotograma cada 10 ps | `mdp/md_50ns.mdp` |
@@ -101,7 +104,7 @@ opción de `-fit`. Ver [provenance.md](provenance.md).
 
 ## Resultados
 
-Las cifras salen de `results/md/tables/por_fotograma.csv`, recalculadas
+Las cifras salen de `results/md/ligand_453/tables/por_fotograma.csv`, recalculadas
 para comprobarlas:
 
 | Ventana | RMSD del ligando | Puentes de H |
@@ -110,7 +113,7 @@ para comprobarlas:
 | 27,5 – 30 ns | transición | Asp766 20 %, Tyr896 12 % |
 | 30 – 50 ns | media **5,60 Å** (4,24 – 6,53) | **Tyr896 50,9 %, Asp766 50,1 %** |
 
-![Transición](../results/md/figures/transicion.png)
+![Transición](../results/md/ligand_453/figures/transicion.png)
 
 Lectura de la gráfica:
 
@@ -131,6 +134,69 @@ inactivo: una sola réplica de 50 ns no permite afirmar eso.
 Las limitaciones están en [limitations.md](limitations.md), y conviene
 leerlas antes que los resultados.
 
+## La segunda simulación: el ligando 170
+
+El ligando **170** (Molport-053-317-044) se simuló después, con el mismo
+protocolo, para tener con qué comparar. Por qué este candidato y de dónde
+sale cada fichero de entrada:
+[data/md/ligand_170/PROCEDENCIA.md](../data/md/ligand_170/PROCEDENCIA.md).
+Resultados: [results/md/ligand_170/README.md](../results/md/ligand_170/README.md).
+
+Todo lo de arriba vale igual, salvo lo que recoge esta tabla.
+
+### Ligando
+
+| Parámetro | Valor | De dónde sale |
+|---|---|---|
+| Identificadores | Molport-053-317-044 · PubChem 110111891 | `data/md/ligand_170/ligando_170.sdf` |
+| SMILES | `Cc1ncsc1CN1CCC[C@@H](c2ccnc(Nc3cnccn3)c2)C1` | del SDF, con RDKit |
+| Grupos | tiazol · piperidina · piridina · pirazina, unidos la piridina y la pirazina por un **NH** (diarilamina). **Sin amidas**, al contrario que el 453 | ídem |
+| Átomos | 26 pesados, 48 con hidrógenos | ídem |
+| Campo de fuerza y cargas | los mismos: OpenFF 2.2.1 y NAGL | `scripts/md/ligando/preparar_ligando.py` |
+| Pose inicial | la del docking con GNINA. Se construye un SDF que ya trae la pose y los hidrógenos, así que el `.gro` que exporta Interchange es directamente la pose buena. El script lo comprueba: RMSD de los pesados contra el MOL2 = **0,005 Å** | ídem |
+| Disolvente | **15 202** moléculas de agua, 1 Cl⁻ | `[ molecules ]` de `topol.top` |
+| Átomos totales | 51 201 | `md_50ns.log` |
+
+La diferencia de método con el 453 está en la pose: allí el SDF traía el
+confórmero de la biblioteca y el MOL2 la pose dockeada, con los átomos en
+órdenes distintos, y hubo que mapear uno contra otro y reconstruir el
+`.gro` a mano (cinco scripts). Aquí el emparejamiento se resuelve con un
+isomorfismo de grafos sobre la conectividad, y se hace en un paso. Las
+etiquetas canónicas no bastan: las moléculas con simetría tienen átomos
+indistinguibles.
+
+### Ejecución
+
+| | |
+|---|---|
+| GROMACS | **2026.3-conda_forge**, el mismo |
+| Hardware | 4 hilos OpenMP; **los primeros 3,47 ns en CPU y el resto en GPU** (`-nb gpu -pme cpu`, NVIDIA GTX 1630, compilación CUDA) |
+| Rendimiento | **45,6 ns/día** en GPU, frente a ~10 ns/día del 453 en CPU |
+| Fechas | 12 de noviembre de 2026, 00:44, a 13 de noviembre, 10:18; **1 d 00 h 30 min** de reloj |
+| Finalización | alcanzó el paso 25 000 000 / 50 000,00 ps |
+| Semilla del NVT | **170**, escrita en el `.mdp`: esta ejecución sí es reproducible |
+| Reanudaciones | tres arranques, todos desde el checkpoint, sobre el mismo log (tres cabeceras `Started mdrun` en `md_50ns.log`) |
+
+El cambio de CPU a GPU a mitad de la tirada es un cambio de hardware, no
+de física: el `.tpr`, el campo de fuerza y el paso de integración son los
+mismos, y el reinicio es desde checkpoint. La compilación OpenCL de
+GROMACS no acepta esta tarjeta («please use CUDA build»), de ahí el
+cambio de entorno.
+
+### Trayectoria ligera y RMSD
+
+`traj_fit.xtc` guarda **un fotograma cada 100 ps** (501 en total), no cada
+50 ps como la del 453, y a diferencia de aquella el comando que la generó
+sí consta: es `scripts/md/ligando/analisis.sh`, que centra en la proteína
+(`-pbc mol -center -ur compact`), ajusta por el backbone (`-fit rot+trans`)
+y escribe el grupo proteína+ligando, sin agua.
+
+Por eso los scripts de `scripts/md_analysis/` llevan el paso entre
+fotogramas como segundo argumento. El RMSD del ligando se mide igual que
+en el 453 (los **26 átomos pesados** contra el fotograma 0, con la
+proteína alineada por el backbone), y además `analisis.sh` saca con
+`gmx rms` la deformación interna del ligando por separado.
+
 ## Cómo reproducirlo
 
 Ver el README principal. En resumen, desde la raíz del repositorio:
@@ -138,19 +204,46 @@ Ver el README principal. En resumen, desde la raíz del repositorio:
 ```bash
 conda env create -f environment/md_gromacs.yml
 conda env create -f environment/ligand_openff.yml
+```
 
+El **453**, con la receta recuperada de su ejecución original:
+
+```bash
 bash scripts/md/run_md.sh prep      # preparación (dos entornos)
 bash scripts/md/run_md.sh equil     # minimización y equilibrado
 bash scripts/md/run_md.sh prod      # producción de 50 ns (~5 días en 4 hilos)
 bash scripts/md/run_md.sh analysis  # centrado de la trayectoria
 ```
 
-El análisis y la figura, con `traj_ligera.xtc` colocada en `data/md/`:
+El **170**, y cualquier otro candidato del cribado, con el script
+unificado. Es el mismo protocolo; lo único que cambia entre dos
+ejecuciones es el número del ligando y la semilla del NVT:
+
+```bash
+LIGANDO=170 bash scripts/md/ligando/run_md.sh prep
+LIGANDO=170 bash scripts/md/ligando/run_md.sh equil
+LIGANDO=170 bash scripts/md/ligando/run_md.sh prod
+LIGANDO=170 bash scripts/md/ligando/analisis.sh
+```
+
+Con `NB=cpu` se reproduce el hardware del 453 y con `SEED=-1` su semilla
+aleatoria. Una réplica del 453 lanzada así es comparable con la original;
+no idéntica, porque aquella no fijó la semilla.
+
+El análisis en ChimeraX, con la trayectoria ligera colocada en
+`data/md/ligand_<N>/`:
 
 ```bash
 # en ChimeraX, arrancado desde la raíz del repositorio
-open data/md/frame0.pdb
-open data/md/traj_ligera.xtc structureModel #1
+open data/md/ligand_453/frame0.pdb
+open data/md/ligand_453/traj_ligera.xtc structureModel #1
 runscript scripts/md_analysis/analiza.py
 runscript scripts/md_analysis/anillos.py
+```
+
+```bash
+# el 170: el 0.1 son los 100 ps entre fotogramas
+open data/md/ligand_170/frame0.pdb
+open data/md/ligand_170/traj_fit.xtc structureModel #1
+runscript scripts/md_analysis/analiza.py 170 0.1
 ```

@@ -1,0 +1,75 @@
+# This file was created Fri Nov 13 12:25:46 2026
+# Created by:
+#                :-) GROMACS - gmx energy, 2026.3-conda_forge (-:
+# 
+# Executable:   /home/andonim12/miniconda3/envs/md_parp1_cuda/bin.AVX2_256/gmx
+# Data prefix:  /home/andonim12/miniconda3/envs/md_parp1_cuda
+# Working dir:  /home/andonim12/Documents/PARP1/PARP1-Virtual-Screening-reorganizado/results/md/ligand_170/tables/equilibration
+# Command line:
+#   gmx -quiet energy -f /home/andonim12/Documents/PARP1/Molecular-Dynamics_(prueba)/ligando_170/04_equilibrado/nvt/nvt.edr -o nvt_temperature.xvg
+# gmx energy is part of G R O M A C S:
+#
+# Good gRace! Old Maple Actually Chews Slate
+#
+@    title "GROMACS Energies"
+@    xaxis  label "Time (ps)"
+@    yaxis  label "(K)"
+@TYPE xy
+@ view 0.15, 0.15, 0.75, 0.85
+@ legend on
+@ legend box on
+@ legend loctype view
+@ legend 0.78, 0.8
+@ legend length 2
+@ s0 legend "Temperature"
+    0.000000  300.624420
+    2.000000  298.999176
+    4.000000  301.528931
+    6.000000  299.065948
+    8.000000  301.724091
+   10.000000  298.825897
+   12.000000  302.000366
+   14.000000  301.233765
+   16.000000  298.298187
+   18.000000  300.157745
+   20.000000  300.102386
+   22.000000  297.997192
+   24.000000  300.775269
+   26.000000  299.430878
+   28.000000  300.583954
+   30.000000  298.345581
+   32.000000  301.210327
+   34.000000  301.077118
+   36.000000  300.245148
+   38.000000  300.966705
+   40.000000  300.247986
+   42.000000  298.499207
+   44.000000  298.422943
+   46.000000  298.768829
+   48.000000  297.851166
+   50.000000  299.441406
+   52.000000  298.743835
+   54.000000  298.681122
+   56.000000  301.061462
+   58.000000  299.223297
+   60.000000  298.662292
+   62.000000  298.711609
+   64.000000  302.266541
+   66.000000  301.096497
+   68.000000  298.475250
+   70.000000  302.837646
+   72.000000  302.015717
+   74.000000  300.756683
+   76.000000  298.249512
+   78.000000  298.951263
+   80.000000  299.433960
+   82.000000  300.834473
+   84.000000  298.511444
+   86.000000  298.789459
+   88.000000  301.051819
+   90.000000  299.559418
+   92.000000  302.537811
+   94.000000  299.085175
+   96.000000  301.713440
+   98.000000  299.850769
+  100.000000  300.351654
